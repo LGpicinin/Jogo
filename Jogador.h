@@ -12,7 +12,11 @@ public:
 	Jogador();
 	~Jogador();
 	void move();
+	void moveDir();
+	void moveEsq();
 	void pular();
+	void atualizaPos();
+	void parar();
 	void setMapa(Map* PM);
 	Map* getMapa() { return pMapa; }
 };

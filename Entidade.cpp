@@ -33,12 +33,11 @@ Entidade::~Entidade() {}
 }*/
 
 
-void Entidade::setVel(float x, float y) { vel.x = x; vel.y = y; }
+void Entidade::setVelX(float x) { vel.x = x; }
 
 void Entidade::cair() {
 	if (pos.y < 430) {
-		vel.y = vel.y + 3.33 / CLOCKS_PER_SEC;
+		vel.y = vel.y + 4.9 / CLOCKS_PER_SEC;
 	}
 	else if (pos.y >= 430) vel.y = 0;
-	pos.y = pos.y + vel.y;
 }

@@ -45,6 +45,33 @@ void Jogador::move() {
 	corpo.setPosition(pos.x, pos.y);
 }
 
-void Jogador::pular() { vel.y = -1.33; pos.y = pos.y + vel.y; }
+void Jogador::moveDir() {
+	vel.x = 0.5;
+}
+
+void Jogador::atualizaPos() {
+	//if (pos.x < 640 && pos.x > 0) {
+		pos.x = pos.x + vel.x;
+		std::cout << "Nova pos.x: " << pos.x << std::endl;
+	//}
+	if (pos.y < 430 && pos.y > 0) pos.y = pos.y + vel.y;
+	if ((pMapa->getincx() + vel.x >= 0 && pos.x <= 160 && sf::Keyboard::isKeyPressed(sf::Keyboard::A)) ||
+(pMapa->getincx() + vel.x <= pMapa->getTileSheet().getSize().x && pos.x >= 480 && sf::Keyboard::isKeyPressed(sf::Keyboard::D))) {
+		pMapa->update(vel.x, 0);
+		//pos.x -= vel.x;
+	}
+	pos.y += vel.y;
+	corpo.setPosition(pos.x, pos.y);
+}
+
+void Jogador::moveEsq() {
+	vel.x = -0.5;
+}
+
+void Jogador::parar() {
+	vel.x = 0;
+}
+
+void Jogador::pular() { vel.y = -1.33; }
 
 void Jogador::setMapa(Map* PM) { pMapa = PM; }

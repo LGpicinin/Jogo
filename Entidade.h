@@ -12,6 +12,7 @@ public:
 	~Entidade();
 	//void move();
 	void cair();
-	void setVel(float x, float y);
+	sf::Vector2f getVel() { return vel; };
+	void setVelX(float x);
 	void repos(float x, float y) { pos.x = pos.x + x; pos.y = pos.y + y; corpo.setPosition(pos.x, pos.y); }
 };
