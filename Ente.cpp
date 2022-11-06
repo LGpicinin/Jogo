@@ -1,7 +1,7 @@
 #include "Ente.h"
-#include <iostream>
+#include "GerenciadorGrafico.h"
 
-Ente::Ente(sf::Vector2f xy, int i):
+Ente::Ente(int i, sf::Vector2f xy):
 id(i)
 {
     pos = xy;
@@ -17,11 +17,18 @@ id(i)
 
 Ente::~Ente() {  }
 
-/*void Ente::imprimir()
+void Ente::imprimir()
 {
-    gerente->desenhaElemento(this);
-}*/
+    gerente->desenhaElemento(corpo);
+}
 
 sf::Vector2f Ente::getPos() { return pos; }
 
 sf::Sprite Ente::getCorpo() { return corpo; }
+
+int Ente::getId(){ return id; }
+
+void Ente::setGerente(GerenciadorGrafico* g)
+{
+    gerente = g;
+}

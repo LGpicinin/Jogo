@@ -13,7 +13,7 @@ public:
 	static GerenciadorGrafico* getGerenciadorGrafico();
 	sf::RenderWindow* getWindow();
 	void limpaJanela();
-	void desenhaElemento(Ente x);
+	void desenhaElemento(sf::Sprite corpo);
 	void mostraElementos();
 	void fecharJanela();
 	const bool verifJanelaAberta();

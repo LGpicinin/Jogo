@@ -1,7 +1,6 @@
 #include <SFML/Graphics.hpp>
 #include <SFML/Audio.hpp>
 #include "Jogador.h"
-#include "Plataforma.h"
 #include "Inimigo.h"
 #include "GerenciadorGrafico.h"
 #include "ListaEntes.h"
@@ -18,20 +17,22 @@ int main() {
 	//----------------------------INICIALIZACOES------------------------------------------------------
 	GerenciadorEvento* gev = GerenciadorEvento::getGerenciadorEvento();
 	ListaEntes lista;
-	list <Entidade*>::iterator it;
-	list <Personagem*> listaPersonagens;
-	list <Personagem*>::iterator itPer;
+	//Elemento<Entidade>* aux;
+	//list <Personagem*> listaPersonagens;
+	//list <Personagem*>::iterator itPer;
 	GerenciadorGrafico* graf = GerenciadorGrafico::getGerenciadorGrafico();
 	sf::Vector2f xy(0.0f, 0.0f);
 	sf::RectangleShape corp(sf::Vector2f(50.0f, 50.0f));
 	Jogador jogador;
-	lista.add(&jogador);
+	jogador.setGerente(graf);
+	lista.add(static_cast<Entidade*>(&jogador));
 	gev->setJogador(&jogador);
 	gev->setPGraf(graf);
-	listaPersonagens.push_back(static_cast<Personagem*>(&jogador));
+	//listaPersonagens.push_back(static_cast<Personagem*>(&jogador));
 	Inimigo inimigo(&jogador);
+	inimigo.setGerente(graf);
 	lista.add(static_cast<Entidade*>(&inimigo));
-	listaPersonagens.push_back(static_cast<Personagem*>(&inimigo));
+	//listaPersonagens.push_back(static_cast<Personagem*>(&inimigo));
 	Map mapa;
 	//mapa.setPJogador(&jogador);
 	mapa.load();
@@ -64,24 +65,20 @@ int main() {
 		jogador.atualizaPos();
 		atual = jogador.getMapa()->getincx();
 		if (atual != legacy) {
-			for (it = lista.getLista()->begin(); it != lista.getLista()->end(); it++) {
-				(**it).repos(-jogador.getVel().x, 0);
-			}
+			lista.reposLista(-jogador.getVel().x, 0);
 		}
 		
 		graf->limpaJanela();
 		mapa.draw(graf->getWindow());
-		for (it = lista.getLista()->begin(); it != lista.getLista()->end(); it++) {
-			graf->desenhaElemento(**it);
-		}
+		lista.desenhaLista();
 		graf->mostraElementos();
 	}
 	//----------------------------LOOP PRINCIPAL------------------------------------------------------
 
 	//-----------------------------ENCERRAMENTO-------------------------------------------------------
-	for (itPer = listaPersonagens.begin(); itPer != listaPersonagens.end(); itPer++) {
+	/*for (itPer = listaPersonagens.begin(); itPer != listaPersonagens.end(); itPer++) {
 		listaPersonagens.erase(itPer);
 	}
-	listaPersonagens.clear();
+	listaPersonagens.clear();*/
 
 }

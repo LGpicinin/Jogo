@@ -25,7 +25,7 @@ sf::RenderWindow* GerenciadorGrafico::getWindow() { return window;  }
 
 void GerenciadorGrafico::limpaJanela() { window->clear(); }
 
-void GerenciadorGrafico::desenhaElemento(Ente x) { window->draw(x.getCorpo()); }
+void GerenciadorGrafico::desenhaElemento(sf::Sprite corpo) { window->draw(corpo); }
 
 void GerenciadorGrafico::mostraElementos() { window->display(); }
 

@@ -3,7 +3,7 @@
 using namespace std;
 
 Entidade::Entidade(float mass, sf::Vector2f xy, int i):
-Ente(xy, i)
+Ente(i, xy)
 {
 	massa = mass;
 	pos = xy;
