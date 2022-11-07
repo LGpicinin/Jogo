@@ -32,3 +32,22 @@ void Ente::setGerente(GerenciadorGrafico* g)
 {
     gerente = g;
 }
+
+void Ente::setPos(float x, float y) {
+    pos.x = x;
+    pos.y = y;
+    corpo.setPosition(pos);
+}
+
+void Ente::setPos(sf::Vector2f k) {
+    pos = k;
+    corpo.setPosition(pos);
+}
+
+sf::Vector2f Ente::getTam() {
+    sf::FloatRect res = corpo.getGlobalBounds();
+    float x = res.width;
+    float y = res.height;
+    sf::Vector2f ret(x, y);
+    return ret;
+}

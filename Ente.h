@@ -22,5 +22,8 @@ class Ente
         sf::Vector2f getPos();
         sf::Sprite getCorpo();
         int getId();
+        void setPos(float x, float y);
+        void setPos(sf::Vector2f k);
         void setGerente(GerenciadorGrafico* g);
+        sf::Vector2f getTam();
 };

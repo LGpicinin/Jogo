@@ -16,6 +16,8 @@ class Lista
     void incluirEl(TIPO *elemento);
     void removeEl(Elemento<TIPO>* elemento);
     Elemento<TIPO>* getPrimeiro();
+    Elemento<TIPO>* getElX(int x);
+    int getTam();
 };
 
 
@@ -78,10 +80,25 @@ void Lista<TIPO>::removeEl(Elemento<TIPO>* elemento)
   anterior->setProximo(proximo);
   proximo->setAnterior(anterior);
   delete elemento;
+  cont--;
 }
 
 template<class TIPO>
 Elemento<TIPO>* Lista<TIPO>::getPrimeiro()
 {
   return primeiro;
+}
+
+template <class TIPO>
+int Lista<TIPO>::getTam() { return cont; }
+
+template <class TIPO>
+Elemento<TIPO>* Lista<TIPO>::getElX(int x) {
+    int c = 1;
+    Elemento<TIPO>* it = getPrimeiro();
+    while (c < x) {
+        it = it->getProximo();
+        c++;
+    }
+    return it;
 }

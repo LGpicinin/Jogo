@@ -7,7 +7,7 @@ ListaEntes::~ListaEntes() {
 
 
 void ListaEntes::add(Entidade* x) {
-	Lista.incluirEl(x);
+	lista.incluirEl(x);
 }
 
 
@@ -20,17 +20,17 @@ void ListaEntes::remover(Entidade* x)
 		cout << "Elemento nao encontrado" << endl;
 
 	else
-		Lista.removeEl(aux);
+		lista.removeEl(aux);
 }
 
 
 Elemento<Entidade>* ListaEntes::procuraEl(int i)
 {
-	if(Lista.getPrimeiro()!=NULL)
+	if(lista.getPrimeiro()!=NULL)
 	{
 		Elemento<Entidade>* aux;
 		Entidade* tipo;
-		aux = Lista.getPrimeiro();
+		aux = lista.getPrimeiro();
 		tipo = aux->getInfo();
 
 		while(tipo->getId()!=i && aux->getProximo()!=NULL)
@@ -51,7 +51,7 @@ void ListaEntes::reposLista(float x, float y)
 {
 	Elemento<Entidade> *aux;
 	Entidade* info;
-	aux = Lista.getPrimeiro();
+	aux = lista.getPrimeiro();
 
 	while(aux!=NULL)
 	{
@@ -66,7 +66,7 @@ void ListaEntes::desenhaLista()
 	Elemento<Entidade> *aux;
 	Entidade* info;
 
-	aux = Lista.getPrimeiro();
+	aux = lista.getPrimeiro();
 
 	while(aux!=NULL)
 	{
@@ -75,3 +75,5 @@ void ListaEntes::desenhaLista()
 		aux = aux->getProximo();
 	}
 }
+
+Lista<Entidade>* ListaEntes::getLista() { return &lista; }

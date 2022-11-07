@@ -9,7 +9,7 @@ using namespace std;
 
 class ListaEntes {
 private:
-	Lista<Entidade> Lista;
+	Lista<Entidade> lista;
 
 public:
 	ListaEntes();
@@ -19,5 +19,5 @@ public:
 	Elemento<Entidade>* procuraEl(int i);
 	void reposLista(float x, float y);
 	void desenhaLista();
-	
+	Lista<Entidade>* getLista();
 };
