@@ -34,6 +34,7 @@ int main() {
 	lista.add(static_cast<Entidade*>(&inimigo));
 	//listaPersonagens.push_back(static_cast<Personagem*>(&inimigo));
 	Map mapa;
+	mapa.setGerente(graf);
 	//mapa.setPJogador(&jogador);
 	mapa.load();
 	jogador.setMapa(&mapa);
@@ -69,7 +70,7 @@ int main() {
 		}
 		
 		graf->limpaJanela();
-		mapa.draw(graf->getWindow());
+		mapa.imprimir();
 		lista.desenhaLista();
 		graf->mostraElementos();
 	}

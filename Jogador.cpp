@@ -36,7 +36,7 @@ void Jogador::move() {
 		vel.x = vel.x + 0.25;
 		if (pos.x < 640) pos.x = pos.x + vel.x;
 		vel.x = vel.x - 0.25;
-		if (pMapa->getincx() + 0.25 <= pMapa->getTileSheet().getSize().x && pos.x >= 480) {
+		if (pMapa->getincx() + 0.25 <= pMapa->getTextura().getSize().x && pos.x >= 480) {
 			pMapa->update(0.25, 0.0);
 		}
 	}
@@ -51,16 +51,19 @@ void Jogador::moveDir() {
 
 void Jogador::atualizaPos() {
 	//if (pos.x < 640 && pos.x > 0) {
-		pos.x = pos.x + vel.x;
-		std::cout << "Nova pos.x: " << pos.x << std::endl;
 	//}
+	pos.x = pos.x + vel.x;
+	std::cout << "Nova pos.x: " << pos.x << std::endl;
+
 	if (pos.y < 430 && pos.y > 0) pos.y = pos.y + vel.y;
 	if ((pMapa->getincx() + vel.x >= 0 && pos.x <= 160 && sf::Keyboard::isKeyPressed(sf::Keyboard::A)) ||
-(pMapa->getincx() + vel.x <= pMapa->getTileSheet().getSize().x && pos.x >= 480 && sf::Keyboard::isKeyPressed(sf::Keyboard::D))) {
+(pMapa->getincx() + vel.x <= pMapa->getTextura().getSize().x && pos.x >= 480 && sf::Keyboard::isKeyPressed(sf::Keyboard::D))) {
 		pMapa->update(vel.x, 0);
 		//pos.x -= vel.x;
 	}
+	
 	pos.y += vel.y;
+
 	corpo.setPosition(pos.x, pos.y);
 }
 
