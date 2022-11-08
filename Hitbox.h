@@ -19,4 +19,5 @@ public:
 	sf::Vector2f getBmy();
 	sf::Vector2f getBmxy();
 	sf::Vector2f getTam();
+	void reposX(float x);
 };

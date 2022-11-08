@@ -2,10 +2,12 @@
 #include <SFML/Audio.hpp>
 #include "Jogador.h"
 #include "Inimigo.h"
+#include "Hitbox.h"
 #include "GerenciadorGrafico.h"
 #include "ListaEntes.h"
 #include "Map.h"
 #include "GerenciadorEvento.h"
+#include "GerenciadorColisao.h"
 #include <time.h>
 #include <iostream>
 #include <sstream>
@@ -54,12 +56,23 @@ int main() {
 	sfundo.setPosition(0, 0);
 	int CPular = -2;
 	float legacy = 0.0, atual = 0.0;
+	Hitbox h(sf::Vector2f(0.0f, 432.0f), sf::Vector2f(128.0f, 432.0f), sf::Vector2f(0.0f, 480.0f), sf::Vector2f(128.0f, 480.0f));
+	//Hitbox h2(sf::Vector2f(448.0f, 448.0f), sf::Vector2f(608.0f, 448.0f), sf::Vector2f(448.0f, 480.0f), sf::Vector2f(608.0f, 480.0f));
+	Lista<Hitbox> obs;
+	obs.incluirEl(&h);
+	//obs.incluirEl(&h2);
+	ListaEntes inimigos;
+	inimigos.add(&inimigo);
+	inimigos.add(&jogador);
+	GerenciadorColisao gec(&inimigos, &obs, &jogador);
+	Elemento<Hitbox>* itobs = obs.getPrimeiro();
 	
 	//----------------------------INICIALIZACOES------------------------------------------------------
 
 	//----------------------------LOOP PRINCIPAL------------------------------------------------------
 	while (GerenciadorGrafico::getGerenciadorGrafico()->verifJanelaAberta()) {
-		jogador.cair();
+		gec.executar();
+		//jogador.cair();
 		legacy = jogador.getMapa()->getincx();
 		gev->executar();
 		inimigo.move();
@@ -67,6 +80,10 @@ int main() {
 		atual = jogador.getMapa()->getincx();
 		if (atual != legacy) {
 			lista.reposLista(-jogador.getVel().x, 0);
+			while (itobs != NULL) {
+				itobs->getInfo()->reposX(-jogador.getVel().x);
+				itobs = itobs->getProximo();
+			}
 		}
 		
 		graf->limpaJanela();

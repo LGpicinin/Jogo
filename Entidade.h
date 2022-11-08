@@ -14,5 +14,6 @@ public:
 	void cair();
 	sf::Vector2f getVel() { return vel; };
 	void setVelX(float x);
+	void setVelY(float y);
 	void repos(float x, float y) { pos.x = pos.x + x; pos.y = pos.y + y; corpo.setPosition(pos.x, pos.y); }
 };

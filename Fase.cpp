@@ -1,11 +1,12 @@
 #include "Fase.h"
 
-Fase::Fase(GerenciadorColisao *c, GerenciadorGrafico *g, ListaEntes *l, GerenciadorEvento *e)
+Fase::Fase(GerenciadorColisao *c, GerenciadorGrafico *g, ListaEntes *l, GerenciadorEvento *e, Lista<Hitbox>* h)
 {
     pColi = c;
     pGraf = g;
     lista = l;
     pEvent = e;
+    obs = h;
 }
 
 Fase::~Fase()
@@ -14,4 +15,5 @@ Fase::~Fase()
     pGraf = NULL;
     lista = NULL;
     pEvent = NULL;
+    obs = NULL;
 }

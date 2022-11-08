@@ -34,5 +34,14 @@ sf::Vector2f Hitbox::getBmy() { return bmy; }
 sf::Vector2f Hitbox::getBmxy() { return bmxy; }
 
 sf::Vector2f Hitbox::getTam() {
-	return (bmx - b, bmy - b);
+	float x = bmx.x - b.x;
+	float y = bmy.y - b.y;
+	return sf::Vector2f(x, y);
+}
+
+void Hitbox::reposX(float x) {
+	b.x += x;
+	bmx.x += x;
+	bmy.x += x;
+	bmxy.x += x;
 }

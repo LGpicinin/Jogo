@@ -1,9 +1,10 @@
 #include "GerenciadorColisao.h"
 #include <cmath>
 
-GerenciadorColisao::GerenciadorColisao(ListaEntes* ini, Lista<Hitbox>* obs) {
+GerenciadorColisao::GerenciadorColisao(ListaEntes* ini, Lista<Hitbox>* obs, Jogador* p) {
 	inimigos = ini;
 	plataformas = obs;
+	pJogador = p;
 }
 
 GerenciadorColisao::~GerenciadorColisao() {}
@@ -35,26 +36,35 @@ const sf::Vector2f GerenciadorColisao::calculaColisaoPlat(Ente* e, Hitbox* p) {
 }
 
 void GerenciadorColisao::executar() {
-	for (int i = 0; i < inimigos->getLista()->getTam() - 1; i++) {
-		Entidade* ent1 = inimigos->getLista()->getElX(i)->getInfo();
-		for (int j = i + 1; j < inimigos->getLista()->getTam(); j++) {
+	Entidade* ent1 = pJogador;
+	//for (int i = 0; i < inimigos->getLista()->getTam() - 1; i++) {
+		//Entidade* ent1 = inimigos->getLista()->getElX(i)->getInfo();
+		for (int j = 0; j < inimigos->getLista()->getTam(); j++) {
 			Entidade* ent2 = inimigos->getLista()->getElX(j)->getInfo();
 			sf::Vector2f ds = calculaColisaoIni(ent1, ent2);
 			if (ds.x < 0.0f && ds.y < 0.0f) {
-				//ent1->colisao(ent2);
+				std::cout << "Ocorre uma colisao 1.\n";
+				if (pJogador->getPos().y <= ent2->getPos().y + ent2->getTam().y) {
+					pJogador->setVelY(-pJogador->getVel().y);
+					pJogador->setPos(pJogador->getPos().x, ent2->getPos().y + ent2->getTam().y);
+				}
 			}
 		}
-	}
+	
 
 
-	for (int i = 0; i < inimigos->getLista()->getTam() - 1; i++) {
-		Entidade* ent1 = inimigos->getLista()->getElX(i)->getInfo();
-		for (int j = i + 1; j < plataformas->getTam(); j++) {
+	//for (int i = 0; i < inimigos->getLista()->getTam() - 1; i++) {
+		//Entidade* ent1 = inimigos->getLista()->getElX(i)->getInfo();
+		for (int j = 0; j < plataformas->getTam(); j++) {
 			Hitbox* hbx = plataformas->getElX(j)->getInfo();
 			sf::Vector2f ds = calculaColisaoPlat(ent1, hbx);
 			if (ds.x < 0.0f && ds.y < 0.0f) {
-				//ent1->colisao(ent2);
+				std::cout << "Ocorre uma colisao 2.\n";
+				if (pJogador->getPos().y + pJogador->getTam().y >= hbx->getB().y) {
+					pJogador->setVelY(0.0f);
+				}
+				
 			}
+			else pJogador->cair();
 		}
 	}
-}
