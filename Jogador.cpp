@@ -4,13 +4,15 @@
 Jogador::Jogador() : Personagem(1, 101){
 	pMapa = NULL;
 	//sf::Texture* textura = new sf::Texture;
-	if(!textura.loadFromFile("Midia/Imagens/Parado.png", sf::IntRect(0, 0, 50, 50))) std::cout << "Erro na abertura da textura do jogador." << std::endl;
-	else {
+	corpo.setTextureRect(sf::IntRect(0, 0, 288, 370));
+	if(!textura.loadFromFile("Midia/Imagens/Parado.png")) std::cout << "Erro na abertura da textura do jogador." << std::endl;
+	corpo.setScale(sf::Vector2f(0.2f, 0.2f));
+	/*else {
 		std::cout << "O jogador eh azul." << std::endl;
 		corpo.setTexture(textura);
 		//corpo.setColor(sf::Color::Blue);
 		//corpo.setTextureRect(sf::IntRect(0, 0, 50, 50));
-	}
+	}*/
 }
 
 Jogador::~Jogador() {}
