@@ -1,16 +1,11 @@
 #include "Inimigo.h"
 #include <iostream>
 
-Inimigo::Inimigo(Jogador* j, float x, float y) :
-Personagem(1, 103)
+Inimigo::Inimigo(Jogador *j, float x, float y) :
+Personagem(1, 103, x, y)
 {
     jogador = j;
     movAl = rand()%2;
-    if(x!=0 && y!=0)
-    {
-        pos.x = x;
-        pos.y = y;
-    }
 }
 
 Inimigo::~Inimigo()
@@ -49,7 +44,7 @@ void Inimigo::persegueJogador()
 
     if((posiJogador.x - pos.x)<0)
     {
-        vel.x = vel.x - 0.30;
+        vel.x = vel.x - 0.15;
         if(pos.x > 0)
         {
             pos.x = pos.x + vel.x;
@@ -74,12 +69,12 @@ void Inimigo::movimentoAleatorio()
 
     if(movAl==1)
     {
-        vel.x = vel.x + 0.30;
+        vel.x = vel.x + 0.15;
         pos.x = pos.x + vel.x;
     }
     else
     {
-        vel.x = vel.x - 0.30;
+        vel.x = vel.x - 0.15;
         pos.x = pos.x + vel.x;
     }
     vel.x = 0;

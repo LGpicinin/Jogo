@@ -9,8 +9,9 @@ protected:
     int dano;
 
 public:
-    Personagem(const int v, const int id);
+    Personagem(const int v, const int id, float x, float y);
     ~Personagem();
-    int getVidas();
+    virtual void move() = 0;
+    int getVidas(){ return numVidas; }
 
 };

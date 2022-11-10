@@ -6,10 +6,10 @@
 #include "Hitbox.h"
 #include "GerenciadorGrafico.h"
 #include "ListaEntes.h"
+#include "Fase1.h"
 #include "Map.h"
 #include "GerenciadorEvento.h"
 #include "GerenciadorColisao.h"
-#include "Fase1.h"
 #include <time.h>
 #include <iostream>
 #include <sstream>
@@ -25,13 +25,13 @@ int main() {
 	//list <Personagem*> listaPersonagens;
 	//list <Personagem*>::iterator itPer;
 	GerenciadorGrafico* graf = GerenciadorGrafico::getGerenciadorGrafico();
+	sf::Vector2f xy(0.0f, 0.0f);
+	sf::RectangleShape corp(sf::Vector2f(50.0f, 50.0f));
 	Jogador jogador;
 	jogador.setGerente(graf);
 	lista.add(static_cast<Entidade*>(&jogador));
 	gev->setJogador(&jogador);
 	gev->setPGraf(graf);
-	
-	//listaPersonagens.push_back(static_cast<Personagem*>(&inimigo));
 	Map mapa;
 	mapa.setGerente(graf);
 	//mapa.setPJogador(&jogador);
@@ -44,7 +44,7 @@ int main() {
 	}
 	s8.play();
 	sf::Texture fundo;
-	if (!fundo.loadFromFile("Midia/Imagens/Background_2.png")) {
+	if (!fundo.loadFromFile("Midia/Imagens/Bliss.png")) {
 		cout << "Erro na abertura da imagem." << endl;
 	}
 	sf::Sprite sfundo(fundo);
@@ -90,6 +90,8 @@ int main() {
 	while (GerenciadorGrafico::getGerenciadorGrafico()->verifJanelaAberta()) {
 		f1.executar();
 	}
+
+
 	//----------------------------LOOP PRINCIPAL------------------------------------------------------
 
 	//-----------------------------ENCERRAMENTO-------------------------------------------------------

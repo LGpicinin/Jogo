@@ -1,7 +1,7 @@
 #include "Jogador.h"
 #include <iostream>
 
-Jogador::Jogador() : Personagem(1, 101){
+Jogador::Jogador() : Personagem(1, 101, 50, 50){
 	pMapa = NULL;
 	//sf::Texture* textura = new sf::Texture;
 	corpo.setTextureRect(sf::IntRect(0, 0, 288, 370));
@@ -17,14 +17,12 @@ Jogador::Jogador() : Personagem(1, 101){
 
 Jogador::~Jogador() {}
 
+void Jogador::move() {
+	atualizaPos();
+}
 
 void Jogador::moveDir() {
 	vel.x = 0.5;
-}
-
-void Jogador::move()
-{
-	atualizaPos();
 }
 
 void Jogador::atualizaPos() {
@@ -57,6 +55,5 @@ void Jogador::parar() {
 }
 
 void Jogador::pular() { vel.y = -1.33; }
-
 
 void Jogador::setMapa(Map* PM) { pMapa = PM; }
