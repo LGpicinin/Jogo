@@ -58,14 +58,13 @@ void Lista<TIPO>::incluirEl(TIPO *elemento)
     {
       primeiro = aux;
       ultimo = aux;
-      cont++;
     }
     else
     {
       ultimo->setProximo(aux);
       ultimo = ultimo->getProximo();
-      cont++;
     }
+    cont++;
   
 }
 

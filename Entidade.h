@@ -10,7 +10,7 @@ protected:
 public:
 	Entidade(float mass, sf::Vector2f xy, int i);
 	~Entidade();
-	//void move();
+	virtual void move() = 0;
 	void cair();
 	sf::Vector2f getVel() { return vel; };
 	void setVelX(float x);

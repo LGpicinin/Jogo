@@ -4,7 +4,7 @@
 class Onca: public Inimigo
 {
     public:
-        Onca(Jogador* j);
+        Onca(Jogador* j, float x, float y);
         ~Onca();
 
 };

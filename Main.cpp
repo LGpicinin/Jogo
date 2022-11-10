@@ -9,6 +9,7 @@
 #include "Map.h"
 #include "GerenciadorEvento.h"
 #include "GerenciadorColisao.h"
+#include "Fase1.h"
 #include <time.h>
 #include <iostream>
 #include <sstream>
@@ -24,17 +25,12 @@ int main() {
 	//list <Personagem*> listaPersonagens;
 	//list <Personagem*>::iterator itPer;
 	GerenciadorGrafico* graf = GerenciadorGrafico::getGerenciadorGrafico();
-	sf::Vector2f xy(0.0f, 0.0f);
-	sf::RectangleShape corp(sf::Vector2f(50.0f, 50.0f));
 	Jogador jogador;
 	jogador.setGerente(graf);
 	lista.add(static_cast<Entidade*>(&jogador));
 	gev->setJogador(&jogador);
 	gev->setPGraf(graf);
-	//listaPersonagens.push_back(static_cast<Personagem*>(&jogador));
-	Onca inimigo(&jogador);
-	inimigo.setGerente(graf);
-	lista.add(static_cast<Entidade*>(&inimigo));
+	
 	//listaPersonagens.push_back(static_cast<Personagem*>(&inimigo));
 	Map mapa;
 	mapa.setGerente(graf);
@@ -48,7 +44,7 @@ int main() {
 	}
 	s8.play();
 	sf::Texture fundo;
-	if (!fundo.loadFromFile("Midia/Imagens/Bliss.png")) {
+	if (!fundo.loadFromFile("Midia/Imagens/Background_2.png")) {
 		cout << "Erro na abertura da imagem." << endl;
 	}
 	sf::Sprite sfundo(fundo);
@@ -63,33 +59,36 @@ int main() {
 	obs.incluirEl(&h);
 	//obs.incluirEl(&h2);
 	ListaEntes inimigos;
-	inimigos.add(&inimigo);
+	srand(time(NULL));
+	float x ;
+	float y ;
+	int numInimigos = 3 + rand()%7;
+	int contador = 1;
+	while(contador!=numInimigos)
+	{
+		x = rand()%5000;
+		y = 480;
+		Onca *inimigo;
+		inimigo = new Onca(&jogador, x, y);
+		inimigo->setGerente(graf);
+		inimigos.add(static_cast<Entidade*>(inimigo));
+		lista.add(static_cast<Entidade*>(inimigo));
+		contador++;
+	}
 	GerenciadorColisao gec(&inimigos, &obs, &jogador);
-	Elemento<Hitbox>* itobs = obs.getPrimeiro();
-	
+	Fase1 f1(&gec, graf, gev);
+
+	f1.setJogador1(&jogador);
+	f1.setMapa(&mapa);
+	f1.setEntes(&lista);
+	f1.setHitbox(&obs);
+	f1.setInimigos(&inimigos);
+
 	//----------------------------INICIALIZACOES------------------------------------------------------
 
 	//----------------------------LOOP PRINCIPAL------------------------------------------------------
 	while (GerenciadorGrafico::getGerenciadorGrafico()->verifJanelaAberta()) {
-		gec.executar();
-		//jogador.cair();
-		legacy = jogador.getMapa()->getincx();
-		gev->executar();
-		inimigo.move();
-		jogador.atualizaPos();
-		atual = jogador.getMapa()->getincx();
-		if (atual != legacy) {
-			lista.reposLista(-jogador.getVel().x, 0);
-			while (itobs != NULL) {
-				itobs->getInfo()->reposX(-jogador.getVel().x);
-				itobs = itobs->getProximo();
-			}
-		}
-		
-		graf->limpaJanela();
-		mapa.imprimir();
-		lista.desenhaLista();
-		graf->mostraElementos();
+		f1.executar();
 	}
 	//----------------------------LOOP PRINCIPAL------------------------------------------------------
 

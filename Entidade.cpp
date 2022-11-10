@@ -39,11 +39,11 @@ void Entidade::setVelY(float y) { vel.y = y; }
 
 void Entidade::cair() {
 //if (vel.y != 0) {
-	if (pos.y < 430) {
+	if (pos.y < 480 - getTam().y) {
 		vel.y = vel.y + 5.0 / (CLOCKS_PER_SEC);
 	}
-	else if (pos.y >= 430) {
+	else if (pos.y >= 480 - getTam().y) {
 		vel.y = 0;
-		pos.y = 430;
+		pos.y = 480 - getTam().y;
 	}
 }

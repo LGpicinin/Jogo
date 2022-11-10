@@ -11,7 +11,7 @@ protected:
     sf::Clock relogio;
 
 public:
-    Inimigo(Jogador* j);
+    Inimigo(Jogador* j, float x, float y);
     ~Inimigo();
     void move();
     void persegueJogador();

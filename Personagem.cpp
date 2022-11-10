@@ -6,3 +6,8 @@ Personagem::Personagem(const int v, const int id) : Entidade(10, sf::Vector2f(50
 }
 
 Personagem::~Personagem(){}
+
+int Personagem::getVidas()
+{
+    return numVidas;
+}

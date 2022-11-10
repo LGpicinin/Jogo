@@ -11,7 +11,7 @@ id(i)
         std::cout << "Foi criado um ente com a textura roxa." << std::endl;
         corpo.setTexture(textura);
     }
-    corpo.setTextureRect(sf::IntRect(0, 0, 50, 50));
+    //corpo.setTextureRect(sf::IntRect(0, 0, 288, 370));
     corpo.setPosition(sf::Vector2f(xy.x, xy.y));
 }
 
