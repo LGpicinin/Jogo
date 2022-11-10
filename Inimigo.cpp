@@ -5,14 +5,7 @@ Inimigo::Inimigo(Jogador *j) :
 Personagem(1, 103)
 {
     jogador = j;
-    //sf::Texture* textura = new sf::Texture;
-    if(!textura.loadFromFile("Midia/Imagens/Inimigo.png", sf::IntRect(0, 0, 50, 50))) std::cout << "Erro na abertura da textura do inimigo." << std::endl;
-    else {
-        std::cout << "O inimigo eh vermelho." << std::endl;
-        corpo.setTexture(textura);
-        //corpo.setColor(sf::Color::Red);
-        //corpo.setTextureRect(sf::IntRect(0, 0, 50, 50));
-    }
+    movAl = rand()%2;
 }
 
 Inimigo::~Inimigo()
@@ -26,9 +19,32 @@ void Inimigo::move()
 
     posiJogador = jogador->getPos();
 
+    if((posiJogador.x - pos.x)<210)
+    {
+        persegueJogador();
+    }
+    else
+    {
+        movimentoAleatorio();
+    }
+
+    cair();
+
+    pos.y = pos.y + vel.y;
+
+    corpo.setPosition(pos.x, pos.y);
+}
+
+void Inimigo::persegueJogador()
+{
+
+    sf::Vector2f posiJogador, posiInimigo;
+
+    posiJogador = jogador->getPos();
+
     if((posiJogador.x - pos.x)<0)
     {
-        vel.x = vel.x - 0.10;
+        vel.x = vel.x - 0.15;
         if(pos.x > 0)
         {
             pos.x = pos.x + vel.x;
@@ -38,12 +54,36 @@ void Inimigo::move()
     }
     else if((posiJogador.x - pos.x)>0)
     {
-        vel.x = vel.x + 0.10;
+        vel.x = vel.x + 0.15;
         if(pos.x < 640)
         {
             pos.x = pos.x + vel.x;
         }
         vel.x = 0.0;
     }
-    corpo.setPosition(pos.x, pos.y);
+
+}
+
+void Inimigo::movimentoAleatorio()
+{
+
+    if(movAl==1)
+    {
+        vel.x = vel.x + 0.15;
+        pos.x = pos.x + vel.x;
+    }
+    else
+    {
+        vel.x = vel.x - 0.15;
+        pos.x = pos.x + vel.x;
+    }
+    vel.x = 0;
+
+    float dt = relogio.getElapsedTime().asSeconds();
+    if(dt>=1)
+    {
+        relogio.restart();
+        movAl = rand()%2;
+    }
+
 }

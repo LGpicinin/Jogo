@@ -2,6 +2,7 @@
 #include <SFML/Audio.hpp>
 #include "Jogador.h"
 #include "Inimigo.h"
+#include "Onca.h"
 #include "Hitbox.h"
 #include "GerenciadorGrafico.h"
 #include "ListaEntes.h"
@@ -31,7 +32,7 @@ int main() {
 	gev->setJogador(&jogador);
 	gev->setPGraf(graf);
 	//listaPersonagens.push_back(static_cast<Personagem*>(&jogador));
-	Inimigo inimigo(&jogador);
+	Onca inimigo(&jogador);
 	inimigo.setGerente(graf);
 	lista.add(static_cast<Entidade*>(&inimigo));
 	//listaPersonagens.push_back(static_cast<Personagem*>(&inimigo));
@@ -63,7 +64,6 @@ int main() {
 	//obs.incluirEl(&h2);
 	ListaEntes inimigos;
 	inimigos.add(&inimigo);
-	inimigos.add(&jogador);
 	GerenciadorColisao gec(&inimigos, &obs, &jogador);
 	Elemento<Hitbox>* itobs = obs.getPrimeiro();
 	

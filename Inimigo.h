@@ -7,10 +7,14 @@ class Inimigo : public Personagem
 {
 protected:
     Jogador* jogador;
+    int movAl;
+    sf::Clock relogio;
 
 public:
     Inimigo(Jogador* j);
     ~Inimigo();
     void move();
+    void persegueJogador();
+    void movimentoAleatorio();
 
 };

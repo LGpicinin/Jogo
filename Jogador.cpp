@@ -4,7 +4,7 @@
 Jogador::Jogador() : Personagem(1, 101){
 	pMapa = NULL;
 	//sf::Texture* textura = new sf::Texture;
-	if(!textura.loadFromFile("Midia/Imagens/Jogador.png", sf::IntRect(0, 0, 50, 50))) std::cout << "Erro na abertura da textura do jogador." << std::endl;
+	if(!textura.loadFromFile("Midia/Imagens/Parado.png", sf::IntRect(0, 0, 50, 50))) std::cout << "Erro na abertura da textura do jogador." << std::endl;
 	else {
 		std::cout << "O jogador eh azul." << std::endl;
 		corpo.setTexture(textura);
