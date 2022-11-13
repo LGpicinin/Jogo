@@ -28,7 +28,7 @@ void Inimigo::move()
         movimentoAleatorio();
     }
 
-    cair();
+    //cair();
 
     pos.y = pos.y + vel.y;
 

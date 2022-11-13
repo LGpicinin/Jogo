@@ -2,17 +2,19 @@
 #include "ListaEntes.h"
 #include "Jogador.h"
 #include "Hitbox.h"
+#include "Mapa.h"
 
 class GerenciadorColisao {
 private:
 	Jogador* pJogador;
 	ListaEntes* inimigos;
-	Lista<Hitbox>* plataformas;
+	Mapa* map;
+
 
 public:
-	GerenciadorColisao(ListaEntes* ini, Lista<Hitbox>* obs, Jogador* p);
+	GerenciadorColisao(ListaEntes* ini, Mapa* m, Jogador* p);
 	~GerenciadorColisao();
 	const sf::Vector2f calculaColisaoIni(Ente* e1, Ente* e2);
-	const sf::Vector2f calculaColisaoPlat(Ente* e, Hitbox* p);
+	const sf::Vector2f calculaColisaoPlat(Ente* e, Plataforma* p);
 	void executar();
 };

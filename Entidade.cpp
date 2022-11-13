@@ -2,10 +2,9 @@
 #include <iostream>
 using namespace std;
 
-Entidade::Entidade(float mass, sf::Vector2f xy, int i):
+Entidade::Entidade(sf::Vector2f xy, int i):
 Ente(i, xy)
 {
-	massa = mass;
 	pos = xy;
 	//corpo.setFillColor(sf::Color::Blue);
 	vel.x = 0.0;
@@ -39,11 +38,12 @@ void Entidade::setVelY(float y) { vel.y = y; }
 
 void Entidade::cair() {
 //if (vel.y != 0) {
-	if (pos.y < 480 - getTam().y) {
-		vel.y = vel.y + 5.0 / (CLOCKS_PER_SEC);
+	/*if (pos.y < 480 - getTam().y) {
+		vel.y = vel.y + 300.0 / (CLOCKS_PER_SEC);
 	}
 	else if (pos.y >= 480 - getTam().y) {
 		vel.y = 0;
 		pos.y = 480 - getTam().y;
-	}
+	}*/
+	vel.y = vel.y + 300.0 / CLOCKS_PER_SEC;
 }

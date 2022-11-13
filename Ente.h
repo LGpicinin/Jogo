@@ -7,7 +7,7 @@ class Ente
 {
     protected:
         const int id;
-        GerenciadorGrafico *gerente;
+        static GerenciadorGrafico *gerente;
         sf::Vector2f pos;
         sf::Sprite corpo;
         sf::Texture textura;
@@ -25,6 +25,6 @@ class Ente
         sf::Texture getTextura() { return textura; }
         void setPos(float x, float y);
         void setPos(sf::Vector2f k);
-        void setGerente(GerenciadorGrafico* g);
+        static void setGerente(GerenciadorGrafico* g);
         sf::Vector2f getTam();
 };

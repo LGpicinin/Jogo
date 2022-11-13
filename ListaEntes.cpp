@@ -1,6 +1,8 @@
 #include "ListaEntes.h"
 
-ListaEntes::ListaEntes() {}
+ListaEntes::ListaEntes() {
+	lista = Lista<Entidade>::Lista();
+}
 
 ListaEntes::~ListaEntes() {
 }

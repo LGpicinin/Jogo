@@ -6,6 +6,7 @@
 #include "Hitbox.h"
 #include "Elemento.h"
 #include "Map.h"
+#include "Mapa.h"
 
 class Fase
 {
@@ -19,6 +20,7 @@ class Fase
         Jogador* j1;
         Jogador* j2;
         Map *mapa;
+        Mapa* mapa2;
 
     public:
         Fase(GerenciadorColisao *c, GerenciadorGrafico *g, GerenciadorEvento *e);
@@ -30,5 +32,5 @@ class Fase
         void setEntes(ListaEntes *l);
         void setHitbox(Lista<Hitbox>* h);
         void setInimigos(ListaEntes *i);
-
+        void setMapa2(Mapa* m);
 };

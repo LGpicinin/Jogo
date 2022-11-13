@@ -23,11 +23,11 @@ void GerenciadorEvento::setJogador(Jogador* p) { pJogador = p; }
 
 void GerenciadorEvento::verifTeclaPressionada(sf::Keyboard::Key tecla) {
 	if (tecla == sf::Keyboard::A) {
-		pJogador->setVelX(-0.5);
+		pJogador->setVelX(-8.0);
 		//pJogador->atualizaPos();
 	}
 	else if (tecla == sf::Keyboard::D) {
-		pJogador->setVelX(0.5);
+		pJogador->setVelX(8.0);
 		//pJogador->atualizaPos();
 	}
 	if (tecla == sf::Keyboard::Space && pJogador->getVel().y==0) {

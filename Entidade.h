@@ -4,11 +4,10 @@
 
 class Entidade: public Ente{
 protected:
-	float massa;
 	sf::Vector2f vel;
 
 public:
-	Entidade(float mass, sf::Vector2f xy, int i);
+	Entidade(sf::Vector2f xy, int i);
 	~Entidade();
 	virtual void move() = 0;
 	void cair();

@@ -10,6 +10,7 @@ Fase::Fase(GerenciadorColisao *c, GerenciadorGrafico *g, GerenciadorEvento *e)
     mapa = NULL;
     j1 = NULL;
     j2 = NULL;
+    mapa2 = NULL;
 }
 
 Fase::~Fase()
@@ -51,3 +52,5 @@ void Fase::setInimigos(ListaEntes *i)
 {
     inimigos =i;
 }
+
+void Fase::setMapa2(Mapa* m) { mapa2 = m; }

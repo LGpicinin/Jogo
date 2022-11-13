@@ -11,7 +11,8 @@ void Fase1::executar()
 {
     float legacy = 0.0, atual = 0.0;
     int contador;
-    Elemento<Hitbox>* itobs = obs->getPrimeiro();
+    //Elemento<Hitbox>* itobs = obs->getPrimeiro();
+    
 
     while(j1->getVidas()!=0 && GerenciadorGrafico::getGerenciadorGrafico()->verifJanelaAberta())
     {
@@ -26,13 +27,13 @@ void Fase1::executar()
 
         if (atual != legacy) {
 			inimigos->reposLista(-j1->getVel().x, 0);
-			while (itobs != NULL) {
+			/*while (itobs != NULL) {
 				itobs->getInfo()->reposX(-j1->getVel().x);
 				itobs = itobs->getProximo();
-			}
+			}*/
 		}
         pGraf->limpaJanela();
-		mapa->imprimir();
+	    mapa2->imprimir();
 		lista->desenhaLista();
 		pGraf->mostraElementos();
     }

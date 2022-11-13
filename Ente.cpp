@@ -1,6 +1,8 @@
 #include "Ente.h"
 #include "GerenciadorGrafico.h"
 
+GerenciadorGrafico* Ente::gerente = GerenciadorGrafico::getGerenciadorGrafico();
+
 Ente::Ente(int i, sf::Vector2f xy):
 id(i)
 {
@@ -8,7 +10,7 @@ id(i)
     //textura = new sf::Texture;
     if(!textura.loadFromFile("Midia/Imagens/Roxo.png")) std::cout << "Erro na abertura da textura roxa para o ente." << std::endl;
     else {
-        std::cout << "Foi criado um ente com a textura roxa." << std::endl;
+        //std::cout << "Foi criado um ente com a textura roxa." << std::endl;
         corpo.setTexture(textura);
     }
     //corpo.setTextureRect(sf::IntRect(0, 0, 288, 370));
