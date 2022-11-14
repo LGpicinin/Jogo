@@ -39,15 +39,16 @@ sf::Image Plataforma::loadAlt(const string s) {
 	return i;
 }
 
-const bool Plataforma::verifNula() {
-	std::cout << "VerifNula inicializado.\n";
-	sf::Color color = teste.getPixel(pos.x / 2.0f, pos.y / 2.0f);
-	if (color == sf::Color::Transparent) {
-		std::cout << "VerifNula finalizado.\n";
+const bool Plataforma::verifNula(sf::Vector2f coor) {
+	//std::cout << "VerifNula inicializado.\n";
+	sf::Color color = teste.getPixel(coor.x / 2.0f, coor.y / 2.0f);
+	sf::Color color2 = teste.getPixel(coor.x / 2.0f + 15.0f, coor.y / 2.0f + 15.0f);
+	if (color == sf::Color::Transparent && color2 == sf::Color::Transparent) {
+		//std::cout << "VerifNula finalizado.\n";
 		return true;
 	}
 	else {
-		std::cout << "VerifNula finalizado.\n";
+		//std::cout << "VerifNula finalizado.\n";
 		return false;
 	}
 }

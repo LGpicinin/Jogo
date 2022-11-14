@@ -16,5 +16,5 @@ public:
 	const bool getNula();
 	static void setImagem(sf::Image i);
 	static sf::Image loadAlt(const string s);
-	const bool verifNula();
+	const bool verifNula(sf::Vector2f coor);
 };

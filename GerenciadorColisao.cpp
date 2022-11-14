@@ -56,13 +56,14 @@ void GerenciadorColisao::executar() {
 	//for (int i = 0; i < inimigos->getLista()->getTam() - 1; i++) {
 		//Entidade* ent1 = inimigos->getLista()->getElX(i)->getInfo();
 		bool flag = 0;
-		for (int j = 0; j < map->getLista()->getTam(); j++) {
-			Plataforma* hbx = map->getLista()->getElX(j)->getInfo();
+		for (int j = 0; j < map->getColidiveis()->getTam(); j++) {
+			Plataforma* hbx = map->getColidiveis()->getElX(j)->getInfo();
 			sf::Vector2f ds = calculaColisaoPlat(ent1, hbx);
 			if (ds.x < 0.0f && ds.y < 0.0f) {
 				std::cout << "Ocorre uma colisao 2.\n";
-				if (pJogador->getPos().y + pJogador->getTam().y >= hbx->getPos().y) {
+				if (trunc(pJogador->getPos().y + pJogador->getTam().y) >= trunc(hbx->getPos().y) && pJogador->getVel().y >= 0) {
 					pJogador->setVelY(0.0f);
+					//pJogador->setPos(sf::Vector2f(pJogador->getPos().x, trunc(hbx->getPos().y - pJogador->getTam().y)));
 					flag = 1;
 				}
 				
@@ -75,8 +76,8 @@ void GerenciadorColisao::executar() {
 		for (int i = 0; i <= inimigos->getLista()->getTam(); i++) {
 			flag2 = 0;
 			ent1 = inimigos->getLista()->getElX(i)->getInfo();
-			for (int j = 0; j < map->getLista()->getTam(); j++) {
-				Plataforma* hbx = map->getLista()->getElX(j)->getInfo();
+			for (int j = 0; j < map->getColidiveis()->getTam(); j++) {
+				Plataforma* hbx = map->getColidiveis()->getElX(j)->getInfo();
 				sf::Vector2f ds = calculaColisaoPlat(ent1, hbx);
 				if (ds.x < 0.0f && ds.y < 0.0f) {
 					std::cout << "Ocorre uma colisao 2.\n";

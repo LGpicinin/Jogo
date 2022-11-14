@@ -31,8 +31,10 @@ void Jogador::atualizaPos() {
 	//}
 	std::cout << "Nova pos.x: " << pos.x << std::endl;
 	std::cout << "vel.y = " << vel.y << std::endl;
+	std::cout << "pos.y = " << pos.y << std::endl;
 
-	if (pos.y < 430 && pos.y > 0) pos.y = pos.y + vel.y;
+	//if (pos.y < 430 && pos.y > 0) pos.y = pos.y + vel.y;
+	pos.y = pos.y + vel.y;
 	if ((pMapa->getincx() + vel.x >= 0 && pos.x <= 220 && sf::Keyboard::isKeyPressed(sf::Keyboard::A)) ||
 (pMapa->getincx() + vel.x <= pMapa->getTextura().getSize().x && pos.x >= 420 && sf::Keyboard::isKeyPressed(sf::Keyboard::D))) {
 		pMapa->update(vel.x, 0);
@@ -49,7 +51,7 @@ void Jogador::atualizaPos() {
 		pos.y -= vel.y;
 	}
 	
-	else pos.y += vel.y;
+	//else pos.y += vel.y;
 
 	corpo.setPosition(pos.x, pos.y);
 }
@@ -62,6 +64,6 @@ void Jogador::parar() {
 	vel.x = 0;
 }
 
-void Jogador::pular() { vel.y = -6.33; }
+void Jogador::pular() { vel.y = -10; }
 
 void Jogador::setMapa(Map* PM) { pMapa = PM; }

@@ -1,27 +1,35 @@
 #include "Mapa.h"
 #include <iostream>
 
-Mapa::Mapa() : lista() {
+Mapa::Mapa() : lista(), colidiveis() {
 	inc = sf::Vector2f(0.0f, 0.0f);
-	inicializaAuto();
-	std::cout << "inicializaAuto executada.\n";
+	//inicializaAuto();
+	//std::cout << "inicializaAuto executada.\n";
 }
 
 Mapa::~Mapa() {
-
+	lista.~Lista();
+	colidiveis.~Lista();
 }
 
-void Mapa::inicializaAuto() {
+Mapa::Mapa(sf::Vector2f ini, sf::Vector2f fim) : lista() {
+	inc = sf::Vector2f(0.0f, 0.0f);
+	inicializaAuto(ini, fim);
+}
+
+void Mapa::inicializaAuto(sf:: Vector2f ini, sf::Vector2f fim) {
 	bool chk = 0;
-	for (float i = 0; i <= 3968; i = i + 32) {
+	for (float i = ini.x; i <= fim.x; i = i + 32) {
 		chk = 0;
-		for (float j = 320.0f; j <= 1088; j = j + 32) {
+		for (float j = ini.y; j <= fim.y; j = j + 32) {
 			Plataforma* p = new Plataforma(sf::Vector2f(i, j));
 			if (p->getNula() == false) {
 				chk = 1;
 				cout << "Item adicionado a lista.\n";
 				//p->setGerente(graf);
 				lista.incluirEl(p);
+				if (p->verifNula(sf::Vector2f(i + 32, j)) || p->verifNula(sf::Vector2f(i - 32, j)) ||
+p->verifNula(sf::Vector2f(i, j + 32)) || p->verifNula(sf::Vector2f(i, j - 32))) colidiveis.incluirEl(p);
 			}
 			else if (chk == 1) break;
 		}
@@ -45,3 +53,5 @@ void Mapa::imprimir() {
 		it = it->getProximo();
 	}
 }
+
+Lista<Plataforma>* Mapa::getColidiveis() { return &colidiveis; }

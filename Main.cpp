@@ -39,6 +39,7 @@ int main() {
 	mapa.load();
 	jogador.setMapa(&mapa);
 	Mapa mapa2;
+	mapa2.inicializaAuto(sf::Vector2f(0.0f, 320.0f), sf::Vector2f(3968.0f, 1088.0f));
 	jogador.setMapa2(&mapa2);
 
 	sf::Music s8;
