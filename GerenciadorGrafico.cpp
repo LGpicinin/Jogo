@@ -4,6 +4,8 @@ GerenciadorGrafico* GerenciadorGrafico::pGrafico = NULL;
 
 GerenciadorGrafico::GerenciadorGrafico() {
 	window = new sf::RenderWindow(sf::VideoMode(640, 480), "Jogo");
+	view.setCenter(sf::Vector2f(320.0f, 240.0f));
+	view.setSize(sf::Vector2f(640, 480));
 }
 
 GerenciadorGrafico::~GerenciadorGrafico() {
@@ -35,3 +37,9 @@ const bool GerenciadorGrafico::verifJanelaAberta() {
 	if (window->isOpen() == 1) return true;
 	else return false;
 }
+
+sf::Vector2f GerenciadorGrafico::getCoorView() { return view.getCenter(); }
+
+void GerenciadorGrafico::setView(sf::Vector2f coor) { view.setCenter(coor); }
+
+sf::View* GerenciadorGrafico::getView() { return &view; }

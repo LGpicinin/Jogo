@@ -1,8 +1,9 @@
 #pragma once
 #include <iostream>
+#include "GerenciadorGrafico.h"
 #include <SFML/Graphics.hpp>
 
-class GerenciadorGrafico;
+//class GerenciadorGrafico;
 class Ente
 {
     protected:
@@ -27,4 +28,5 @@ class Ente
         void setPos(sf::Vector2f k);
         static void setGerente(GerenciadorGrafico* g);
         sf::Vector2f getTam();
+        static GerenciadorGrafico* getGerente() { return gerente; }
 };
