@@ -2,7 +2,6 @@
 #include <iostream>
 
 Mapa::Mapa() : lista(), colidiveis() {
-	inc = sf::Vector2f(0.0f, 0.0f);
 	//inicializaAuto();
 	//std::cout << "inicializaAuto executada.\n";
 }
@@ -13,7 +12,6 @@ Mapa::~Mapa() {
 }
 
 Mapa::Mapa(sf::Vector2f ini, sf::Vector2f fim) : lista() {
-	inc = sf::Vector2f(0.0f, 0.0f);
 	inicializaAuto(ini, fim);
 }
 

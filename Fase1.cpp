@@ -7,15 +7,51 @@ Fase(c, g, e)
 }
 
 Fase1::Fase1(): Fase() {
+    lista = new ListaEntes();
+    f1 = new sf::Music();
+    f1->openFromFile("Midia/Musicas/S8M4.ogg");
     sf::Image i;
     i.loadFromFile("Midia/Imagens/Teste Tilemap2.png");
     Plataforma::setImagem(i);
     Mapa* mapa = new Mapa(sf::Vector2f(0.0f, 320.0f), sf::Vector2f(3968.0f, 1088.0f));
     mapa2 = mapa;
+    //delete mapa;
+    j1 = new Jogador();
+    j1->setMapa2(mapa2);
+    pGraf = GerenciadorGrafico::getGerenciadorGrafico();
+    //j1->setGerente(pGraf);
+    pEvent = GerenciadorEvento::getGerenciadorEvento();
+    inimigos = new ListaEntes();
+    srand(time(NULL));
+    float x;
+    float y;
+    int numInimigos = 3 + rand() % 7;
+    int contador = 1;
+    Onca* onca = new Onca(j1, 50, 50);
+    inimigos->add(onca);
+    lista->add(onca);
+    while (contador != numInimigos)
+    {
+        x = rand() % 500;
+        y = 48;
+        Onca* inimigo;
+        inimigo = new Onca(j1, x, y);
+        //inimigo->setGerente(graf);
+        inimigos->add(static_cast<Entidade*>(inimigo));
+        lista->add(static_cast<Entidade*>(inimigo));
+        contador++;
+    }
+    f1->play();
+    lista->add(j1);
+    pEvent->setJogador(j1);
+    
+    pColi = new GerenciadorColisao(inimigos, mapa2, j1);
 }
 
 Fase1::~Fase1(){
     mapa2->~Mapa();
+    delete f1;
+    delete pColi;
 }
 
 void Fase1::executar()
@@ -30,7 +66,7 @@ void Fase1::executar()
         pColi->executar();
         pEvent->executar();
         //legacy = j1->getMapa()->getincx();
-        for(contador=1; contador<lista->getLista()->getTam(); contador++)
+        for(contador=1; contador<lista->getLista()->getTam() + 1; contador++)
 		{
 			lista->getLista()->getElX(contador)->getInfo()->move();//movimento do jogador eh atualizado na na funcao move(), que chama a funcao atualizaPos()
 		}

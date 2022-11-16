@@ -3,7 +3,7 @@
 
 //Map::Map() : tamx(16), tamy(16), qtdx(0), qtdy(0) {}
 Map::Map():
-Ente(150,sf::Vector2f(0.0f, 0.0f))
+Ente(sf::Vector2f(0.0f, 0.0f))
 { 
 	tamx = 16; tamy = 16; qtdx = 0; qtdy = 0; incx = 0; incy = 0; 
 }

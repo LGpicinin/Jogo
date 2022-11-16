@@ -1,7 +1,7 @@
 #include "Menu.h"
 
-Menu::Menu(): titulo(0, sf::Vector2f(30.0f, 0.0f)), carrega(0, sf::Vector2f(1000.0f, 1000.0f)), fundo(0, sf::Vector2f(0.0f, 0.0f)) {
-	sf::Texture aux;
+Menu::Menu(): titulo(sf::Vector2f(30.0f, 0.0f)), carrega(sf::Vector2f(1000.0f, 1000.0f)), fundo(sf::Vector2f(0.0f, 0.0f)) {
+	/*sf::Texture aux;
 	aux.loadFromFile("Midia/Imagens/Titulo.png");
 	titulo.setTextura(aux);
 	aux.loadFromFile("Midia/Imagens/Preto.png");
@@ -22,7 +22,8 @@ Menu::Menu(): titulo(0, sf::Vector2f(30.0f, 0.0f)), carrega(0, sf::Vector2f(1000
 	o4.setTextura(aux);
 	o5.setPos(sf::Vector2f(160.0f, 400.0f));
 	aux.loadFromFile("Midia/Imagens/Menu Opc 5.png");
-	o5.setTextura(aux);
+	o5.setTextura(aux);*/
+
 }
 
 Menu::~Menu() {
@@ -132,3 +133,9 @@ void Menu::executar() {
 		graf->desenhaElemento(o5.getCorpo());
 	}
 }
+
+Fase1* Menu::getFase1() { return f1; }
+
+void Menu::setResumir(Resumir* r) { resumir = r; }
+
+void Menu::setFase1(Fase1* f) { f1 = f; }

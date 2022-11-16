@@ -3,7 +3,7 @@
 using namespace std;
 
 Entidade::Entidade(sf::Vector2f xy, int i):
-Ente(i, xy)
+Ente(xy)
 {
 	pos = xy;
 	//corpo.setFillColor(sf::Color::Blue);

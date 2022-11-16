@@ -1,6 +1,5 @@
 #pragma once
 #include "Personagem.h"
-#include "Entidade.h"
 #include "Jogador.h"
 
 class Inimigo : public Personagem

@@ -5,7 +5,6 @@
 class Mapa {
 private:
 	Lista<Plataforma> lista;
-	sf::Vector2f inc;
 	Lista<Plataforma> colidiveis;
 
 public:

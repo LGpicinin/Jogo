@@ -21,10 +21,6 @@ void Jogador::move() {
 	atualizaPos();
 }
 
-void Jogador::moveDir() {
-	vel.x = 0.5;
-}
-
 void Jogador::atualizaPos() {
 	//if (pos.x < 640 && pos.x > 0) {
 	//}
@@ -62,12 +58,12 @@ void Jogador::atualizaPos() {
 	
 }
 
-void Jogador::moveEsq() {
-	vel.x = -0.5;
-}
-
 void Jogador::parar() {
 	vel.x = 0;
 }
 
 void Jogador::pular() { vel.y = -10; }
+
+void Jogador::operator++() { numVidas++; }
+
+void Jogador::operator--() { numVidas--; }

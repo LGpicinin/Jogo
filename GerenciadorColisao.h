@@ -1,7 +1,6 @@
 #pragma once
 #include "ListaEntes.h"
 #include "Jogador.h"
-#include "Hitbox.h"
 #include "Mapa.h"
 
 class GerenciadorColisao {

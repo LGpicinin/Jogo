@@ -3,8 +3,7 @@
 
 GerenciadorGrafico* Ente::gerente = GerenciadorGrafico::getGerenciadorGrafico();
 
-Ente::Ente(int i, sf::Vector2f xy):
-id(i)
+Ente::Ente(sf::Vector2f xy)
 {
     pos = xy;
     //textura = new sf::Texture;
@@ -27,8 +26,6 @@ void Ente::imprimir()
 sf::Vector2f Ente::getPos() { return pos; }
 
 sf::Sprite Ente::getCorpo() { return corpo; }
-
-int Ente::getId(){ return id; }
 
 void Ente::setGerente(GerenciadorGrafico* g)
 {
