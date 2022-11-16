@@ -29,4 +29,5 @@ class Ente
         static void setGerente(GerenciadorGrafico* g);
         sf::Vector2f getTam();
         static GerenciadorGrafico* getGerente() { return gerente; }
+        void setTextura(sf::Texture tx);
 };

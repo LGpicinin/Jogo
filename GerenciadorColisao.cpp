@@ -62,17 +62,20 @@ void GerenciadorColisao::executar() {
 			if (ds.x < 0.0f && ds.y < 0.0f) {
 				std::cout << "Ocorre uma colisao 2.\n";
 				if (trunc(pJogador->getPos().y + pJogador->getTam().y) >= trunc(hbx->getPos().y) && pJogador->getVel().y >= 0) {
+					
+					//int py = pJogador->getPos().y / 32;
+					//py = py * 32;
+					if (pJogador->getVel().y > 0) {
+						pJogador->setPos(sf::Vector2f(pJogador->getPos().x, hbx->getPos().y - 73));
+					}
 					pJogador->setVelY(0.0f);
-					int py = pJogador->getPos().y / 32;
-					py = py * 32;
-					pJogador->setPos(sf::Vector2f(pJogador->getPos().x, py + 25));
 					//pJogador->setPos(sf::Vector2f(pJogador->getPos().x, trunc(hbx->getPos().y - pJogador->getTam().y)));
 					flag = 1;
 				}
-				if (trunc(pJogador->getPos().x + pJogador->getTam().x) <= hbx->getPos().x + 8 && pJogador->getPos().y >= hbx->getPos().y - pJogador->getTam().y + 8) {
+				if (trunc(pJogador->getPos().x + pJogador->getTam().x) <= hbx->getPos().x + 16 && pJogador->getPos().y >= hbx->getPos().y - pJogador->getTam().y + 8) {
 					pJogador->setPos(sf::Vector2f(hbx->getPos().x - pJogador->getTam().x, pJogador->getPos().y));
 				}
-				if (pJogador->getPos().x >= hbx->getPos().x + hbx->getTam().x - 8 && pJogador->getPos().y >= hbx->getPos().y - pJogador->getTam().y + 8) {
+				if (pJogador->getPos().x >= hbx->getPos().x + hbx->getTam().x - 16 && pJogador->getPos().y >= hbx->getPos().y - pJogador->getTam().y + 8) {
 					pJogador->setPos(sf::Vector2f(hbx->getPos().x + hbx->getTam().x, pJogador->getPos().y));
 				}
 			}

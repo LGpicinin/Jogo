@@ -33,14 +33,9 @@ int main() {
 	lista.add(static_cast<Entidade*>(&jogador));
 	gev->setJogador(&jogador);
 	gev->setPGraf(graf);
-	Map mapa;
-	mapa.setGerente(graf);
-	//mapa.setPJogador(&jogador);
-	mapa.load();
-	jogador.setMapa(&mapa);
-	Mapa mapa2;
-	mapa2.inicializaAuto(sf::Vector2f(0.0f, 320.0f), sf::Vector2f(3968.0f, 1088.0f));
-	jogador.setMapa2(&mapa2);
+	//Mapa mapa2;
+	//mapa2.inicializaAuto(sf::Vector2f(0.0f, 320.0f), sf::Vector2f(3968.0f, 1088.0f));
+	//jogador.setMapa2(&mapa2);
 
 	sf::Music s8;
 	if (!s8.openFromFile("Midia/Musicas/S8M4.ogg")) {
@@ -99,15 +94,19 @@ int main() {
 		lista.add(static_cast<Entidade*>(inimigo));
 		contador++;
 	}
-	GerenciadorColisao gec(&inimigos, &mapa2, &jogador);
-	Fase1 f1(&gec, graf, gev);
+	Fase1 f1;
+	jogador.setMapa2(f1.getMapa2());
+	GerenciadorColisao gec(&inimigos, f1.getMapa2(), &jogador);
+	//Fase1 f1(&gec, graf, gev);
 
+	f1.setColi(&gec);
+	f1.setEvent(gev);
+	f1.setGraf(graf);
 	f1.setJogador1(&jogador);
-	f1.setMapa(&mapa);
 	f1.setEntes(&lista);
 	//f1.setHitbox(&obs);
 	f1.setInimigos(&inimigos);
-	f1.setMapa2(&mapa2);
+	//f1.setMapa2(&mapa2);
 
 	//----------------------------INICIALIZACOES------------------------------------------------------
 

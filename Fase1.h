@@ -7,6 +7,7 @@
 class Fase1: public Fase
 {
     public:
+        Fase1();
         Fase1(GerenciadorColisao *c, GerenciadorGrafico *g, GerenciadorEvento *e);
         ~Fase1();
         void executar();

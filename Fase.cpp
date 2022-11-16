@@ -1,13 +1,21 @@
 #include "Fase.h"
 
+Fase::Fase() {
+    pColi = NULL;
+    pGraf = NULL;
+    lista = NULL;
+    pEvent = NULL;
+    j1 = NULL;
+    j2 = NULL;
+    mapa2 = NULL;
+}
+
 Fase::Fase(GerenciadorColisao *c, GerenciadorGrafico *g, GerenciadorEvento *e)
 {
     pColi = c;
     pGraf = g;
     lista = NULL;
     pEvent = e;
-    obs = NULL;
-    mapa = NULL;
     j1 = NULL;
     j2 = NULL;
     mapa2 = NULL;
@@ -19,8 +27,6 @@ Fase::~Fase()
     pGraf = NULL;
     lista = NULL;
     pEvent = NULL;
-    obs = NULL;
-    mapa = NULL;
     j1 = NULL;
     j2 = NULL;
 }
@@ -33,19 +39,10 @@ void Fase::setJogador2(Jogador *j)
 {
     j2 = j;
 }
-void Fase::setMapa(Map *m)
-{
-    mapa = m;
-}
 
 void Fase::setEntes(ListaEntes *l)
 {
     lista = l;
-}
-
-void Fase::setHitbox(Lista<Hitbox>* h)
-{
-    obs = h;
 }
 
 void Fase::setInimigos(ListaEntes *i)
@@ -54,3 +51,11 @@ void Fase::setInimigos(ListaEntes *i)
 }
 
 void Fase::setMapa2(Mapa* m) { mapa2 = m; }
+
+Mapa* Fase::getMapa2() { return mapa2; }
+
+void Fase::setColi(GerenciadorColisao* c) { pColi = c; }
+
+void Fase::setEvent(GerenciadorEvento* e) { pEvent = e; }
+
+void Fase::setGraf(GerenciadorGrafico* g) { pGraf = g; }

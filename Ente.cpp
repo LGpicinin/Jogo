@@ -53,3 +53,5 @@ sf::Vector2f Ente::getTam() {
     sf::Vector2f ret(x, y);
     return ret;
 }
+
+void Ente::setTextura(sf::Texture tx) { textura = tx; }

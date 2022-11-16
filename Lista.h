@@ -1,5 +1,5 @@
 #pragma once
-
+#include <stdlib.h>
 #include "Elemento.h"
 
 template <class TIPO>

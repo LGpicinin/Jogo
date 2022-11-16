@@ -43,3 +43,7 @@ sf::Vector2f GerenciadorGrafico::getCoorView() { return view.getCenter(); }
 void GerenciadorGrafico::setView(sf::Vector2f coor) { view.setCenter(coor); }
 
 sf::View* GerenciadorGrafico::getView() { return &view; }
+
+void GerenciadorGrafico::imprimeRet(sf::RectangleShape ret) { window->draw(ret); }
+
+void GerenciadorGrafico::imprimeTexto(sf::Text tex) { window->draw(tex); }

@@ -20,4 +20,6 @@ public:
 	sf::Vector2f getCoorView();
 	void setView(sf::Vector2f coor);
 	sf::View* getView();
+	void imprimeRet(sf::RectangleShape ret);
+	void imprimeTexto(sf::Text tex);
 };

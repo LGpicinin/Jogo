@@ -2,7 +2,6 @@
 #include <iostream>
 
 Jogador::Jogador() : Personagem(1, 101, 50, 50){
-	pMapa = NULL;
 	pMapa2 = NULL;
 	//sf::Texture* textura = new sf::Texture;
 	corpo.setTextureRect(sf::IntRect(0, 0, 288, 370));
@@ -32,11 +31,13 @@ void Jogador::atualizaPos() {
 	std::cout << "Nova pos.x: " << pos.x << std::endl;
 	std::cout << "vel.y = " << vel.y << std::endl;
 	std::cout << "pos.y = " << pos.y << std::endl;
+	if (vel.x > 0) textura.loadFromFile("Midia/Imagens/Parado.png");
+	else if (vel.x < 0) textura.loadFromFile("Midia/Imagens/Virado.png");
 
 	//if (pos.y < 430 && pos.y > 0) pos.y = pos.y + vel.y;
 	
 	if (gerente->getCoorView().x >= 320 && gerente->getCoorView().y >= 240 && (pos.x <= gerente->getCoorView().x - 100 && sf::Keyboard::isKeyPressed(sf::Keyboard::A)) ||
-(pMapa->getincx() + vel.x <= pMapa->getTextura().getSize().x && pos.x >= gerente->getCoorView().x + 100 && sf::Keyboard::isKeyPressed(sf::Keyboard::D))) {
+(gerente->getCoorView().x + vel.x <= pMapa2->getLista()->getElX(pMapa2->getLista()->getTam())->getInfo()->getPos().x && pos.x >= gerente->getCoorView().x + 100 && sf::Keyboard::isKeyPressed(sf::Keyboard::D))) {
 		//pMapa->update(vel.x, 0);
 		//pMapa2->reposMapa(vel.x, 0);
 		//std::cout << "reposMapa foi chamada com vel.x = " << vel.x << std::endl;
@@ -70,5 +71,3 @@ void Jogador::parar() {
 }
 
 void Jogador::pular() { vel.y = -10; }
-
-void Jogador::setMapa(Map* PM) { pMapa = PM; }
