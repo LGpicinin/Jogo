@@ -19,8 +19,7 @@ class Sair;
 class Menu {
 private:
 	Lista<Opcao> opcoes;
-	Ente titulo;
-	Opcao o1, o2, o3, o4, o5;
+	Opcao titulo;
 	Ente carrega, fundo;
 	sf::Music* musica;
 	Fase1* f1;
@@ -36,6 +35,10 @@ public:
 	void executar();
 	void setMusica(sf::Music* m);
 	void setResumir(Resumir* r);
+	void setBFase1(BFase1* b);
+	void setBFase2(BFase2* b);
+	void setSalvar(Salvar* s);
+	void setSair(Sair* s);
 	Fase1* getFase1();
 	void setFase1(Fase1* f);
 };

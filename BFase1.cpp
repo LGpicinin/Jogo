@@ -6,12 +6,14 @@ BFase1::BFase1(Menu* m): Opcao() {
 	tex.loadFromFile("Midia/Imagens/Menu Opc 2.png");
 	setTextura(tex);
 	setPos(sf::Vector2f(160.0f, 160.0f));
+	corpo.setPosition(sf::Vector2f(160.0f, 160.0f));
 }
 
 BFase1::~BFase1() {}
 
 void BFase1::atualiza() {
-	if (sf::Mouse::getPosition().x >= getPos().x && sf::Mouse::getPosition().y >= getPos().y && sf::Mouse::getPosition().x <= getPos().x + getPos().x && sf::Mouse::getPosition().y <= getPos().y + getPos().y) {
+	GerenciadorGrafico* graf = GerenciadorGrafico::getGerenciadorGrafico();
+	if (sf::Mouse::getPosition().x - graf->getWindow()->getPosition().x >= getPos().x && sf::Mouse::getPosition().y - graf->getWindow()->getPosition().y - 30 >= getPos().y && sf::Mouse::getPosition().x - graf->getWindow()->getPosition().x <= getPos().x + getTam().x && sf::Mouse::getPosition().y - graf->getWindow()->getPosition().y - 30 <= getPos().y + getTam().y) {
 		selecionada = true;
 		sf::Texture tex;
 		tex.loadFromFile("Midia/Imagens/Menu Opc 2-Sel.png");
@@ -26,9 +28,9 @@ void BFase1::atualiza() {
 }
 
 void BFase1::executar() {
-	if (pMenu->getFase1()) pMenu->~Menu();
-	else {
+	//if (pMenu->getFase1()) pMenu->~Menu();
+	//else {
 		Fase1* f1 = new Fase1();
 		pMenu->setFase1(f1);
-	}
+	//}
 }

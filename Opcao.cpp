@@ -2,10 +2,12 @@
 
 Opcao::Opcao(): Ente(sf::Vector2f(0, 0)) {
 	selecionada = false;
+	corpo.setTextureRect(sf::IntRect(0, 0, 320, 80));
 }
 
 Opcao::Opcao(sf::Vector2f ini): Ente(ini) {
 	selecionada = false;
+	corpo.setTextureRect(sf::IntRect(0, 0, 579, 80));
 }
 
 Opcao::~Opcao() {}

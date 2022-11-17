@@ -2,16 +2,22 @@
 
 Sair::Sair(Menu* m): Opcao() {
 	pMenu = m;
-	sf::Texture tex;
+	/*sf::Texture tex;
 	tex.loadFromFile("Midia/Imagens/Menu Opc 5.png");
 	setTextura(tex);
 	setPos(sf::Vector2f(160.0f, 400.0f));
+	corpo.setPosition(sf::Vector2f(160.0f, 400.0f));*/
+	if (!textura.loadFromFile("Midia/Imagens/Menu Opc 5.png")) cout << "Erro na abertura da imagem";
+	setPos(sf::Vector2f(160.0f, 400.0f));
+	corpo.setPosition(sf::Vector2f(160.0f, 400.0f));
+	cout << "Sair criado.\npos.x = " << getPos().x << "\npos.y = " << getPos().y << endl;
 }
 
 Sair::~Sair() {}
 
 void Sair::atualiza() {
-	if (sf::Mouse::getPosition().x >= getPos().x && sf::Mouse::getPosition().y >= getPos().y && sf::Mouse::getPosition().x <= getPos().x + getPos().x && sf::Mouse::getPosition().y <= getPos().y + getPos().y) {
+	GerenciadorGrafico* graf = GerenciadorGrafico::getGerenciadorGrafico();
+	if (sf::Mouse::getPosition().x - graf->getWindow()->getPosition().x >= getPos().x && sf::Mouse::getPosition().y - graf->getWindow()->getPosition().y - 30 >= getPos().y && sf::Mouse::getPosition().x - graf->getWindow()->getPosition().x <= getPos().x + getTam().x && sf::Mouse::getPosition().y - graf->getWindow()->getPosition().y - 30 <= getPos().y + getTam().y) {
 		selecionada = true;
 		sf::Texture tex;
 		tex.loadFromFile("Midia/Imagens/Menu Opc 5-Sel.png");
@@ -27,5 +33,6 @@ void Sair::atualiza() {
 
 void Sair::executar() {
 	GerenciadorGrafico* graf = GerenciadorGrafico::getGerenciadorGrafico();
+	pMenu->~Menu();
 	graf->fecharJanela();
 }

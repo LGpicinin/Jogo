@@ -2,6 +2,8 @@
 #include <iostream>
 #include "GerenciadorGrafico.h"
 #include <SFML/Graphics.hpp>
+#include <string>
+using namespace std;
 
 //class GerenciadorGrafico;
 class Ente
@@ -28,4 +30,5 @@ class Ente
         sf::Vector2f getTam();
         static GerenciadorGrafico* getGerente() { return gerente; }
         void setTextura(sf::Texture tx);
+        void setTextura(string s);
 };

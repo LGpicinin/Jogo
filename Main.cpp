@@ -11,6 +11,10 @@
 #include "Mapa.h"
 #include "GerenciadorEvento.h"
 #include "GerenciadorColisao.h"
+#include "Menu.h"
+#include "Resumir.h"
+#include "BFase1.h"
+#include "Sair.h"
 #include <time.h>
 #include <iostream>
 #include <sstream>
@@ -64,9 +68,37 @@ int main() {
 		lista.add(static_cast<Entidade*>(inimigo));
 		contador++;
 	}
-	Fase1 f1;
-	jogador.setMapa2(f1.getMapa2());
-	GerenciadorColisao gec(&inimigos, f1.getMapa2(), &jogador);
+	Menu menu;
+	//Resumir resumir(&menu);
+	Resumir* resumir = new Resumir(&menu);
+	menu.setResumir(resumir);
+	BFase1 bfase1(&menu);
+	menu.setBFase1(&bfase1);
+	Sair sair(&menu);
+	menu.setSair(&sair);
+	Fase* f1 = menu.getFase1();
+	cout << "Entrando no loop.\n";
+	//Opcao titulo;
+	//titulo.setTextura("Midia/Imagens/Titulo.png");
+	//titulo.setPos(sf::Vector2f(30.0f, 0.0f));
+	//titulo.getCorpo().setPosition(30.0f, 0.0f);
+
+	menu.executar();
+	if (!&menu) return 0;
+	f1 = menu.getFase1();
+	/*while (&menu) {
+		//cout << "Executando o loop.\n";
+		menu.executar();
+		/*graf->limpaJanela();
+		graf->desenhaElemento(resumir->getCorpo());
+		resumir->imprimir();
+		graf->mostraElementos
+		f1 = menu.getFase1();
+	}();*/
+	cout << "Saiu do loop.\n";
+	//Fase1 f1;
+	//jogador.setMapa2(f1.getMapa2());
+	//GerenciadorColisao gec(&inimigos, f1.getMapa2(), &jogador);
 
 	/*f1.setColi(&gec);
 	f1.setEvent(gev);
@@ -79,7 +111,7 @@ int main() {
 
 	//----------------------------LOOP PRINCIPAL------------------------------------------------------
 	while (GerenciadorGrafico::getGerenciadorGrafico()->verifJanelaAberta()) {
-		f1.executar();
+		f1->executar();
 	}
 
 
