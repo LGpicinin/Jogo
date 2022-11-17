@@ -1,8 +1,6 @@
 #include "ListaEntes.h"
 
-ListaEntes::ListaEntes() {
-	lista = Lista<Entidade>::Lista();
-}
+ListaEntes::ListaEntes() {}
 
 ListaEntes::~ListaEntes() {}
 
@@ -13,7 +11,7 @@ void ListaEntes::add(Entidade* x) {
 
 void ListaEntes::reposLista(float x, float y)
 {
-	Elemento<Entidade> *aux;
+	Lista<Entidade>::Elemento<Entidade> *aux;
 	Entidade* info;
 	aux = lista.getPrimeiro();
 
@@ -27,7 +25,7 @@ void ListaEntes::reposLista(float x, float y)
 
 void ListaEntes::desenhaLista()
 {
-	Elemento<Entidade> *aux;
+	Lista<Entidade>::Elemento<Entidade> *aux;
 	Entidade* info;
 
 	aux = lista.getPrimeiro();

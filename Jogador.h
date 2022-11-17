@@ -19,4 +19,6 @@ public:
 	Mapa* getMapa2() { return pMapa2; }
 	void operator++();
 	void operator--();
+	void viradoDir();
+	void viradoEsq();
 };

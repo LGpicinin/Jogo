@@ -22,25 +22,7 @@ Fase1::Fase1(): Fase() {
     //j1->setGerente(pGraf);
     pEvent = GerenciadorEvento::getGerenciadorEvento();
     inimigos = new ListaEntes();
-    srand(time(NULL));
-    float x;
-    float y;
-    int numInimigos = 3 + rand() % 7;
-    int contador = 1;
-    Onca* onca = new Onca(j1, 50, 50);
-    inimigos->add(onca);
-    lista->add(onca);
-    while (contador != numInimigos)
-    {
-        x = rand() % 500;
-        y = 48;
-        Onca* inimigo;
-        inimigo = new Onca(j1, x, y);
-        //inimigo->setGerente(graf);
-        inimigos->add(static_cast<Entidade*>(inimigo));
-        lista->add(static_cast<Entidade*>(inimigo));
-        contador++;
-    }
+    geraOnca();
     f1->play();
     lista->add(j1);
     pEvent->setJogador(j1);
@@ -83,5 +65,32 @@ void Fase1::executar()
 	    mapa2->imprimir();
 		lista->desenhaLista();
 		pGraf->mostraElementos();
+    }
+}
+
+void Fase1::geraOnca()
+{
+    srand(time(NULL));
+    float x;
+    float y;
+    int verif;
+    int lim = 0;
+    int contador = 0;
+    x = 200;
+    y = 100;
+    while (lim < 10 || contador<3)
+    {
+        verif = rand()%2;
+        if (verif == 1)
+        {
+            Onca* inimigo;
+            inimigo = new Onca(j1, x, y);
+            //inimigo->setGerente(graf);
+            inimigos->add(static_cast<Entidade*>(inimigo));
+            lista->add(static_cast<Entidade*>(inimigo));
+            contador++;
+        }
+        lim++;
+        x = x+200;
     }
 }

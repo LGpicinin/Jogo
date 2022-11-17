@@ -1,4 +1,4 @@
-#pragma once
+/*#pragma once
 
 template <class TIPO>
 class Elemento
@@ -69,4 +69,4 @@ template <class TIPO>
 Elemento<TIPO>* Elemento<TIPO>::getAnterior()
 {
     return anterior;
-}
+}*/

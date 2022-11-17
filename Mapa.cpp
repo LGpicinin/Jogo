@@ -37,7 +37,7 @@ p->verifNula(sf::Vector2f(i, j + 32)) || p->verifNula(sf::Vector2f(i, j - 32))) 
 Lista<Plataforma>* Mapa::getLista() { return &lista; }
 
 void Mapa::reposMapa(float x, float y) {
-	Elemento<Plataforma>* it = lista.getPrimeiro();
+	Lista<Plataforma>::Elemento<Plataforma>* it = lista.getPrimeiro();
 	while (it != NULL) {
 		it->getInfo()->repos(-x, -y);
 		it = it->getProximo();
@@ -45,7 +45,7 @@ void Mapa::reposMapa(float x, float y) {
 }
 
 void Mapa::imprimir() {
-	Elemento<Plataforma>* it = lista.getPrimeiro();
+	Lista<Plataforma>::Elemento<Plataforma>* it = lista.getPrimeiro();
 	while (it != NULL) {
 		it->getInfo()->imprimir();
 		it = it->getProximo();

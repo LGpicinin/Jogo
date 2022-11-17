@@ -19,6 +19,7 @@ Jogador::~Jogador() {}
 
 void Jogador::move() {
 	atualizaPos();
+	verifImg();
 }
 
 void Jogador::atualizaPos() {
@@ -27,8 +28,6 @@ void Jogador::atualizaPos() {
 	std::cout << "Nova pos.x: " << pos.x << std::endl;
 	std::cout << "vel.y = " << vel.y << std::endl;
 	std::cout << "pos.y = " << pos.y << std::endl;
-	if (vel.x > 0) textura.loadFromFile("Midia/Imagens/Parado.png");
-	else if (vel.x < 0) textura.loadFromFile("Midia/Imagens/Virado.png");
 
 	//if (pos.y < 430 && pos.y > 0) pos.y = pos.y + vel.y;
 	
@@ -67,3 +66,12 @@ void Jogador::pular() { vel.y = -10; }
 void Jogador::operator++() { numVidas++; }
 
 void Jogador::operator--() { numVidas--; }
+
+void Jogador::viradoDir()
+{
+	textura.loadFromFile("Midia/Imagens/Parado.png");
+}
+void Jogador::viradoEsq()
+{
+	textura.loadFromFile("Midia/Imagens/Virado.png");
+}

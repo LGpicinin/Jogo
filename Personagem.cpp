@@ -6,3 +6,15 @@ Personagem::Personagem(const int v, const int id, float x, float y) : Entidade(s
 }
 
 Personagem::~Personagem(){}
+
+void Personagem::verifImg()
+{
+    if(vel.x>0)
+    {
+        this->viradoDir();
+    }
+    else if(vel.x<0)
+    {
+        this->viradoEsq();
+    }
+}

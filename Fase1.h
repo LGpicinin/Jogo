@@ -15,5 +15,6 @@ private:
         Fase1(GerenciadorColisao *c, GerenciadorGrafico *g, GerenciadorEvento *e);
         ~Fase1();
         void executar();
+        void geraOnca();
 
 };

@@ -13,5 +13,8 @@ public:
     ~Personagem();
     virtual void move() = 0;
     int getVidas(){ return numVidas; }
+    void verifImg();
+    virtual void viradoEsq()=0;
+    virtual void viradoDir()=0;
 
 };

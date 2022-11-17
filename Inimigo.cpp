@@ -33,12 +33,15 @@ void Inimigo::move()
     pos.y = pos.y + vel.y;
 
     corpo.setPosition(pos.x, pos.y);
+
+    verifImg();
 }
 
 void Inimigo::persegueJogador()
 {
 
     sf::Vector2f posiJogador, posiInimigo;
+    vel.x = 0.0;
 
     posiJogador = jogador->getPos();
 
@@ -49,7 +52,6 @@ void Inimigo::persegueJogador()
         {
             pos.x = pos.x + vel.x;
         }
-        vel.x = 0.0;
 
     }
     else if((posiJogador.x - pos.x)>0)
@@ -59,7 +61,7 @@ void Inimigo::persegueJogador()
         {
             pos.x = pos.x + vel.x;
         }
-        vel.x = 0.0;
+        
     }
 
 }

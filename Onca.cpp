@@ -14,3 +14,12 @@ Inimigo(j, x, y)
 }
 
 Onca::~Onca(){}
+
+void Onca::viradoEsq()
+{
+    textura.loadFromFile("Midia/Imagens/Onca.png");   
+}
+void Onca::viradoDir()
+{
+    textura.loadFromFile("Midia/Imagens/OncaVirada.png");
+}
