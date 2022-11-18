@@ -9,6 +9,8 @@ Ente(xy)
 	//corpo.setFillColor(sf::Color::Blue);
 	vel.x = 0.0;
 	vel.y = 0.0;
+	vivo = true;
+	atacar = false;
 }
 
 Entidade::~Entidade() {}
@@ -47,3 +49,11 @@ void Entidade::cair() {
 	}*/
 	vel.y = vel.y + 300.0 / CLOCKS_PER_SEC;
 }
+
+bool Entidade::getVivo() { return vivo; }
+
+void Entidade::setVivo(bool v) { vivo = v; }
+
+bool Entidade::getAtacar() { return atacar; }
+
+void Entidade::setAtacar(bool a) { atacar = a; }

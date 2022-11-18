@@ -22,9 +22,9 @@ Fase1::Fase1(): Fase() {
     //j1->setGerente(pGraf);
     pEvent = GerenciadorEvento::getGerenciadorEvento();
     inimigos = new ListaEntes();
-    geraOnca();
     f1->play();
-    lista->add(j1);
+    lista->add(static_cast<Entidade*>(j1));
+    geraOnca();
     pEvent->setJogador(j1);
     
     pColi = new GerenciadorColisao(inimigos, mapa2, j1);
@@ -43,7 +43,7 @@ void Fase1::executar()
     //Elemento<Hitbox>* itobs = obs->getPrimeiro();
     
 
-    while(j1->getVidas()!=0 && GerenciadorGrafico::getGerenciadorGrafico()->verifJanelaAberta())
+    while(j1->getVidas() > 0 && GerenciadorGrafico::getGerenciadorGrafico()->verifJanelaAberta())
     {
         pColi->executar();
         pEvent->executar();

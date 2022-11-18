@@ -1,7 +1,7 @@
 #include "Jogador.h"
 #include <iostream>
 
-Jogador::Jogador() : Personagem(1, 101, 50, 50){
+Jogador::Jogador() : Personagem(3, 101, 50, 50){
 	pMapa2 = NULL;
 	//sf::Texture* textura = new sf::Texture;
 	corpo.setTextureRect(sf::IntRect(0, 0, 288, 370));
@@ -63,15 +63,26 @@ void Jogador::parar() {
 
 void Jogador::pular() { vel.y = -10; }
 
-void Jogador::operator++() { numVidas++; }
-
-void Jogador::operator--() { numVidas--; }
 
 void Jogador::viradoDir()
 {
+	corpo.setTextureRect(sf::IntRect(0, 0, 288, 370));
 	textura.loadFromFile("Midia/Imagens/Parado.png");
 }
 void Jogador::viradoEsq()
 {
+	corpo.setTextureRect(sf::IntRect(0, 0, 288, 370));
 	textura.loadFromFile("Midia/Imagens/Virado.png");
+}
+
+void Jogador::ataqueDir()
+{
+	corpo.setTextureRect(sf::IntRect(0, 0, 477, 363));
+	textura.loadFromFile("Midia/Imagens/Ataque.png");
+}
+
+void Jogador::ataqueEsq()
+{
+	corpo.setTextureRect(sf::IntRect(0, 0, 477, 363));
+	textura.loadFromFile("Midia/Imagens/Ataque2.png");
 }

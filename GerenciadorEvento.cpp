@@ -30,6 +30,9 @@ void GerenciadorEvento::verifTeclaPressionada(sf::Keyboard::Key tecla) {
 		pJogador->setVelX(8.0);
 		//pJogador->atualizaPos();
 	}
+	if (tecla == sf::Keyboard::L) {
+		pJogador->setAtacar(true);
+	}
 	if (tecla == sf::Keyboard::Space && pJogador->getVel().y==0) {
 		pJogador->pular();
 		//pJogador->atualizaPos();
@@ -42,6 +45,10 @@ void GerenciadorEvento::verifTeclaPressionada(sf::Keyboard::Key tecla) {
 void GerenciadorEvento::verifTeclaSolta(sf::Keyboard::Key tecla) {
 	if (tecla == sf::Keyboard::A || tecla == sf::Keyboard::D) {
 		pJogador->parar();
+	}
+	if (tecla == sf::Keyboard::L)
+	{
+		pJogador->setAtacar(false);
 	}
 }
 

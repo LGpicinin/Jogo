@@ -41,13 +41,22 @@ void GerenciadorColisao::executar() {
 		//Entidade* ent1 = inimigos->getLista()->getElX(i)->getInfo();
 		for (int j = 0; j < inimigos->getLista()->getTam(); j++) {
 			Entidade* ent2 = inimigos->getLista()->getElX(j)->getInfo();
-			sf::Vector2f ds = calculaColisaoIni(ent1, ent2);
-			if (ds.x < 0.0f && ds.y < 0.0f) {
-				std::cout << "Ocorre uma colisao 1.\n";
-				/*if (pJogador->getPos().y <= ent2->getPos().y + ent2->getTam().y) {
-					pJogador->setVelY(-pJogador->getVel().y);
-					pJogador->setPos(pJogador->getPos().x, ent2->getPos().y + ent2->getTam().y);
-				}*/
+			if(ent2->getVivo()==true)
+			{
+				sf::Vector2f ds = calculaColisaoIni(ent1, ent2);
+				if (ds.x < 0.0f && ds.y < 0.0f) {
+					std::cout << "Ocorre uma colisao 1.\n";
+					/*
+					if(ent1->getAtacar() == true)
+					{
+						ent2--;
+					}
+					else if(ent2->getAtacar() == true)
+					{
+						ent1--;
+					}
+					*/
+				}
 			}
 		}
 	

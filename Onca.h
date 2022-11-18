@@ -8,5 +8,8 @@ class Onca: public Inimigo
         ~Onca();
         void viradoEsq();
         void viradoDir();
+        void ataqueDir();
+        void ataqueEsq();
+        void ataque();
 
 };

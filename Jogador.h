@@ -17,8 +17,8 @@ public:
 	void parar();
 	void setMapa2(Mapa* m2) { pMapa2 = m2; }
 	Mapa* getMapa2() { return pMapa2; }
-	void operator++();
-	void operator--();
 	void viradoDir();
 	void viradoEsq();
+	void ataqueDir();
+	void ataqueEsq();
 };

@@ -23,3 +23,21 @@ void Onca::viradoDir()
 {
     textura.loadFromFile("Midia/Imagens/OncaVirada.png");
 }
+
+void Onca::ataqueDir()
+{
+	textura.loadFromFile("Midia/Imagens/OncaAtaque.png");
+}
+
+void Onca::ataqueEsq()
+{
+	textura.loadFromFile("Midia/Imagens/OncaAtaque2.png");
+}
+
+ void Onca::ataque()
+ {
+    vel.x = 1;
+
+    pos.x = pos.x + (vel.x*dirEsq);
+
+ }

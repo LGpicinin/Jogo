@@ -7,6 +7,7 @@ class Inimigo : public Personagem
 protected:
     Jogador* jogador;
     int movAl;
+    float dirEsq;
     sf::Clock relogio;
 
 public:
@@ -15,5 +16,6 @@ public:
     void move();
     void persegueJogador();
     void movimentoAleatorio();
+    virtual void ataque();
 
 };

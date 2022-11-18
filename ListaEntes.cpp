@@ -33,7 +33,10 @@ void ListaEntes::desenhaLista()
 	while(aux!=NULL)
 	{
 		info = aux->getInfo();
-		info->imprimir();
+		
+		
+			info->imprimir();
+
 		aux = aux->getProximo();
 	}
 }

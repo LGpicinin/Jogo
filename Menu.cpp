@@ -54,6 +54,7 @@ void Menu::executar() {
 
 		else if (bfase1->getSelecionada() == true && sf::Mouse::isButtonPressed(sf::Mouse::Left)) {
 			bfase1->executar();
+			f1->executar();
 			break;
 		}
 
