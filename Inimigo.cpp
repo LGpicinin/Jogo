@@ -6,7 +6,7 @@ Personagem(1, 103, x, y)
 {
     jogador = j;
     movAl = rand()%2;
-    dirEsq = 1;
+    horaAtaque = true;
 }
 
 Inimigo::~Inimigo()
@@ -16,23 +16,19 @@ Inimigo::~Inimigo()
 
 void Inimigo::move()
 {
-    sf::Vector2f posiJogador, posiInimigo;
+    sf::Vector2f posiJogador;
 
     posiJogador = jogador->getPos();
 
-    if((posiJogador.x - pos.x)<0) {  dirEsq = -1; }
-
-    else if((posiJogador.x - pos.x)>0) { dirEsq = 1; }
-
-    /*if (abs(posiJogador.x - pos.x)<200)
+    if (abs(posiJogador.x - pos.x)<200 && horaAtaque == true)
     {
         ataque();
         atacar = true;
-    }*/
-    if(abs(posiJogador.x - pos.x)<500)
+    }
+    else if(abs(posiJogador.x - pos.x)<400)
     {
         persegueJogador();
-        atacar = true;
+        atacar = false;
     }
     else
     {
@@ -42,25 +38,34 @@ void Inimigo::move()
 
     //cair();
 
-    pos.y = pos.y + vel.y;
+    pos.y = pos.y + (vel.y * 7);
 
     corpo.setPosition(pos.x, pos.y);
-
     verifImg();
+
+    vel.y = 0;
+    vel.x = 0;
+
+    float dt = relogio3.getElapsedTime().asSeconds();
+    if(dt>=2)
+    {
+        relogio3.restart();
+        horaAtaque = true;
+    }
 }
 
 void Inimigo::persegueJogador()
 {
 
-    sf::Vector2f posiJogador, posiInimigo;
+    sf::Vector2f posiJogador;
     vel.x = 0.0;
+    posiJogador = jogador->getPos();
 
+    if((posiJogador.x - pos.x)<0) {  vel.x = vel.x - 0.8; }
+
+    else if((posiJogador.x - pos.x)>0) { vel.x = vel.x + 0.8; }
     
-    vel.x = vel.x + (0.15*dirEsq);
-    if(pos.x > 0 && pos.x < 640)
-    {
-        pos.x = pos.x + vel.x;
-    }
+    pos.x = pos.x + vel.x;
 
 }
 
@@ -69,14 +74,13 @@ void Inimigo::movimentoAleatorio()
     vel.x = 0;
     if(movAl==1)
     {
-        vel.x = vel.x + 0.15;
-        pos.x = pos.x + vel.x;
+        vel.x = vel.x + 0.4;
     }
     else
     {
-        vel.x = vel.x - 0.15;
-        pos.x = pos.x + vel.x;
+        vel.x = vel.x - 0.4;
     }
+    pos.x = pos.x + vel.x;
 
     float dt = relogio.getElapsedTime().asSeconds();
     if(dt>=1)
@@ -89,13 +93,21 @@ void Inimigo::movimentoAleatorio()
 
 void Inimigo::ataque()
 {
+    sf::Vector2f posiJogador;
     vel.x = 0.0;
+    posiJogador = jogador->getPos();
 
+    if((posiJogador.x - pos.x)<0) {  vel.x = vel.x - 0.8; }
+
+    else if((posiJogador.x - pos.x)>0) { vel.x = vel.x + 0.8; }
     
-    vel.x = vel.x + (0.3*dirEsq);
-    if(pos.x > 0 && pos.x < 640)
+    pos.x = pos.x + vel.x;
+
+    float dt = relogio2.getElapsedTime().asSeconds();
+    if(dt>=1.5)
     {
-        pos.x = pos.x + vel.x;
+        relogio2.restart();
+        horaAtaque = false;
     }
         
 }

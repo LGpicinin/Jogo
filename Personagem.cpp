@@ -1,9 +1,8 @@
 #include "Personagem.h"
 
-Personagem::Personagem(const int v, const int id, float x, float y) : Entidade(sf::Vector2f(x, y), id)
+Personagem::Personagem(const int v, const int id, float x, float y) : Entidade(v, sf::Vector2f(x, y), id)
 {
-    numVidas = v;
-
+    dano = 0;
 }
 
 Personagem::~Personagem(){}
@@ -31,16 +30,5 @@ void Personagem::verifImg()
         {
             viradoEsq();
         }
-    }
-}
-
-void Personagem::operator++() { numVidas++; }
-
-void Personagem::operator--() 
-{ 
-    numVidas--;
-    if (numVidas<=0)
-    {
-        vivo = false;
     }
 }

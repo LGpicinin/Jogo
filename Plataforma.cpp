@@ -4,7 +4,7 @@
 
 sf::Image Plataforma::teste = loadAlt("Midia/Imagens/Teste Tilemap2.png");
 
-Plataforma::Plataforma(sf::Vector2f coor) : Entidade(coor, 132){
+Plataforma::Plataforma(sf::Vector2f coor) : Entidade(0, coor, 132){
 	if (!textura.loadFromImage(teste, sf::IntRect(coor.x / 2.0, coor.y / 2.0, 16, 16))) std::cout << "Erro no carregamento da textura da plataforma.\n";
 	sf::Color color1 = teste.getPixel(coor.x/2.0f, coor.y/2.0f);
 	sf::Color color2 = teste.getPixel(coor.x / 2.0f + 15.0f, coor.y / 2.0f + 15.0f);

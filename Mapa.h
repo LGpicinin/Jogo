@@ -13,7 +13,6 @@ public:
 	~Mapa();
 	void inicializaAuto(sf::Vector2f ini, sf::Vector2f fim);
 	Lista<Plataforma>* getLista();
-	void reposMapa(float x, float y);
 	void imprimir();
 	Lista<Plataforma>* getColidiveis();
 };

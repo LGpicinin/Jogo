@@ -2,7 +2,10 @@
 
 ListaEntes::ListaEntes() {}
 
-ListaEntes::~ListaEntes() {}
+ListaEntes::~ListaEntes() 
+{
+	lista.~Lista();
+}
 
 
 void ListaEntes::add(Entidade* x) {

@@ -8,26 +8,27 @@ Fase(c, g, e)
 
 Fase1::Fase1(): Fase() {
     lista = new ListaEntes();
+    inimigos = new ListaEntes();
+
     f1 = new sf::Music();
     f1->openFromFile("Midia/Musicas/S8M4.ogg");
-    sf::Image i;
-    i.loadFromFile("Midia/Imagens/Teste Tilemap2.png");
-    Plataforma::setImagem(i);
+
     Mapa* mapa = new Mapa(sf::Vector2f(0.0f, 320.0f), sf::Vector2f(3968.0f, 1088.0f));
     mapa2 = mapa;
-    //delete mapa;
+
     j1 = new Jogador();
     j1->setMapa2(mapa2);
+
     pGraf = GerenciadorGrafico::getGerenciadorGrafico();
-    //j1->setGerente(pGraf);
     pEvent = GerenciadorEvento::getGerenciadorEvento();
-    inimigos = new ListaEntes();
-    f1->play();
+
     lista->add(static_cast<Entidade*>(j1));
     geraOnca();
+
     pEvent->setJogador(j1);
-    
     pColi = new GerenciadorColisao(inimigos, mapa2, j1);
+
+    f1->play();
 }
 
 Fase1::~Fase1(){

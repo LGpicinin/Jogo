@@ -2,7 +2,7 @@
 #include <iostream>
 using namespace std;
 
-Entidade::Entidade(sf::Vector2f xy, int i):
+Entidade::Entidade(const int v, sf::Vector2f xy, int i):
 Ente(xy)
 {
 	pos = xy;
@@ -11,6 +11,7 @@ Ente(xy)
 	vel.y = 0.0;
 	vivo = true;
 	atacar = false;
+	numVidas = v;
 }
 
 Entidade::~Entidade() {}
@@ -57,3 +58,15 @@ void Entidade::setVivo(bool v) { vivo = v; }
 bool Entidade::getAtacar() { return atacar; }
 
 void Entidade::setAtacar(bool a) { atacar = a; }
+
+void Entidade::operator++()
+{
+	numVidas++;
+}
+void Entidade::operator--()
+{
+	numVidas--;
+	if (numVidas<=0)
+		vivo = false;
+
+}

@@ -29,20 +29,12 @@ void Mapa::inicializaAuto(sf:: Vector2f ini, sf::Vector2f fim) {
 				if (p->verifNula(sf::Vector2f(i + 32, j)) || p->verifNula(sf::Vector2f(i - 32, j)) ||
 p->verifNula(sf::Vector2f(i, j + 32)) || p->verifNula(sf::Vector2f(i, j - 32))) colidiveis.incluirEl(p);
 			}
-			else if (chk == 1) break;
+			//else if (chk == 1) break;
 		}
 	}
 }
 
 Lista<Plataforma>* Mapa::getLista() { return &lista; }
-
-void Mapa::reposMapa(float x, float y) {
-	Lista<Plataforma>::Elemento<Plataforma>* it = lista.getPrimeiro();
-	while (it != NULL) {
-		it->getInfo()->repos(-x, -y);
-		it = it->getProximo();
-	}
-}
 
 void Mapa::imprimir() {
 	Lista<Plataforma>::Elemento<Plataforma>* it = lista.getPrimeiro();

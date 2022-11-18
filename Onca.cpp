@@ -36,8 +36,24 @@ void Onca::ataqueEsq()
 
  void Onca::ataque()
  {
-    vel.x = 1;
+    sf::Vector2f posiJogador;
+    vel.x = 0.0;
+    posiJogador = jogador->getPos();
 
-    pos.x = pos.x + (vel.x*dirEsq);
+    if((posiJogador.x - pos.x)<0) {  vel.x = vel.x - 0.8; }
+
+    else if((posiJogador.x - pos.x)>0) { vel.x = vel.x + 0.8; }
+
+    vel.y = vel.y - 1;
+    
+    pos.y = pos.y + vel.y;
+    pos.x = pos.x + vel.x;
+
+    float dt = relogio2.getElapsedTime().asSeconds();
+    if(dt>=1.0)
+    {
+        relogio2.restart();
+        horaAtaque = false;
+    }
 
  }
