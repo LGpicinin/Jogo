@@ -99,7 +99,7 @@ void Jogador::colisaoInimigo(Entidade *i)
 		}
 		else if(i->getAtacar()==true)
 		{
-			numVidas = 0;
+			operator--();
 		}
 		verifTempo = false;
 	}

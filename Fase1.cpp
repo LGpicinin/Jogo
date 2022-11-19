@@ -25,7 +25,7 @@ Fase1::Fase1(): Fase() {
     pEvent = GerenciadorEvento::getGerenciadorEvento();
 
     lista->add(static_cast<Entidade*>(j1));
-    geraOnca();
+    geraInimigos();
 
     pEvent->setJogador(j1);
     pColi = new GerenciadorColisao(inimigos, mapa2, j1);
@@ -72,29 +72,40 @@ void Fase1::executar()
     }
 }
 
-void Fase1::geraOnca()
+void Fase1::geraInimigos()
 {
+    
     srand(time(NULL));
-    float x;
-    float y;
     int verif;
     int lim = 0;
     int contador = 0;
-    x = 200;
-    y = 100;
+    float x = 300;
+    float y = 100;
+
     while (lim < 10 || contador<3)
     {
-        verif = rand()%2;
+        verif = rand()%4;
         if (verif == 1)
         {
-            Onca* inimigo;
-            inimigo = new Onca(j1, x, y);
-            //inimigo->setGerente(graf);
-            inimigos->add(static_cast<Entidade*>(inimigo));
-            lista->add(static_cast<Entidade*>(inimigo));
+           geraOnca(x, y);
+           contador++;
+        }
+        else if(verif == 3)
+        {
+            geraArara(x, y);
             contador++;
         }
         lim++;
-        x = x+200;
+        x = x + 225;
     }
+}
+
+void Fase1::geraArara(float x, float y)
+{
+
+    Arara *inimigo;
+    inimigo = new Arara(j1, x, y);
+    inimigos->add(static_cast<Entidade*>(inimigo));
+    lista->add(static_cast<Entidade*>(inimigo));
+
 }

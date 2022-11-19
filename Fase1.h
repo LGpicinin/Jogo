@@ -1,6 +1,6 @@
 #pragma once
 #include "Fase.h"
-#include "Onca.h"
+#include "Arara.h"
 #include "Elemento.h"
 #include "SFML/Audio.hpp"
 
@@ -15,6 +15,7 @@ private:
         Fase1(GerenciadorColisao *c, GerenciadorGrafico *g, GerenciadorEvento *e);
         ~Fase1();
         void executar();
-        void geraOnca();
+        void geraInimigos();
+        void geraArara(float x, float y);
 
 };

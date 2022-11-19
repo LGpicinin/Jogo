@@ -6,6 +6,7 @@
 #include "Hitbox.h"
 #include "Elemento.h"
 #include "Mapa.h"
+#include "Onca.h"
 
 class Fase
 {
@@ -36,4 +37,5 @@ class Fase
         ListaEntes* getLista();
         ListaEntes* getInimigos();
         Jogador* getJogador1();
+        void geraOnca(float x, float y);
 };

@@ -23,13 +23,16 @@ void Inimigo::move()
     else {
         sf::Vector2f posiJogador;
 
+            if(voa==true)
+                setVelY(0);
+
             posiJogador = jogador->getPos();
 
-            if (abs(posiJogador.x - pos.x)<200)
+            if (abs(posiJogador.x - pos.x)<200 && abs(posiJogador.y - pos.y)<200)
             {
                 ataque();
             }
-            else if(abs(posiJogador.x - pos.x)<400)
+            else if(abs(posiJogador.x - pos.x)<400 && abs(posiJogador.y - pos.y)<400)
             {
                 persegueJogador();
                 atacar = false;
@@ -52,12 +55,6 @@ void Inimigo::move()
 
             vel.x = 0;
 
-            float dt = relogio3.getElapsedTime().asSeconds();
-            if(dt>=2)
-            {
-                relogio3.restart();
-                horaAtaque = true;
-            }
         }
     
 }
@@ -106,13 +103,6 @@ void Inimigo::ataque()
 
     else if((posiJogador.x - pos.x)>0) { vel.x = vel.x + 1.5; }
 
-
-    float dt = relogio2.getElapsedTime().asSeconds();
-    if(dt>=1.5)
-    {
-        relogio2.restart();
-        horaAtaque = false;
-    }
         
 }
 

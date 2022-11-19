@@ -8,6 +8,7 @@ Plataforma::Plataforma(sf::Vector2f coor) : Entidade(0, coor, 132){
 	if (!textura.loadFromImage(teste, sf::IntRect(coor.x / 2.0, coor.y / 2.0, 16, 16))) std::cout << "Erro no carregamento da textura da plataforma.\n";
 	sf::Color color1 = teste.getPixel(coor.x/2.0f, coor.y/2.0f);
 	sf::Color color2 = teste.getPixel(coor.x / 2.0f + 15.0f, coor.y / 2.0f + 15.0f);
+	sf::Color color3 = teste.getPixel(coor.x / 2.0f + 7.0f, coor.y / 2.0f + 7.0f);
 	if (color1 == sf::Color::Transparent && color2 == sf::Color::Transparent) {
 		//std::cout << "Plataforma com textura vazia. Destruindo-a...\n" << std::endl;
 		nula = true;

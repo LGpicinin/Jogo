@@ -65,3 +65,13 @@ ListaEntes* Fase::getLista() { return lista; }
 ListaEntes* Fase::getInimigos() { return inimigos; }
 
 Jogador* Fase::getJogador1() { return j1; }
+
+void Fase::geraOnca(float x, float y)
+{
+
+    Onca* inimigo;
+    inimigo = new Onca(j1, x, y);
+    inimigos->add(static_cast<Entidade*>(inimigo));
+    lista->add(static_cast<Entidade*>(inimigo));
+
+}

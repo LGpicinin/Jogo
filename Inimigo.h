@@ -8,7 +8,8 @@ protected:
     Jogador* jogador;
     int movAl;
     bool horaAtaque;
-    sf::Clock relogio, relogio2, relogio3;
+    bool voa;
+    sf::Clock relogio;
 
 public:
     Inimigo(Jogador* j, float x, float y);
