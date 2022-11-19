@@ -33,4 +33,7 @@ class Fase
         void setColi(GerenciadorColisao* c);
         void setGraf(GerenciadorGrafico* g);
         void setEvent(GerenciadorEvento* e);
+        ListaEntes* getLista();
+        ListaEntes* getInimigos();
+        Jogador* getJogador1();
 };

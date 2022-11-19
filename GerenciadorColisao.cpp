@@ -69,15 +69,23 @@ void GerenciadorColisao::executar() {
 
 				if (trunc(pJogador->getPos().x + pJogador->getTam().x) <= hbx->getPos().x + 16 && pJogador->getPos().y >= hbx->getPos().y - pJogador->getTam().y + 8) {
 					pJogador->setPos(sf::Vector2f(hbx->getPos().x - pJogador->getTam().x, pJogador->getPos().y));
-					pJogador->setVelY(-0.3f);
+					//pJogador->setVelY(-0.3f);
+					std::cout << "Colisao com a direita.\n";
+					pJogador->setVelY(pJogador->getVel().y / 1.1f);
+					flag = 1;
 				}
 				else if (pJogador->getPos().x - 8 >= hbx->getPos().x + hbx->getTam().x - 16 && pJogador->getPos().y >= hbx->getPos().y - pJogador->getTam().y + 8) {
 					pJogador->setPos(sf::Vector2f(hbx->getPos().x + hbx->getTam().x, pJogador->getPos().y));
+					std::cout << "Colisao com a esquerda.\n";
+					//if (pJogador->getVel().y <= 0.6 && pJogador->getVel().y >= 0.2) pJogador->setVelY(-0.3f);
+					//else pJogador->setVelY(pJogador->getVel().y / 2.0f);
+					pJogador->setVelY(pJogador->getVel().y / 1.1f);
+					flag = 1;
 				}
 
 
 				else if (trunc(pJogador->getPos().y + pJogador->getTam().y) + 8 >= trunc(hbx->getPos().y) && pJogador->getVel().y >= 0) {
-					
+					std::cout << "Colisao abaixo.\n";
 					//int py = pJogador->getPos().y / 32;
 					//py = py * 32;
 					if (pJogador->getVel().y > 0) {
@@ -87,7 +95,8 @@ void GerenciadorColisao::executar() {
 					//pJogador->setPos(sf::Vector2f(pJogador->getPos().x, trunc(hbx->getPos().y - pJogador->getTam().y)));
 					flag = 1;
 				}
-				else if (pJogador->getPos().y <= hbx->getPos().y + hbx->getTam().y) {
+				else if (pJogador->getPos().y >= hbx->getPos().y + hbx->getTam().y - 16) {
+					std::cout << "Colisao acima.\n";
 					pJogador->setVelY(-pJogador->getVel().y);
 					pJogador->setPos(pJogador->getPos().x, hbx->getPos().y + hbx->getTam().y);
 				}
@@ -102,8 +111,10 @@ void GerenciadorColisao::executar() {
 		for (int i = 0; i <= inimigos->getLista()->getTam(); i++) {
 			flag2 = 0;
 			ent1 = inimigos->getLista()->getElX(i)->getInfo();
+			if (ent1->getPos().x > graf->getCoorView().x + 320 || ent1->getPos().x < graf->getCoorView().x - 320 || ent1->getPos().y > graf->getCoorView().y + 240 || ent1->getPos().y < graf->getCoorView().y - 240) continue;
 			for (int j = 0; j < map->getColidiveis()->getTam(); j++) {
 				Plataforma* hbx = map->getColidiveis()->getElX(j)->getInfo();
+				if (hbx->getPos().x > graf->getCoorView().x + 320 || hbx->getPos().x < graf->getCoorView().x - 320 || hbx->getPos().y > graf->getCoorView().y + 240 || hbx->getPos().y < graf->getCoorView().y - 240) continue;
 				sf::Vector2f ds = calculaColisaoPlat(ent1, hbx);
 				if (ds.x < 0.0f && ds.y < 0.0f) {
 					std::cout << "Ocorre uma colisao 2 - Inimigo.\n";

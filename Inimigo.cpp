@@ -16,43 +16,50 @@ Inimigo::~Inimigo()
 
 void Inimigo::move()
 {
-    sf::Vector2f posiJogador;
-
-    posiJogador = jogador->getPos();
-
-    if (abs(posiJogador.x - pos.x)<200)
-    {
-        ataque();
+    GerenciadorGrafico* graf = GerenciadorGrafico::getGerenciadorGrafico();
+    if (pos.x > graf->getCoorView().x + 320 || pos.x < graf->getCoorView().x - 320 || pos.y > graf->getCoorView().y + 240 || pos.y < graf->getCoorView().y - 240) {
+        congela();
     }
-    else if(abs(posiJogador.x - pos.x)<400)
-    {
-        persegueJogador();
-        atacar = false;
-    }
-    else
-    {
-        movimentoAleatorio();
-        atacar = false;
-    }
+    else {
+        sf::Vector2f posiJogador;
 
-    if (abs(posiJogador.x - pos.x)<200) { atacar = true; }
+            posiJogador = jogador->getPos();
 
-    //cair();
+            if (abs(posiJogador.x - pos.x)<200)
+            {
+                ataque();
+            }
+            else if(abs(posiJogador.x - pos.x)<400)
+            {
+                persegueJogador();
+                atacar = false;
+            }
+            else
+            {
+                movimentoAleatorio();
+                atacar = false;
+            }
 
-    pos.y = pos.y + (vel.y * 2);
-    pos.x = pos.x + vel.x;
+            if (abs(posiJogador.x - pos.x)<200) { atacar = true; }
 
-    corpo.setPosition(pos.x, pos.y);
-    verifImg();
+            //cair();
 
-    vel.x = 0;
+            pos.y = pos.y + (vel.y * 2);
+            pos.x = pos.x + vel.x;
 
-    float dt = relogio3.getElapsedTime().asSeconds();
-    if(dt>=2)
-    {
-        relogio3.restart();
-        horaAtaque = true;
-    }
+            corpo.setPosition(pos.x, pos.y);
+            verifImg();
+
+            vel.x = 0;
+
+            float dt = relogio3.getElapsedTime().asSeconds();
+            if(dt>=2)
+            {
+                relogio3.restart();
+                horaAtaque = true;
+            }
+        }
+    
 }
 
 void Inimigo::persegueJogador()
@@ -107,4 +114,10 @@ void Inimigo::ataque()
         horaAtaque = false;
     }
         
+}
+
+void Inimigo::congela() {
+    setVelX(0.0f);
+    setVelY(-0.3f);
+    cair();
 }

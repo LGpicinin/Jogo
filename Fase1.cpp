@@ -12,8 +12,10 @@ Fase1::Fase1(): Fase() {
 
     f1 = new sf::Music();
     f1->openFromFile("Midia/Musicas/S8M4.ogg");
-
-    Mapa* mapa = new Mapa(sf::Vector2f(0.0f, 320.0f), sf::Vector2f(3968.0f, 1088.0f));
+    sf::Image i;
+    i.loadFromFile("Midia/Imagens/Fase1.png");
+    Plataforma::setImagem(i);
+    Mapa* mapa = new Mapa(sf::Vector2f(0.0f, 160.0f), sf::Vector2f(4480.0f, 2240.0f));
     mapa2 = mapa;
 
     j1 = new Jogador();

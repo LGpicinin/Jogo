@@ -189,3 +189,7 @@ void Menu::setSalvar(Salvar* s) { salvar = s; }
 void Menu::setSair(Sair* s) { sair = s; }
 
 void Menu::setFase1(Fase1* f) { f1 = f; }
+
+Fase* Menu::getFase() {
+	if (f1) return f1; 
+}

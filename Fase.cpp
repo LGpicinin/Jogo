@@ -59,3 +59,9 @@ void Fase::setColi(GerenciadorColisao* c) { pColi = c; }
 void Fase::setEvent(GerenciadorEvento* e) { pEvent = e; }
 
 void Fase::setGraf(GerenciadorGrafico* g) { pGraf = g; }
+
+ListaEntes* Fase::getLista() { return lista; }
+
+ListaEntes* Fase::getInimigos() { return inimigos; }
+
+Jogador* Fase::getJogador1() { return j1; }

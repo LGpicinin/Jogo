@@ -17,5 +17,5 @@ public:
     void persegueJogador();
     void movimentoAleatorio();
     virtual void ataque();
-
+    void congela();
 };

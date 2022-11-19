@@ -33,7 +33,7 @@ void GerenciadorEvento::verifTeclaPressionada(sf::Keyboard::Key tecla) {
 	if (tecla == sf::Keyboard::L) {
 		pJogador->setAtacar(true);
 	}
-	if (tecla == sf::Keyboard::Space && pJogador->getVel().y==0) {
+	if (tecla == sf::Keyboard::Space && pJogador->getVel().y <= 0.1 && pJogador->getVel().y >= -0.1) {
 		pJogador->pular();
 		//pJogador->atualizaPos();
 	}
