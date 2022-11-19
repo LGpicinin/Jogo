@@ -6,6 +6,7 @@ class Personagem : public Entidade
 {
 protected:
     int dano;
+    bool virado;
 
 public:
     Personagem(const int v, const int id, float x, float y);

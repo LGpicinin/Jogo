@@ -53,6 +53,7 @@ void Fase1::executar()
         //legacy = j1->getMapa()->getincx();
         for(contador=1; contador<lista->getLista()->getTam() + 1; contador++)
 		{
+            if (lista->getLista()->getElX(contador)->getInfo()->getVivo() == false) continue;
 			lista->getLista()->getElX(contador)->getInfo()->move();//movimento do jogador eh atualizado na na funcao move(), que chama a funcao atualizaPos()
 		}
         //atual = j1->getMapa()->getincx();

@@ -39,7 +39,7 @@ void GerenciadorColisao::executar() {
 	Entidade* ent1 = pJogador;
 	//for (int i = 0; i < inimigos->getLista()->getTam() - 1; i++) {
 		//Entidade* ent1 = inimigos->getLista()->getElX(i)->getInfo();
-		for (int j = 0; j < inimigos->getLista()->getTam(); j++) {
+		for (int j = 0; j <= inimigos->getLista()->getTam(); j++) {
 			Entidade* ent2 = inimigos->getLista()->getElX(j)->getInfo();
 			if(ent2->getVivo()==true)
 			{
@@ -47,7 +47,7 @@ void GerenciadorColisao::executar() {
 				if (ds.x < 0.0f && ds.y < 0.0f) {
 					std::cout << "Ocorre uma colisao 1.\n";
 					
-					//pJogador->colisaoInimigo(ent2);
+					pJogador->colisaoInimigo(ent2);
 					
 				}
 			}
@@ -111,6 +111,7 @@ void GerenciadorColisao::executar() {
 		for (int i = 0; i <= inimigos->getLista()->getTam(); i++) {
 			flag2 = 0;
 			ent1 = inimigos->getLista()->getElX(i)->getInfo();
+			if (ent1->getVivo() == false) continue;
 			if (ent1->getPos().x > graf->getCoorView().x + 320 || ent1->getPos().x < graf->getCoorView().x - 320 || ent1->getPos().y > graf->getCoorView().y + 240 || ent1->getPos().y < graf->getCoorView().y - 240) continue;
 			for (int j = 0; j < map->getColidiveis()->getTam(); j++) {
 				Plataforma* hbx = map->getColidiveis()->getElX(j)->getInfo();
