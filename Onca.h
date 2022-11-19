@@ -3,6 +3,8 @@
 
 class Onca: public Inimigo
 {
+    private:
+        bool agressividade;
     public:
         Onca(Jogador* j, float x, float y);
         ~Onca();
@@ -11,5 +13,6 @@ class Onca: public Inimigo
         void ataqueDir();
         void ataqueEsq();
         void ataque();
+        void calculaAgressividade();
 
 };

@@ -3,6 +3,7 @@
 
 Jogador::Jogador() : Personagem(3, 101, 50, 50){
 	pMapa2 = NULL;
+	verifTempo = true;
 	//sf::Texture* textura = new sf::Texture;
 	corpo.setTextureRect(sf::IntRect(0, 0, 288, 370));
 	if(!textura.loadFromFile("Midia/Imagens/Parado.png")) std::cout << "Erro na abertura da textura do jogador." << std::endl;
@@ -85,4 +86,28 @@ void Jogador::ataqueEsq()
 {
 	corpo.setTextureRect(sf::IntRect(0, 0, 477, 363));
 	textura.loadFromFile("Midia/Imagens/Ataque2.png");
+}
+
+void Jogador::colisaoInimigo(Entidade *i)
+{
+
+	if(verifTempo==true)
+	{
+		if(atacar==true)
+		{
+			i->setVivo(false);
+		}
+		else if(i->getAtacar()==true)
+		{
+			numVidas = 0;
+		}
+		verifTempo = false;
+	}
+
+	float dt = tempoDano.getElapsedTime().asSeconds();
+	if(dt>=3)
+	{
+		verifTempo = true;
+		tempoDano.restart();
+	}
 }

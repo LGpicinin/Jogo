@@ -46,16 +46,9 @@ void GerenciadorColisao::executar() {
 				sf::Vector2f ds = calculaColisaoIni(ent1, ent2);
 				if (ds.x < 0.0f && ds.y < 0.0f) {
 					std::cout << "Ocorre uma colisao 1.\n";
-					/*
-					if(ent1->getAtacar() == true)
-					{
-						ent2--;
-					}
-					else if(ent2->getAtacar() == true)
-					{
-						ent1--;
-					}
-					*/
+					
+					//pJogador->colisaoInimigo(ent2);
+					
 				}
 			}
 		}

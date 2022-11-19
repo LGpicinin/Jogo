@@ -20,10 +20,9 @@ void Inimigo::move()
 
     posiJogador = jogador->getPos();
 
-    if (abs(posiJogador.x - pos.x)<200 && horaAtaque == true)
+    if (abs(posiJogador.x - pos.x)<200)
     {
         ataque();
-        atacar = true;
     }
     else if(abs(posiJogador.x - pos.x)<400)
     {
@@ -36,14 +35,16 @@ void Inimigo::move()
         atacar = false;
     }
 
+    if (abs(posiJogador.x - pos.x)<200) { atacar = true; }
+
     //cair();
 
-    pos.y = pos.y + (vel.y * 7);
+    pos.y = pos.y + (vel.y * 2);
+    pos.x = pos.x + vel.x;
 
     corpo.setPosition(pos.x, pos.y);
     verifImg();
 
-    vel.y = 0;
     vel.x = 0;
 
     float dt = relogio3.getElapsedTime().asSeconds();
@@ -65,13 +66,11 @@ void Inimigo::persegueJogador()
 
     else if((posiJogador.x - pos.x)>0) { vel.x = vel.x + 0.8; }
     
-    pos.x = pos.x + vel.x;
 
 }
 
 void Inimigo::movimentoAleatorio()
 {
-    vel.x = 0;
     if(movAl==1)
     {
         vel.x = vel.x + 0.4;
@@ -80,7 +79,6 @@ void Inimigo::movimentoAleatorio()
     {
         vel.x = vel.x - 0.4;
     }
-    pos.x = pos.x + vel.x;
 
     float dt = relogio.getElapsedTime().asSeconds();
     if(dt>=1)
@@ -97,11 +95,10 @@ void Inimigo::ataque()
     vel.x = 0.0;
     posiJogador = jogador->getPos();
 
-    if((posiJogador.x - pos.x)<0) {  vel.x = vel.x - 0.8; }
+    if((posiJogador.x - pos.x)<0) {  vel.x = vel.x - 1.5; }
 
-    else if((posiJogador.x - pos.x)>0) { vel.x = vel.x + 0.8; }
-    
-    pos.x = pos.x + vel.x;
+    else if((posiJogador.x - pos.x)>0) { vel.x = vel.x + 1.5; }
+
 
     float dt = relogio2.getElapsedTime().asSeconds();
     if(dt>=1.5)

@@ -7,6 +7,8 @@
 class Jogador : public Personagem {
 private:
 	Mapa* pMapa2;
+	sf::Clock tempoDano;
+	bool verifTempo;
 
 public:
 	Jogador();
@@ -21,4 +23,5 @@ public:
 	void viradoEsq();
 	void ataqueDir();
 	void ataqueEsq();
+	void colisaoInimigo(Entidade *i);
 };
