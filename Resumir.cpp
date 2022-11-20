@@ -9,8 +9,10 @@ Resumir::Resumir(Menu* m) : Opcao() {
 	//setTextura(tex);
 	//setTextura("Midia/Imagens/Menu Opc 1a.png");
 	if(!textura.loadFromFile("Midia/Imagens/Menu Opc 1a.png")) cout << "Erro na abertura da imagem";
-	setPos(sf::Vector2f(160.0f, 80.0f));
-	corpo.setPosition(sf::Vector2f(160.0f, 80.0f));
+	float x = GerenciadorGrafico::getGerenciadorGrafico()->getCoorView().x - 160;
+	float y = GerenciadorGrafico::getGerenciadorGrafico()->getCoorView().y - 160;
+	setPos(sf::Vector2f(x, y));
+	corpo.setPosition(sf::Vector2f(x, y));
 	cout << "Resumir criado.\npos.x = " << getPos().x << "\npos.y = " << getPos().y << endl;
 
 	m->setResumir(this);

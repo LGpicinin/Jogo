@@ -41,5 +41,5 @@ public:
 	void setSair(Sair* s);
 	Fase1* getFase1();
 	void setFase1(Fase1* f);
-	//Fase* getFase();
+	Fase* getFase();
 };

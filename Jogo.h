@@ -23,8 +23,8 @@
 using namespace std;
 class Jogo {
 private:
-	Menu menuopc;
-	Jogador jogador1;
+	Menu* menuopc;
+	Jogador* jogador1;
 	GerenciadorGrafico *graf;
 	GerenciadorEvento *pEvent;
 	GerenciadorColisao *pColi;

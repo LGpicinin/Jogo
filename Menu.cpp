@@ -45,6 +45,9 @@ Menu::~Menu() {
 void Menu::setMusica(sf::Music* m) { musica = m; }
 
 int Menu::executar() {
+	GerenciadorGrafico::getGerenciadorGrafico()->setView(sf::Vector2f(320.0f, 240.0f));
+	GerenciadorGrafico* graf = GerenciadorGrafico::getGerenciadorGrafico();
+	resumir->getCorpo().setPosition(graf->getCoorView().x - 160, graf->getCoorView().y - 160);
 	while (true) {
 		resumir->atualiza();
 		bfase1->atualiza();
@@ -55,7 +58,7 @@ int Menu::executar() {
 		}
 
 		else if (bfase1->getSelecionada() == true && sf::Mouse::isButtonPressed(sf::Mouse::Left)) {
-			//bfase1->executar();
+			bfase1->executar();
 			return 2;
 
 		}
@@ -192,6 +195,6 @@ void Menu::setSair(Sair* s) { sair = s; }
 
 void Menu::setFase1(Fase1* f) { f1 = f; }
 
-/*Fase* Menu::getFase() {
+Fase* Menu::getFase() {
 	if (f1) return f1; 
-}*/
+}

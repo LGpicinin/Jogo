@@ -1,4 +1,6 @@
 #include "Fase1.h"
+#include "Pedra.h"
+#include <iostream>
 
 Fase1::Fase1(GerenciadorColisao *c, GerenciadorGrafico *g, GerenciadorEvento *e):
 Fase(c, g, e)
@@ -26,6 +28,7 @@ Fase1::Fase1(): Fase() {
 
     lista->add(static_cast<Entidade*>(j1));
     geraInimigos();
+    geraObstaculos();
 
     pEvent->setJogador(j1);
     pColi = new GerenciadorColisao(inimigos, mapa2, j1);
@@ -70,6 +73,8 @@ void Fase1::executar()
 		lista->desenhaLista();
 		pGraf->mostraElementos();
     }
+    std::cout << "O loop de execucao da fase terminou.\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n";
+    f1->stop();
 }
 
 void Fase1::geraInimigos()
@@ -108,4 +113,14 @@ void Fase1::geraArara(float x, float y)
     inimigos->add(static_cast<Entidade*>(inimigo));
     lista->add(static_cast<Entidade*>(inimigo));
 
+}
+
+void Fase1::geraObstaculos() {
+    srand(time(NULL));
+    for (int i = 1; i <= 10; i++) {
+        int p = rand() % 50 + 30;
+        Pedra* k = new Pedra(p*32, 48);
+        inimigos->add(static_cast<Entidade*>(k));
+        lista->add(static_cast<Entidade*>(k));
+    }
 }

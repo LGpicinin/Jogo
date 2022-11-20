@@ -17,5 +17,5 @@ private:
         void executar();
         void geraInimigos();
         void geraArara(float x, float y);
-
+        void geraObstaculos();
 };

@@ -30,9 +30,7 @@ void BFase1::atualiza() {
 }
 
 void BFase1::executar() {
-	//if (pMenu->getFase1()) pMenu->~Menu();
-	//else {
-		Fase1* f1 = new Fase1();
-		pMenu->setFase1(f1);
-	//}
+	if (pMenu->getFase1()) delete pMenu->getFase1();
+	Fase1* f1 = new Fase1();
+	pMenu->setFase1(f1);
 }
