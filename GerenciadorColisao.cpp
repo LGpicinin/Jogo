@@ -7,6 +7,13 @@ GerenciadorColisao::GerenciadorColisao(ListaEntes* ini, Mapa* m, Jogador* p) {
 	pJogador = p;
 }
 
+GerenciadorColisao::GerenciadorColisao()
+{
+	inimigos = NULL;
+	map = NULL;
+	pJogador = NULL;
+}
+
 GerenciadorColisao::~GerenciadorColisao() {}
 
 const sf::Vector2f GerenciadorColisao::calculaColisaoIni(Ente* e1, Ente* e2) {
@@ -131,3 +138,17 @@ void GerenciadorColisao::executar() {
 			if (flag2 == 0) ent1->cair();
 		}
 	}
+
+
+void GerenciadorColisao::setJogador(Jogador *p)
+{
+	pJogador = p;
+}
+void GerenciadorColisao::setInimigos (ListaEntes *l)
+{
+	inimigos = l;
+}
+void GerenciadorColisao::setMapa (Mapa *m)
+{
+	map = m;
+}

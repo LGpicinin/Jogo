@@ -7,6 +7,8 @@ BFase1::BFase1(Menu* m): Opcao() {
 	setTextura(tex);
 	setPos(sf::Vector2f(160.0f, 160.0f));
 	corpo.setPosition(sf::Vector2f(160.0f, 160.0f));
+
+	m->setBFase1(this);
 }
 
 BFase1::~BFase1() {}

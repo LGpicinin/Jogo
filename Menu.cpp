@@ -44,24 +44,25 @@ Menu::~Menu() {
 
 void Menu::setMusica(sf::Music* m) { musica = m; }
 
-void Menu::executar() {
+int Menu::executar() {
 	while (true) {
 		resumir->atualiza();
 		bfase1->atualiza();
 		sair->atualiza();
 		if (resumir->getSelecionada() == true && sf::Mouse::isButtonPressed(sf::Mouse::Left)) {
 			resumir->executar();
+			return 3;
 		}
 
 		else if (bfase1->getSelecionada() == true && sf::Mouse::isButtonPressed(sf::Mouse::Left)) {
-			bfase1->executar();
-			f1->executar();
-			break;
+			//bfase1->executar();
+			return 2;
+
 		}
 
 		else if (sair->getSelecionada() == true && sf::Mouse::isButtonPressed(sf::Mouse::Left)) {
 			sair->executar();
-			break;
+			return 1;
 		}
 		GerenciadorGrafico* graf = GerenciadorGrafico::getGerenciadorGrafico();
 		graf->limpaJanela();

@@ -23,16 +23,19 @@
 using namespace std;
 class Jogo {
 private:
-	Menu* menuopc;
-	GerenciadorGrafico* graf;
-	GerenciadorEvento* pEvent;
-	GerenciadorColisao* pColi;
-	Resumir* resumir;
-	BFase1* bfase1;
-	Sair* sair;
+	Menu menuopc;
+	Jogador jogador1;
+	GerenciadorGrafico *graf;
+	GerenciadorEvento *pEvent;
+	GerenciadorColisao *pColi;
+	Resumir *resumir;
+	BFase1 *bfase1;
+	Sair *sair;
 
 public:
 	Jogo();
 	~Jogo();
 	void executar();
+	void criaFase1();
+
 };

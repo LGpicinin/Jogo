@@ -11,6 +11,8 @@ Sair::Sair(Menu* m): Opcao() {
 	setPos(sf::Vector2f(160.0f, 400.0f));
 	corpo.setPosition(sf::Vector2f(160.0f, 400.0f));
 	cout << "Sair criado.\npos.x = " << getPos().x << "\npos.y = " << getPos().y << endl;
+
+	m->setSair(this);
 }
 
 Sair::~Sair() {}
