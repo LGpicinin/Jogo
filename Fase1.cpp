@@ -28,7 +28,7 @@ Fase1::Fase1(): Fase() {
 
     lista->add(static_cast<Entidade*>(j1));
     geraInimigos();
-    geraObstaculos();
+    //geraObstaculos();
 
     pEvent->setJogador(j1);
     pColi = new GerenciadorColisao(inimigos, mapa2, j1);
@@ -86,8 +86,10 @@ void Fase1::geraInimigos()
     int contador = 0;
     float x = 300;
     float y = 100;
+    Curupira *c;
+    Projetil *p;  
 
-    while (lim < 10 || contador<3)
+    while (lim < 9 || contador<3)
     {
         verif = rand()%4;
         if (verif == 1)
@@ -103,6 +105,12 @@ void Fase1::geraInimigos()
         lim++;
         x = x + 225;
     }
+    c = geraCurupira(400, y);
+    p = geraProjetil(400, y);
+
+    c->setFogo(p);
+    c->setLista(inimigos);
+
 }
 
 void Fase1::geraArara(float x, float y)
@@ -117,7 +125,7 @@ void Fase1::geraArara(float x, float y)
 
 void Fase1::geraObstaculos() {
     srand(time(NULL));
-    for (int i = 1; i <= 10; i++) {
+    for (int i = 1; i <= 2; i++) {
         int p = rand() % 50 + 30;
         Pedra* k = new Pedra(p*32, 48);
         inimigos->add(static_cast<Entidade*>(k));

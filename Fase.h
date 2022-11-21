@@ -7,6 +7,7 @@
 #include "Elemento.h"
 #include "Mapa.h"
 #include "Onca.h"
+#include "Curupira.h"
 
 class Fase
 {
@@ -38,4 +39,6 @@ class Fase
         ListaEntes* getInimigos();
         Jogador* getJogador1();
         void geraOnca(float x, float y);
+        Curupira* geraCurupira(float x, float y);
+        Projetil* geraProjetil(float x, float y);
 };

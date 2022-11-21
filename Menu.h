@@ -32,7 +32,7 @@ private:
 public:
 	Menu();
 	~Menu();
-	int executar();
+	void executar();
 	void setMusica(sf::Music* m);
 	void setResumir(Resumir* r);
 	void setBFase1(BFase1* b);

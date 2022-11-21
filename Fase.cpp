@@ -75,3 +75,25 @@ void Fase::geraOnca(float x, float y)
     lista->add(static_cast<Entidade*>(inimigo));
 
 }
+
+Curupira* Fase::geraCurupira(float x, float y)
+{
+    Curupira *inimigo;
+    inimigo = new Curupira(j1, x, y);
+
+    inimigos->add(static_cast<Entidade*>(inimigo));
+    lista->add(static_cast<Entidade*>(inimigo));
+
+    return inimigo;
+}
+
+Projetil* Fase::geraProjetil(float x, float y)
+{
+    Projetil *p = new Projetil(x, y);
+
+    inimigos->add(static_cast<Entidade*>(p));
+    lista->add(static_cast<Entidade*>(p));
+
+    return p;
+
+}

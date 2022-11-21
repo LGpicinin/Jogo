@@ -6,6 +6,7 @@ Inimigo(j, x, y)
     dano = 1;
     numVidas = 2;
     aumentaVel = 0;
+    ataqueDistancia = false;
     voa = true;
 
     corpo.setTextureRect(sf::IntRect(0, 0, 512, 220));

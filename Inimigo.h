@@ -8,6 +8,7 @@ protected:
     Jogador* jogador;
     int movAl;
     bool horaAtaque;
+    bool ataqueDistancia;
     bool voa;
     sf::Clock relogio;
 
