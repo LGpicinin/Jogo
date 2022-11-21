@@ -1,15 +1,12 @@
 #pragma once
-#include "Inimigo.h"
+#include "Obstaculo.h"
 
-class Pedra : public Inimigo {
+class Pedra : public Obstaculo {
 private:
 	int massa;
 
 public:
 	Pedra(float x, float y);
 	~Pedra();
-	void viradoEsq();
-	void viradoDir();
-	void ataqueDir();
-	void ataqueEsq();
+	void move();
 };

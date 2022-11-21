@@ -17,12 +17,12 @@ Jogo::Jogo() {
 	graf = GerenciadorGrafico::getGerenciadorGrafico();
 	pEvent = GerenciadorEvento::getGerenciadorEvento();
 	menuopc = new Menu();
-	Fase1* f = new Fase1();
+	//Fase1* f = new Fase1();
 	//f = new Fase1();
-	pColi = new GerenciadorColisao(f->getInimigos(), f->getMapa2(), f->getJogador1());
-	pEvent->setJogador(f->getJogador1());
+	//pColi = new GerenciadorColisao(f->getInimigos(), f->getMapa2(), f->getJogador1());
+	//pEvent->setJogador(f->getJogador1());
 	pEvent->setPGraf(graf);
-	menuopc->setFase1(f);
+	//menuopc->setFase1(f);
 	resumir = new Resumir(menuopc);
 	bfase1 = new BFase1(menuopc);
 	sair = new Sair(menuopc);
@@ -30,7 +30,7 @@ Jogo::Jogo() {
 	//menuopc->setResumir(resumir);
 	//menuopc->setSair(sair);
 	//menuopc->setFase1(f);
-	jogador1 = f->getJogador1();
+	//jogador1 = f->getJogador1();
 	menuopc->executar();
 }
 

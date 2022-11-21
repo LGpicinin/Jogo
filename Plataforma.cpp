@@ -53,3 +53,8 @@ const bool Plataforma::verifNula(sf::Vector2f coor) {
 		return false;
 	}
 }
+
+void Plataforma::move() {
+	cair();
+	setVelY(getVel().y - (300 / CLOCKS_PER_SEC));
+}

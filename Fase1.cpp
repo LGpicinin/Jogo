@@ -11,6 +11,7 @@ Fase(c, g, e)
 Fase1::Fase1(): Fase() {
     lista = new ListaEntes();
     inimigos = new ListaEntes();
+    obs = new Lista<Obstaculo>;
 
     f1 = new sf::Music();
     f1->openFromFile("Midia/Musicas/S8M4.ogg");
@@ -28,7 +29,13 @@ Fase1::Fase1(): Fase() {
 
     lista->add(static_cast<Entidade*>(j1));
     geraInimigos();
-    //geraObstaculos();
+    geraObstaculos();
+    /*Pedra* p1 = new Pedra(150, 150);
+    lista->add(p1);
+    inimigos->add(p1);
+    Pedra* p2 = new Pedra(500, 100);
+    lista->add(p2);
+    inimigos->add(p2);*/
 
     pEvent->setJogador(j1);
     pColi = new GerenciadorColisao(inimigos, mapa2, j1);
@@ -125,10 +132,11 @@ void Fase1::geraArara(float x, float y)
 
 void Fase1::geraObstaculos() {
     srand(time(NULL));
-    for (int i = 1; i <= 2; i++) {
+    for (int i = 1; i <= 10; i++) {
         int p = rand() % 50 + 30;
         Pedra* k = new Pedra(p*32, 48);
-        inimigos->add(static_cast<Entidade*>(k));
-        lista->add(static_cast<Entidade*>(k));
+        obs->incluirEl((k));
+        lista->add(k);
+        inimigos->add(k);
     }
 }

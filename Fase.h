@@ -8,6 +8,7 @@
 #include "Mapa.h"
 #include "Onca.h"
 #include "Curupira.h"
+#include "Obstaculo.h"
 
 class Fase
 {
@@ -20,6 +21,7 @@ class Fase
         Jogador* j1;
         Jogador* j2;
         Mapa* mapa2;
+        Lista<Obstaculo>* obs;
 
     public:
         Fase();

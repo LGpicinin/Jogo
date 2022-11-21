@@ -47,7 +47,7 @@ void Menu::setMusica(sf::Music* m) { musica = m; }
 void Menu::executar() {
 	GerenciadorGrafico::getGerenciadorGrafico()->setView(sf::Vector2f(320.0f, 240.0f));
 	GerenciadorGrafico* graf = GerenciadorGrafico::getGerenciadorGrafico();
-	resumir->getCorpo().setPosition(graf->getCoorView().x - 160, graf->getCoorView().y - 160);
+	resumir->getCorpo().setPosition(800, 80);
 	while (true) {
 		resumir->atualiza();
 		bfase1->atualiza();
@@ -57,6 +57,7 @@ void Menu::executar() {
 		}
 
 		else if (bfase1->getSelecionada() == true && sf::Mouse::isButtonPressed(sf::Mouse::Left)) {
+			bfase1->executar();
 			break;
 
 		}

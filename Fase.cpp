@@ -8,6 +8,7 @@ Fase::Fase() {
     j1 = NULL;
     j2 = NULL;
     mapa2 = NULL;
+    obs = NULL;
 }
 
 Fase::Fase(GerenciadorColisao *c, GerenciadorGrafico *g, GerenciadorEvento *e)
@@ -19,6 +20,7 @@ Fase::Fase(GerenciadorColisao *c, GerenciadorGrafico *g, GerenciadorEvento *e)
     j1 = NULL;
     j2 = NULL;
     mapa2 = NULL;
+    obs = NULL;
 }
 
 Fase::~Fase()
