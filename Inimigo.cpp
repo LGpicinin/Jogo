@@ -20,7 +20,7 @@ Inimigo::~Inimigo()
 void Inimigo::move()
 {
     GerenciadorGrafico* graf = GerenciadorGrafico::getGerenciadorGrafico();
-    if (pos.x > graf->getCoorView().x + 320 || pos.x < graf->getCoorView().x - 320 || pos.y > graf->getCoorView().y + 240 || pos.y < graf->getCoorView().y - 240) {
+    if (pos.x > graf->getCoorView().x + 500 || pos.x < graf->getCoorView().x - 500 || pos.y > graf->getCoorView().y + 400 || pos.y < graf->getCoorView().y - 400) {
         congela();
     }
     else {

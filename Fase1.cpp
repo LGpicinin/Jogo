@@ -88,37 +88,55 @@ void Fase1::executar()
 
 void Fase1::geraInimigos()
 {
-    
+
     srand(time(NULL));
     int verif;
     int lim = 0;
     int contador = 0;
     float x = 300;
     float y = 100;
-    Curupira *c;  
+    geraOnca(660, 376);
+    geraOnca(608, 120);
+    geraOnca(3224, 1462);
+    geraArara(2384, 250);
+    geraArara(1312, 150);
+    geraArara(2936, 568);
 
-    while (lim < 9 || contador<3)
+
+    /*while (lim < 5 || contador < 3)
     {
-        verif = rand()%4;
+        verif = rand() % 4;
+
         if (verif == 1)
         {
-           geraOnca(x, y);
-           contador++;
+            geraOnca(x, y);
+            contador++;
         }
-        else if(verif == 3)
+        else if (verif == 3)
         {
             geraArara(x, y);
             contador++;
         }
         lim++;
         x = x + 225;
-    }
-    c = geraCurupira(1500, y);
+    }*/
+    verif = rand() % 4;
+    if (verif == 1) geraOnca(1072, 248);
+    verif = rand() % 4;
+    if (verif == 1) geraArara(352, 50);
+    verif = rand() % 4;
+    if (verif == 1) geraArara(1080, 96);
+    verif = rand() % 4;
+    if (verif == 1) geraOnca(2304, 374);
+    verif = rand() % 4;
+    if (verif == 1) geraOnca(3456, 662);
+    verif = rand() % 4;
+    if (verif == 1) geraOnca(3014, 1335);
+    verif = rand() % 4;
+    if (verif == 1) geraOnca(4334, 823);
+    verif = rand() % 4;
+    if (verif == 1) geraOnca(3110, 1848);
 
-    inimigos->add(static_cast<Entidade*>(c->getFogo()));
-    lista->add(static_cast<Entidade*>(c->getFogo()));
-
-    c->setLista(inimigos);
 
 }
 
@@ -135,8 +153,8 @@ void Fase1::geraArara(float x, float y)
 void Fase1::geraObstaculos() {
     srand(time(NULL));
     for (int i = 1; i <= 10; i++) {
-        int p = rand() % 50 + 30;
-        Pedra* k = new Pedra(p*32, 90);
+        int p = (rand() % 50) + 30;
+        Pedra* k = new Pedra((p+i)*32, 150);
         //obs->incluirEl((k));
         lista->add(static_cast<Entidade*>(k));
         inimigos->add(static_cast<Entidade*>(k));

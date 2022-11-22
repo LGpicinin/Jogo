@@ -35,8 +35,8 @@ void Jogador::atualizaPos() {
 
 	//if (pos.y < 430 && pos.y > 0) pos.y = pos.y + vel.y;
 	
-	if (gerente->getCoorView().x >= 320 && (pos.x <= gerente->getCoorView().x - 100 && sf::Keyboard::isKeyPressed(sf::Keyboard::A)) ||
-(gerente->getCoorView().x + vel.x <= pMapa2->getLista()->getElX(pMapa2->getLista()->getTam())->getInfo()->getPos().x && pos.x >= gerente->getCoorView().x + 100 && sf::Keyboard::isKeyPressed(sf::Keyboard::D))) {
+	if (gerente->getCoorView().x >= 320 && (pos.x <= gerente->getCoorView().x - 40 && sf::Keyboard::isKeyPressed(sf::Keyboard::A)) ||
+(gerente->getCoorView().x + vel.x <= pMapa2->getLista()->getElX(pMapa2->getLista()->getTam())->getInfo()->getPos().x && pos.x >= gerente->getCoorView().x + 40 && sf::Keyboard::isKeyPressed(sf::Keyboard::D))) {
 		//pMapa->update(vel.x, 0);
 		//pMapa2->reposMapa(vel.x, 0);
 		//std::cout << "reposMapa foi chamada com vel.x = " << vel.x << std::endl;
@@ -47,7 +47,7 @@ void Jogador::atualizaPos() {
 	//{
 		pos.x = pos.x + vel.x;
 	//}
-	if ((pos.y >= gerente->getCoorView().y + 240 - getTam().y - 64 && vel.y > 0) || (pos.y <= gerente->getCoorView().y - 176 && vel.y < 0)) {
+	if ((pos.y >= gerente->getCoorView().y + 240 - getTam().y - 90 && vel.y > 0) || (pos.y <= gerente->getCoorView().y - 150 && vel.y < 0)) {
 		//pMapa2->reposMapa(0, 2 * vel.y);
 		if (numVidas > 0) gerente->setView(sf::Vector2f(gerente->getCoorView().x, gerente->getCoorView().y + vel.y));
 		//pos.y -= vel.y;

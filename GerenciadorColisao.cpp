@@ -127,10 +127,10 @@ void GerenciadorColisao::executar() {
 			flag2 = 0;
 			ent1 = inimigos->getLista()->getElX(i)->getInfo();
 			if (ent1->getVivo() == false) continue;
-			if (ent1->getPos().x > graf->getCoorView().x + 320 || ent1->getPos().x < graf->getCoorView().x - 320 || ent1->getPos().y > graf->getCoorView().y + 240 || ent1->getPos().y < graf->getCoorView().y - 240) continue;
+			if (ent1->getPos().x > graf->getCoorView().x + 500 || ent1->getPos().x < graf->getCoorView().x - 500 || ent1->getPos().y > graf->getCoorView().y + 400 || ent1->getPos().y < graf->getCoorView().y - 400) continue;
 			for (int j = 0; j < map->getColidiveis()->getTam(); j++) {
 				Plataforma* hbx = map->getColidiveis()->getElX(j)->getInfo();
-				if (hbx->getPos().x > graf->getCoorView().x + 320 || hbx->getPos().x < graf->getCoorView().x - 320 || hbx->getPos().y > graf->getCoorView().y + 240 || hbx->getPos().y < graf->getCoorView().y - 240) continue;
+				if (hbx->getPos().x > graf->getCoorView().x + 500 || hbx->getPos().x < graf->getCoorView().x - 500 || hbx->getPos().y > graf->getCoorView().y + 400 || hbx->getPos().y < graf->getCoorView().y - 400) continue;
 				sf::Vector2f ds = calculaColisaoPlat(ent1, hbx);
 				if (ds.x < 0.0f && ds.y < 0.0f) {
 					std::cout << "Ocorre uma colisao 2 - Inimigo.\n";
