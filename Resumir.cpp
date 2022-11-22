@@ -22,7 +22,17 @@ Resumir::~Resumir() {}
 
 void Resumir::executar() {
 	//pMenu->~Menu();
-	if (!pMenu->getFase1()) {}
+	GerenciadorGrafico* graf = GerenciadorGrafico::getGerenciadorGrafico();
+	if (pMenu->getFase1()) {
+		pMenu->getFase1()->getJogador1()->setVidas(3);
+		graf->setView(sf::Vector2f(pMenu->getFase1()->getJogador1()->getPos().x, pMenu->getFase1()->getJogador1()->getPos().y));
+		pMenu->getFase1()->getMusica()->play();
+	}
+	else if (pMenu->getFase2()) {
+		pMenu->getFase2()->getJogador1()->setVidas(3);
+		graf->setView(sf::Vector2f(pMenu->getFase2()->getJogador1()->getPos().x, pMenu->getFase2()->getJogador1()->getPos().y));
+		pMenu->getFase2()->getMusica()->play();
+	}
 }
 
 void Resumir::atualiza() {

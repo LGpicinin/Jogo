@@ -68,6 +68,12 @@ void GerenciadorColisao::executar() {
 		//Entidade* ent1 = inimigos->getLista()->getElX(i)->getInfo();
 		GerenciadorGrafico *graf = GerenciadorGrafico::getGerenciadorGrafico();
 		bool flag = 0;
+		if (pJogador->getPos().x < map->getIni() + map->getLen() * 0.2)map->setColidiveis(map->getC1());
+		else if (pJogador->getPos().x > map->getIni() + map->getLen() * 0.2 && pJogador->getPos().x < map->getIni() + map->getLen() * 0.4) map->setColidiveis(map->getC1b());
+		else if (pJogador->getPos().x > map->getIni() + map->getLen() * 0.4 && pJogador->getPos().x < map->getIni() + map->getLen() * 0.6) map->setColidiveis(map->getC2());
+		else if (pJogador->getPos().x > map->getIni() + map->getLen() * 0.6 && pJogador->getPos().x < map->getIni() + map->getLen() * 0.8) map->setColidiveis(map->getC2b());
+		else if (pJogador->getPos().x > map->getIni() + map->getLen() * 0.8 && pJogador->getPos().x < map->getIni() + map->getLen()) map->setColidiveis(map->getC3());
+
 		for (int j = 0; j < map->getColidiveis()->getTam(); j++) {
 			Plataforma* hbx = map->getColidiveis()->getElX(j)->getInfo();
 			if (hbx->getPos().x > graf->getCoorView().x + 320 || hbx->getPos().x < graf->getCoorView().x - 320 || hbx->getPos().y > graf->getCoorView().y + 240 || hbx->getPos().y < graf->getCoorView().y - 240) continue;

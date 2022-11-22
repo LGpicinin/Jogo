@@ -25,6 +25,7 @@ Jogo::Jogo() {
 	//menuopc->setFase1(f);
 	resumir = new Resumir(menuopc);
 	bfase1 = new BFase1(menuopc);
+	bfase2 = new BFase2(menuopc);
 	sair = new Sair(menuopc);
 	//menuopc->setBFase1(bfase1);
 	//menuopc->setResumir(resumir);
@@ -76,7 +77,13 @@ void Jogo::executar() {
 	}*/
 	if (menuopc->getFase1()) {
 		jogador1 = menuopc->getFase1()->getJogador1();
+		//menuopc->getFase1()->getEvent()->setMenu(menuopc);
 		menuopc->getFase1()->executar();
+	}
+	else if (menuopc->getFase2()) {
+		jogador1 = menuopc->getFase2()->getJogador1();
+		//menuopc->getFase1()->getEvent()->setMenu(menuopc);
+		menuopc->getFase2()->executar();
 	}
 	cout << "Vidas de jogador: " << jogador1->getVidas() << endl;
 	graf->setView(sf::Vector2f(320.0f, 240.0f));

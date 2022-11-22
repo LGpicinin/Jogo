@@ -90,3 +90,5 @@ Curupira* Fase::geraCurupira(float x, float y)
 
     return inimigo;
 }
+
+GerenciadorEvento* Fase::getEvent() { return pEvent; }

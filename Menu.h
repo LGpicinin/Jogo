@@ -3,6 +3,7 @@
 #include "Lista.h"
 #include "Opcao.h"
 #include "Fase1.h"
+#include "Fase2.h"
 #include "SFML/Graphics.hpp"
 #include "SFML/Audio.hpp"
 using namespace Fases;
@@ -24,6 +25,7 @@ private:
 	Ente carrega, fundo;
 	sf::Music* musica;
 	Fase1* f1;
+	Fase2* f2;
 	Resumir* resumir;
 	BFase1* bfase1;
 	BFase2* bfase2;
@@ -42,5 +44,7 @@ public:
 	void setSair(Sair* s);
 	Fase1* getFase1();
 	void setFase1(Fase1* f);
+	Fase2* getFase2();
+	void setFase2(Fase2* f);
 	Fase* getFase();
 };

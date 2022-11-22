@@ -48,6 +48,7 @@ namespace Fases
             Jogador* getJogador1();
             void geraOnca(float x, float y);
             Curupira* geraCurupira(float x, float y);
+            GerenciadorEvento* getEvent();
     };
 
 }

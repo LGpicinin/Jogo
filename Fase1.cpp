@@ -83,7 +83,7 @@ void Fase1::executar()
 		pGraf->mostraElementos();
     }
     std::cout << "O loop de execucao da fase terminou.\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n";
-    f1->stop();
+    f1->pause();
 }
 
 void Fase1::geraInimigos()
@@ -142,3 +142,5 @@ void Fase1::geraObstaculos() {
         inimigos->add(static_cast<Entidade*>(k));
     }
 }
+
+sf::Music* Fase1::getMusica() { return f1; }

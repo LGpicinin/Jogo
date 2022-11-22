@@ -13,6 +13,7 @@ namespace Gerenciadores
 		Jogador* pJogador;
 		GerenciadorEvento();
 		static GerenciadorEvento* pEvento;
+		//Menu* pMenu;
 
 	public:
 		static GerenciadorEvento* getGerenciadorEvento();
@@ -22,6 +23,7 @@ namespace Gerenciadores
 		void verifTeclaPressionada(sf::Keyboard::Key tecla);
 		void verifTeclaSolta(sf::Keyboard::Key tecla);
 		void executar();
+		//void setMenu(Menu* m);
 	};
 
 }

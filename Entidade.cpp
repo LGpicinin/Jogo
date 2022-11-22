@@ -70,3 +70,5 @@ void Entidade::operator--()
 	numVidas--;
 
 }
+
+void Entidade::setVidas(int n) { numVidas = n; }

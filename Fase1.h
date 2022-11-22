@@ -19,6 +19,7 @@ namespace Fases
             void geraInimigos();
             void geraArara(float x, float y);
             void geraObstaculos();
+            sf::Music* getMusica();
     };
 
 }

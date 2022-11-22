@@ -1,11 +1,13 @@
 #include "GerenciadorEvento.h"
 
+
 using namespace Gerenciadores;
 
 GerenciadorEvento* GerenciadorEvento::pEvento = NULL;
 
 GerenciadorEvento::GerenciadorEvento() {
 	pJogador = NULL;
+	//pMenu = NULL;
 }
 
 GerenciadorEvento::~GerenciadorEvento() {
@@ -40,7 +42,9 @@ void GerenciadorEvento::verifTeclaPressionada(sf::Keyboard::Key tecla) {
 		//pJogador->atualizaPos();
 	}
 	else if (tecla == sf::Keyboard::Escape) {
-		pGraf->fecharJanela();
+		//pGraf->fecharJanela();
+		//pMenu->executar();
+		pJogador->setVidas(0);
 	}
 }
 
@@ -62,3 +66,5 @@ void GerenciadorEvento::executar() {
 		else if (evento.type == sf::Event::Closed) pGraf->fecharJanela();
 	}
 }
+
+//void GerenciadorEvento::setMenu(Menu* m) { pMenu = m; }

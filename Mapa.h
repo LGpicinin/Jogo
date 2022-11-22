@@ -7,7 +7,9 @@ using namespace Listas;
 class Mapa {
 private:
 	Lista<Plataforma> lista;
-	Lista<Plataforma> colidiveis;
+	Lista<Plataforma>* colidiveis;
+	Lista<Plataforma> c1, c1b, c2, c2b, c3;
+	float len, ini;
 
 public:
 	Mapa();
@@ -17,4 +19,12 @@ public:
 	Lista<Plataforma>* getLista();
 	void imprimir();
 	Lista<Plataforma>* getColidiveis();
+	Lista<Plataforma>* getC1();
+	Lista<Plataforma>* getC1b();
+	Lista<Plataforma>* getC2();
+	Lista<Plataforma>* getC2b();
+	Lista<Plataforma>* getC3();
+	float getLen();
+	void setColidiveis(Lista<Plataforma>* l);
+	float getIni();
 };
