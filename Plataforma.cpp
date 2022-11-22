@@ -2,6 +2,8 @@
 #include <time.h>
 #include <iostream>
 
+using namespace Entidades;
+
 sf::Image Plataforma::teste = loadAlt("Midia/Imagens/Teste Tilemap2.png");
 
 Plataforma::Plataforma(sf::Vector2f coor) : Entidade(0, coor, 132){

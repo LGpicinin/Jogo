@@ -1,5 +1,8 @@
 #include "Arara.h"
 
+using namespace Entidades;
+using namespace Personagens;
+
 Arara::Arara(Jogador* j, float x, float y) :
 Inimigo(j, x, y)
 {

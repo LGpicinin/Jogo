@@ -1,5 +1,8 @@
 #include "Onca.h"
 
+using namespace Entidades;
+using namespace Personagens;
+
 Onca::Onca(Jogador* j, float x, float y) :
 Inimigo(j, x, y)
 {

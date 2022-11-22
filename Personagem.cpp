@@ -1,5 +1,8 @@
 #include "Personagem.h"
 
+using namespace Entidades;
+using namespace Personagens;
+
 Personagem::Personagem(const int v, const int id, float x, float y) : Entidade(v, sf::Vector2f(x, y), id)
 {
     dano = 0;

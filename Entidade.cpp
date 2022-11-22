@@ -2,6 +2,8 @@
 #include <iostream>
 using namespace std;
 
+using namespace Entidades;
+
 Entidade::Entidade(const int v, sf::Vector2f xy, int i):
 Ente(xy)
 {

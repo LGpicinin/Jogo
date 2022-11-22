@@ -1,5 +1,7 @@
 #include "Projetil.h"
 
+using namespace Entidades;
+
 
 Projetil::Projetil(float x, float y):
 Entidade(0,sf::Vector2f(x, y), 0)
@@ -9,12 +11,13 @@ Entidade(0,sf::Vector2f(x, y), 0)
 	ativado = false;
 	alcance = 650;
 	distanciaPercorrida = 0;
+	setAtacar(false);
     corpo.setTextureRect(sf::IntRect(0,0,62,79));
 	if(!textura.loadFromFile("Midia/Imagens/Fogo.png")) std::cout << "Erro na abertura da textura do inimigo." << std::endl;
     	else {
         	corpo.setTexture(textura);
     	}
-	corpo.setScale(0.1, 0.1);
+	corpo.setScale(0.2, 0.2);
 }
 Projetil::~Projetil()
 {
@@ -23,20 +26,23 @@ Projetil::~Projetil()
 void Projetil::move()
 {
 	vel.x = 0;
+	setAtacar(false);
 
 	if(ativado == true)
 	{
+		setAtacar(true);
         if(direita==true)
             vel.x = 6;
         else
             vel.x = -6;
 
-		distanciaPercorrida = distanciaPercorrida + vel.x;
+		distanciaPercorrida = distanciaPercorrida + 6;
 		
 		if (distanciaPercorrida < alcance) { setVelY(0); }
 
         pos.x = pos.x + vel.x;
         pos.y = pos.y + vel.y*2;
+		corpo.setPosition(pos.x, pos.y);
 
 	}
 	else

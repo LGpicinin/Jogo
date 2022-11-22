@@ -1,6 +1,9 @@
 #include "Inimigo.h"
 #include <iostream>
 
+using namespace Entidades;
+using namespace Personagens;
+
 Inimigo::Inimigo(Jogador *j, float x, float y) :
 Personagem(1, 103, x, y)
 {
@@ -47,7 +50,7 @@ void Inimigo::move()
 
             //cair();
 
-            pos.y = pos.y + (vel.y * 2);
+            pos.y = pos.y + vel.y;
             pos.x = pos.x + vel.x;
 
             corpo.setPosition(pos.x, pos.y);

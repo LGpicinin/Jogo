@@ -1,6 +1,8 @@
 #pragma once
 #include "ListaEntes.h"
 #include "Plataforma.h"
+using namespace Entidades;
+using namespace Listas;
 
 class Mapa {
 private:

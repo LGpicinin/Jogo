@@ -1,5 +1,7 @@
 #include "GerenciadorEvento.h"
 
+using namespace Gerenciadores;
+
 GerenciadorEvento* GerenciadorEvento::pEvento = NULL;
 
 GerenciadorEvento::GerenciadorEvento() {

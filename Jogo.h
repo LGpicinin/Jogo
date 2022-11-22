@@ -4,11 +4,9 @@
 #include "Jogador.h"
 #include "Inimigo.h"
 #include "Onca.h"
-#include "Hitbox.h"
 #include "GerenciadorGrafico.h"
 #include "ListaEntes.h"
 #include "Fase1.h"
-#include "Map.h"
 #include "Mapa.h"
 #include "GerenciadorEvento.h"
 #include "GerenciadorColisao.h"
@@ -21,6 +19,10 @@
 #include <sstream>
 #include <list>
 using namespace std;
+using namespace Entidades;
+using namespace Personagens;
+using namespace Gerenciadores;
+
 class Jogo {
 private:
 	Menu* menuopc;

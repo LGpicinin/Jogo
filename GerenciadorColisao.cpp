@@ -1,6 +1,8 @@
 #include "GerenciadorColisao.h"
 #include <cmath>
 
+using namespace Gerenciadores;
+
 GerenciadorColisao::GerenciadorColisao(ListaEntes* ini, Mapa* m, Jogador* p) {
 	inimigos = ini;
 	map = m;

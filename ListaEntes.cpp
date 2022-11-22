@@ -1,5 +1,7 @@
 #include "ListaEntes.h"
 
+using namespace Listas;
+
 ListaEntes::ListaEntes() {}
 
 ListaEntes::~ListaEntes() 

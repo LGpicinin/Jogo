@@ -1,6 +1,9 @@
 #include "Jogador.h"
 #include <iostream>
 
+using namespace Entidades;
+using namespace Personagens;
+
 Jogador::Jogador() : Personagem(3, 101, 50, 50){
 	pMapa2 = NULL;
 	verifTempo = true;

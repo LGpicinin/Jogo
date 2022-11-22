@@ -1,5 +1,8 @@
 #include "Curupira.h"
 
+using namespace Entidades;
+using namespace Personagens;
+
 
 Curupira::Curupira(Jogador* j, float x, float y):
 Inimigo(j, x, y)
@@ -9,6 +12,9 @@ Inimigo(j, x, y)
 	ressucitar = false;
     ataqueDistancia = true;
 	atirar = true;
+	corre = false;
+	fogo = new Projetil(x, y);
+	fogo->setAtirador(static_cast<Inimigo*>(this));
 
 	corpo.setTextureRect(sf::IntRect(0,0,237,448));
 	if(!textura.loadFromFile("Midia/Imagens/CurupiraEsquerda.png")) std::cout << "Erro na abertura da textura do inimigo." << std::endl;
@@ -47,38 +53,49 @@ void Curupira::ataqueEsq()
 void Curupira::move()
 {
 
-    sf::Vector2f posiJogador;
-
-
-    posiJogador = jogador->getPos();
-    if (abs(posiJogador.x - pos.x)<200 && abs(posiJogador.y - pos.y)<200)
-    {
-        afastar();
-        atacar = false;
+	GerenciadorGrafico* graf = GerenciadorGrafico::getGerenciadorGrafico();
+    if (pos.x > graf->getCoorView().x + 320 || pos.x < graf->getCoorView().x - 320 || pos.y > graf->getCoorView().y + 240 || pos.y < graf->getCoorView().y - 240) {
+        congela();
     }
-    else if(abs(posiJogador.x - pos.x)<600 && abs(posiJogador.y - pos.y)<600)
-    {
-        ataque();
-        atacar = true;
-    }
-    else
-    {
-        movimentoAleatorio();
-        atacar = false;
-    }
+	else
+	{
+		sf::Vector2f posiJogador;
 
 
-            //cair();
+		posiJogador = jogador->getPos();
+		if (abs(posiJogador.x - pos.x)<200 && abs(posiJogador.y - pos.y)<200)
+		{
+			afastar();
+			atacar = false;
+			corre = true;
+		}
+		else if(((abs(posiJogador.x - pos.x)<600 && abs(posiJogador.y - pos.y)<600)) && corre == false)
+		{
+			ataque();
+			atacar = true;
+		}
+		else if ((abs(posiJogador.x - pos.x)<1000 && abs(posiJogador.y - pos.y)<1000) && corre == true)
+		{
+			corre = false;
+		}
+		else
+		{
+			movimentoAleatorio();
+			atacar = false;
+		}
 
-    pos.y = pos.y + (vel.y * 2);
-    pos.x = pos.x + vel.x;
 
-    corpo.setPosition(pos.x, pos.y);
-    verifImg();
+				//cair();
 
-    vel.x = 0;
+		pos.y = pos.y + vel.y;
+		pos.x = pos.x + vel.x;
 
-    
+		corpo.setPosition(pos.x, pos.y);
+		verifImg();
+
+		vel.x = 0;
+
+	}
 
 }
 
@@ -87,7 +104,7 @@ void Curupira::ataque()
     sf::Vector2f posiJogador;
     posiJogador = jogador->getPos();
 
-	if(atirar==true)
+	if(atirar==true && fogo->getAtivado()==false)
 	{
 		fogo->setAtivado(true);
         if((posiJogador.x - pos.x)<0) 
@@ -130,6 +147,8 @@ void Curupira::afastar()
 	if((posiJogador.x - pos.x)<0) {  vel.x = vel.x + v; }
 
     else if((posiJogador.x - pos.x)>0) { vel.x = vel.x - v; }
+
+	if(vel.y==0) { vel.y = -2; }
 }
 void Curupira::calculaRessucitar()
 {
@@ -148,7 +167,7 @@ void Curupira::ressucitarAnimais()
 	Entidade *tipo;
 	aux = animais->getLista()->getPrimeiro();
 	
-	while(aux->getProximo()!=NULL)
+	while(aux->getProximo()->getProximo()!=NULL)
 	{
 		tipo = aux->getInfo();
 		tipo->setVivo(true);
@@ -162,8 +181,8 @@ void Curupira::setLista(ListaEntes *l)
 {
     animais = l;
 }
-void Curupira::setFogo(Projetil *p)
+
+Projetil* Curupira::getFogo()
 {
-    fogo = p;
-    p->setAtirador(static_cast<Inimigo*>(this));
+	return fogo;
 }

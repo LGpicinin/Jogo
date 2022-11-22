@@ -1,5 +1,7 @@
 #include "GerenciadorGrafico.h"
 
+using namespace Gerenciadores;
+
 GerenciadorGrafico* GerenciadorGrafico::pGrafico = NULL;
 
 GerenciadorGrafico::GerenciadorGrafico() {

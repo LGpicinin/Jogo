@@ -2,6 +2,8 @@
 #include "Pedra.h"
 #include <iostream>
 
+using namespace Fases;
+
 Fase1::Fase1(GerenciadorColisao *c, GerenciadorGrafico *g, GerenciadorEvento *e):
 Fase(c, g, e)
 {
@@ -11,7 +13,7 @@ Fase(c, g, e)
 Fase1::Fase1(): Fase() {
     lista = new ListaEntes();
     inimigos = new ListaEntes();
-    obs = new Lista<Obstaculo>;
+    //obs = new Lista<Obstaculo>;
 
     f1 = new sf::Music();
     f1->openFromFile("Midia/Musicas/S8M4.ogg");
@@ -93,8 +95,7 @@ void Fase1::geraInimigos()
     int contador = 0;
     float x = 300;
     float y = 100;
-    Curupira *c;
-    Projetil *p;  
+    Curupira *c;  
 
     while (lim < 9 || contador<3)
     {
@@ -112,10 +113,11 @@ void Fase1::geraInimigos()
         lim++;
         x = x + 225;
     }
-    c = geraCurupira(400, y);
-    p = geraProjetil(400, y);
+    c = geraCurupira(1500, y);
 
-    c->setFogo(p);
+    inimigos->add(static_cast<Entidade*>(c->getFogo()));
+    lista->add(static_cast<Entidade*>(c->getFogo()));
+
     c->setLista(inimigos);
 
 }
@@ -134,9 +136,9 @@ void Fase1::geraObstaculos() {
     srand(time(NULL));
     for (int i = 1; i <= 10; i++) {
         int p = rand() % 50 + 30;
-        Pedra* k = new Pedra(p*32, 48);
-        obs->incluirEl((k));
-        lista->add(k);
-        inimigos->add(k);
+        Pedra* k = new Pedra(p*32, 90);
+        //obs->incluirEl((k));
+        lista->add(static_cast<Entidade*>(k));
+        inimigos->add(static_cast<Entidade*>(k));
     }
 }

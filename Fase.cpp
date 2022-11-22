@@ -1,5 +1,7 @@
 #include "Fase.h"
 
+using namespace Fases;
+
 Fase::Fase() {
     pColi = NULL;
     pGraf = NULL;
@@ -8,7 +10,7 @@ Fase::Fase() {
     j1 = NULL;
     j2 = NULL;
     mapa2 = NULL;
-    obs = NULL;
+    //obs = NULL;
 }
 
 Fase::Fase(GerenciadorColisao *c, GerenciadorGrafico *g, GerenciadorEvento *e)
@@ -20,7 +22,7 @@ Fase::Fase(GerenciadorColisao *c, GerenciadorGrafico *g, GerenciadorEvento *e)
     j1 = NULL;
     j2 = NULL;
     mapa2 = NULL;
-    obs = NULL;
+    //obs = NULL;
 }
 
 Fase::~Fase()
@@ -87,15 +89,4 @@ Curupira* Fase::geraCurupira(float x, float y)
     lista->add(static_cast<Entidade*>(inimigo));
 
     return inimigo;
-}
-
-Projetil* Fase::geraProjetil(float x, float y)
-{
-    Projetil *p = new Projetil(x, y);
-
-    inimigos->add(static_cast<Entidade*>(p));
-    lista->add(static_cast<Entidade*>(p));
-
-    return p;
-
 }
