@@ -9,6 +9,7 @@ namespace Fases
     {
     private:
         sf::Music* f1;
+        sf::Music* f2;
 
     public:
         Fase2();

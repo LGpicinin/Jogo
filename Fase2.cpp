@@ -16,6 +16,8 @@ Fase2::Fase2() : Fase() {
 
     f1 = new sf::Music();
     f1->openFromFile("Midia/Musicas/S8M4.ogg");
+    f2 = new sf::Music();
+    f2->openFromFile("Midia/Musicas/S9M4.ogg");
     sf::Image i;
     i.loadFromFile("Midia/Imagens/Fase2.png");
     Plataforma::setImagem(i);
@@ -29,7 +31,7 @@ Fase2::Fase2() : Fase() {
 
     pGraf = GerenciadorGrafico::getGerenciadorGrafico();
     pEvent = GerenciadorEvento::getGerenciadorEvento();
-    pGraf->setView(sf::Vector2f(4320, 1000));
+    pGraf->setView(sf::Vector2f(4320, 800));
 
     lista->add(static_cast<Entidade*>(j1));
     geraInimigos();
@@ -70,6 +72,10 @@ void Fase2::executar()
             if (lista->getLista()->getElX(contador)->getInfo()->getVivo() == false) continue;
             lista->getLista()->getElX(contador)->getInfo()->move();//movimento do jogador eh atualizado na na funcao move(), que chama a funcao atualizaPos()
         }
+        if (j1->getPos().x >= 12086 && f1->getStatus() == sf::Music::Playing) {
+            f1->stop();
+            f2->play();
+        }
         //atual = j1->getMapa()->getincx();
 
         /*if (atual != legacy) {
@@ -85,7 +91,8 @@ void Fase2::executar()
         pGraf->mostraElementos();
     }
     std::cout << "O loop de execucao da fase terminou.\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n";
-    f1->pause();
+    if (f1->getStatus() == sf::Music::Playing) f1->pause();
+    else if (f2->getStatus() == sf::Music::Playing) f2->pause();
 }
 
 void Fase2::geraInimigos()
@@ -98,8 +105,30 @@ void Fase2::geraInimigos()
     float x = 300;
     float y = 100;
     Curupira* c;
-
-    while (lim < 9 || contador < 3)
+    geraOnca(4830, 888);
+    geraOnca(7912, 472);
+    geraOnca(9110, 855);
+    geraOnca(9286, 855);
+    geraOnca(9526, 728);
+    geraOnca(12142, 823);
+    geraOnca(12342, 823);
+    verif = rand() % 4;
+    if (verif == 1) geraOnca(5382, 950);
+    verif = rand() % 4;
+    if (verif == 1) geraOnca(5816, 792);
+    verif = rand() % 4;
+    if (verif == 1) geraOnca(6382, 500);
+    verif = rand() % 4;
+    if (verif == 1) geraOnca(6630, 300);
+    verif = rand() % 4;
+    if (verif == 1) geraOnca(6912, 438);
+    verif = rand() % 4;
+    if (verif == 1) geraOnca(8110, 920);
+    verif = rand() % 4;
+    if (verif == 1) geraOnca(9406, 1496);
+    verif = rand() % 4;
+    if (verif == 1) geraOnca(10126, 728);
+    /*while (lim < 9 || contador < 3)
     {
         verif = rand() % 4;
         if (verif == 1)
@@ -113,8 +142,8 @@ void Fase2::geraInimigos()
         }
         lim++;
         x = x + 225;
-    }
-    c = geraCurupira(1500, y);
+    }*/
+    c = geraCurupira(12598, 800);
 
     inimigos->add(static_cast<Entidade*>(c->getFogo()));
     lista->add(static_cast<Entidade*>(c->getFogo()));
@@ -125,13 +154,14 @@ void Fase2::geraInimigos()
 
 void Fase2::geraObstaculos() {
     srand(time(NULL));
-    for (int i = 1; i <= 10; i++) {
+    /*for (int i = 1; i <= 10; i++) {
         int p = rand() % 50 + 30;
         Pedra* k = new Pedra(p * 32, 90);
         //obs->incluirEl((k));
         lista->add(static_cast<Entidade*>(k));
         inimigos->add(static_cast<Entidade*>(k));
-    }
+    }*/
+    
 }
 
 sf::Music* Fase2::getMusica() { return f1; }

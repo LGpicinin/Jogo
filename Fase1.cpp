@@ -1,4 +1,5 @@
 #include "Fase1.h"
+#include "Fase2.h"
 #include "Pedra.h"
 #include <iostream>
 
@@ -77,6 +78,12 @@ void Fase1::executar()
 				itobs = itobs->getProximo();
 			}
 		}*/
+        if (j1->getPos().x > 4300 && j1->getPos().y > 800) {
+            f1->stop();
+            Fase2* f2 = new Fase2();
+            f2->executar();
+            break;
+        }
         pGraf->limpaJanela();
 	    mapa2->imprimir();
 		lista->desenhaLista();
@@ -152,13 +159,41 @@ void Fase1::geraArara(float x, float y)
 
 void Fase1::geraObstaculos() {
     srand(time(NULL));
-    for (int i = 1; i <= 10; i++) {
+    /*for (int i = 1; i <= 10; i++) {
         int p = (rand() % 50) + 30;
         Pedra* k = new Pedra((p+i)*32, 150);
         //obs->incluirEl((k));
         lista->add(static_cast<Entidade*>(k));
         inimigos->add(static_cast<Entidade*>(k));
+    }*/
+    int verif;
+    verif = rand() % 4;
+    if (verif == 1) {
+        Pedra* k = new Pedra(1736, 280);
+        lista->add(k);
+        inimigos->add(k);
     }
+    verif = rand() % 4;
+    if (verif == 1) {
+        Pedra* k = new Pedra(2368, 200);
+        lista->add(k);
+        inimigos->add(k);
+    }
+    verif = rand() % 4;
+    if (verif == 1) {
+        Pedra* k = new Pedra(3302, 300);
+        lista->add(k);
+        inimigos->add(k);
+    }
+    Pedra* p1 = new Pedra(1072, 100);
+    lista->add(p1);
+    inimigos->add(p1);
+    Pedra* p2 = new Pedra(2056, 300);
+    lista->add(p2);
+    inimigos->add(p2);
+    Pedra* p3 = new Pedra(2632, 300);
+    lista->add(p3);
+    inimigos->add(p3);
 }
 
 sf::Music* Fase1::getMusica() { return f1; }
