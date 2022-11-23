@@ -1,7 +1,6 @@
 #include "Fase2.h"
 #include "Pedra.h"
 #include "Espinho.h"
-#include "Arara.h"
 
 using namespace Fases;
 
@@ -36,14 +35,9 @@ Fase2::Fase2() : Fase() {
     pGraf->setView(sf::Vector2f(4320, 800));
 
     lista->add(static_cast<Entidade*>(j1));
+    
     geraInimigos();
     geraObstaculos();
-    /*Pedra* p1 = new Pedra(150, 150);
-    lista->add(p1);
-    inimigos->add(p1);
-    Pedra* p2 = new Pedra(500, 100);
-    lista->add(p2);
-    inimigos->add(p2);*/
 
     pEvent->setJogador(j1);
     pColi = new GerenciadorColisao(inimigos, mapa2, j1);
@@ -96,15 +90,6 @@ void Fase2::executar()
     else if (f2->getStatus() == sf::Music::Playing) f2->pause();
 }
 
-void Fase2::geraArara(float x, float y)
-{
-
-    Arara* inimigo;
-    inimigo = new Arara(j1, x, y);
-    inimigos->add(static_cast<Entidade*>(inimigo));
-    lista->add(static_cast<Entidade*>(inimigo));
-
-}
 
 void Fase2::geraInimigos()
 {
@@ -151,21 +136,7 @@ void Fase2::geraInimigos()
     if (verif == 1) geraArara(10144, 288);
     verif = rand() % 3;
     if (verif == 1) geraArara(12192, 640);
-    /*while (lim < 9 || contador < 3)
-    {
-        verif = rand() % 4;
-        if (verif == 1)
-        {
-            geraOnca(x, y);
-            contador++;
-        }
-        else if (verif == 3)
-        {
-            contador++;
-        }
-        lim++;
-        x = x + 225;
-    }*/
+   
     c = geraCurupira(12598, 800);
 
     inimigos->add(static_cast<Entidade*>(c->getFogo()));
@@ -175,83 +146,44 @@ void Fase2::geraInimigos()
 
 }
 
-void Fase2::geraObstaculos() {
+void Fase2::geraObstaculos()
+{
     srand(time(NULL));
-    Espinho* e1 = new Espinho(6976, 768, 4);
-    lista->add(e1);
-    inimigos->add(e1);
-    Espinho* e2 = new Espinho(7296, 768, 4);
-    lista->add(e2);
-    inimigos->add(e2);
-    Espinho* e3 = new Espinho(7424, 832, 12);
-    lista->add(e3);
-    inimigos->add(e3);
-    Espinho* e4 = new Espinho(8256, 1024, 8);
-    lista->add(e4);
-    inimigos->add(e4);
-    Espinho* e5 = new Espinho(8448, 704, 2);
-    lista->add(e5);
-    inimigos->add(e5);
-    Espinho* e6 = new Espinho(9152, 1600, 4);
-    lista->add(e6);
-    inimigos->add(e6);
-    Espinho* e7 = new Espinho(9536, 1600, 4);
-    lista->add(e7);
-    inimigos->add(e7);
-    Espinho* e8 = new Espinho(9792, 1728, 8);
-    lista->add(e8);
-    inimigos->add(e8);
-    Espinho* e9 = new Espinho(10304, 1024, 15);
-    lista->add(e9);
-    inimigos->add(e9);
-    Pedra* p1 = new Pedra(5440, 544);
-    lista->add(p1);
-    inimigos->add(p1);
-    Pedra* p2 = new Pedra(6400, 480);
-    lista->add(p2);
-    inimigos->add(p2);
-    Pedra* p3 = new Pedra(9856, 256);
-    lista->add(p3);
-    inimigos->add(p3);
+
+    geraEspinhos(6976, 768, 4);
+    geraEspinhos(7296, 768, 4);
+    geraEspinhos(7424, 832, 12);
+    geraEspinhos(8256, 1024, 8);
+    geraEspinhos(8448, 704, 2);
+    geraEspinhos(9152, 1600, 4);
+    geraEspinhos(9536, 1600, 4);
+    geraEspinhos(9792, 1728, 8);
+    geraEspinhos(10304, 1024, 15);
+    geraPedra(5440, 544);
+    geraPedra(6400, 480);
+    geraPedra(9856, 256);
+
     int verif;
     verif = rand() % 3;
     if (verif == 1) {
-        Pedra* p = new Pedra(11040, 448);
-        lista->add(p);
-        inimigos->add(p);
+        geraPedra(11040, 448);
     }
     verif = rand() % 3;
     if (verif == 1) {
-        Pedra* p = new Pedra(12320, 608);
-        lista->add(p);
-        inimigos->add(p);
+        geraPedra(12320, 608);
     }
     verif = rand() % 3;
     if (verif == 1) {
-        Pedra* p = new Pedra(11840, 608);
-        lista->add(p);
-        inimigos->add(p);
+        geraPedra(11840, 608);
     }
     verif = rand() % 3;
     if (verif == 1) {
-        Espinho* p = new Espinho(5670, 960, 5);
-        lista->add(p);
-        inimigos->add(p);
+        geraEspinhos(5670, 960, 5);
     }
     verif = rand() % 3;
     if (verif == 1) {
-        Espinho* p = new Espinho(7808, 512, 4);
-        lista->add(p);
-        inimigos->add(p);
+        geraEspinhos(7808, 512, 4);
     }
-    /*for (int i = 1; i <= 10; i++) {
-        int p = rand() % 50 + 30;
-        Pedra* k = new Pedra(p * 32, 90);
-        //obs->incluirEl((k));
-        lista->add(static_cast<Entidade*>(k));
-        inimigos->add(static_cast<Entidade*>(k));
-    }*/
-    
 }
 
 Curupira* Fase2::geraCurupira(float x, float y)

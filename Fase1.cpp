@@ -108,24 +108,6 @@ void Fase1::geraInimigos()
     geraArara(1312, 150);
     geraArara(2936, 568);
 
-
-    /*while (lim < 5 || contador < 3)
-    {
-        verif = rand() % 4;
-
-        if (verif == 1)
-        {
-            geraOnca(x, y);
-            contador++;
-        }
-        else if (verif == 3)
-        {
-            geraArara(x, y);
-            contador++;
-        }
-        lim++;
-        x = x + 225;
-    }*/
     verif = rand() % 4;
     if (verif == 1) geraOnca(1072, 248);
     verif = rand() % 4;
@@ -146,16 +128,6 @@ void Fase1::geraInimigos()
 
 }
 
-void Fase1::geraArara(float x, float y)
-{
-
-    Arara *inimigo;
-    inimigo = new Arara(j1, x, y);
-    inimigos->add(static_cast<Entidade*>(inimigo));
-    lista->add(static_cast<Entidade*>(inimigo));
-
-}
-
 void Fase1::geraObstaculos() {
     srand(time(NULL));
     /*for (int i = 1; i <= 10; i++) {
@@ -168,64 +140,44 @@ void Fase1::geraObstaculos() {
     int verif;
     verif = rand() % 4;
     if (verif == 1) {
-        Pedra* k = new Pedra(1736, 280);
-        lista->add(k);
-        inimigos->add(k);
+        geraPedra(1736, 280);
     }
     verif = rand() % 4;
     if (verif == 1) {
-        Pedra* k = new Pedra(2368, 200);
-        lista->add(k);
-        inimigos->add(k);
+        geraPedra(2368, 200);
     }
     verif = rand() % 4;
     if (verif == 1) {
-        Pedra* k = new Pedra(3302, 300);
-        lista->add(k);
-        inimigos->add(k);
+        geraPedra(3302, 300);
     }
-    Trepadeira* p1 = new Trepadeira(1072, 100);
+    geraTrepadeira(1072, 100);
+    geraPedra(2056, 300);
+    geraPedra(2632, 300);
+    geraEspinhos(3424, 1856, 8);
+    geraEspinhos(2752, 1952, 3);
+    geraEspinhos(3424, 2144, 3);
+    geraEspinhos(3616, 2144, 3);
+
+    verif = rand() % 4;
+    if (verif == 1) {
+        geraEspinhos(3168, 1472, 3);
+    }
+    if (verif == 1) {
+        geraEspinhos(3136, 736, 4);
+    }
+    if (verif == 1) {
+        geraEspinhos(2592, 544, 4);
+    }
+    if (verif == 1) {
+        geraEspinhos(576, 160, 3);
+    }
+}
+
+void Fase1::geraTrepadeira(float x, float y)
+{
+    Trepadeira* p1 = new Trepadeira(x, y);
     lista->add(p1);
     inimigos->add(p1);
-    Pedra* p2 = new Pedra(2056, 300);
-    lista->add(p2);
-    inimigos->add(p2);
-    Pedra* p3 = new Pedra(2632, 300);
-    lista->add(p3);
-    inimigos->add(p3);
-    Espinho* e1 = new Espinho(3424, 1856, 8);
-    lista->add(e1);
-    inimigos->add(e1);
-    Espinho* e2 = new Espinho(2752, 1952, 3);
-    lista->add(e2);
-    inimigos->add(e2);
-    Espinho* e3 = new Espinho(3424, 2144, 3);
-    lista->add(e3);
-    inimigos->add(e3);
-    Espinho* e4 = new Espinho(3616, 2144, 3);
-    lista->add(e4);
-    inimigos->add(e4);
-    verif = rand() % 4;
-    if (verif == 1) {
-        Espinho* k = new Espinho(3168, 1472, 3);
-        lista->add(k);
-        inimigos->add(k);
-    }
-    if (verif == 1) {
-        Espinho* k = new Espinho(3136, 736, 4);
-        lista->add(k);
-        inimigos->add(k);
-    }
-    if (verif == 1) {
-        Espinho* k = new Espinho(2592, 544, 4);
-        lista->add(k);
-        inimigos->add(k);
-    }
-    if (verif == 1) {
-        Espinho* k = new Espinho(576, 160, 3);
-        lista->add(k);
-        inimigos->add(k);
-    }
 }
 
 sf::Music* Fase1::getMusica() { return f1; }

@@ -42,39 +42,7 @@ Jogo::~Jogo() {
 }
 
 void Jogo::executar() {
-	/*int i;
-	while(graf->verifJanelaAberta())
-	{
-
-		i = menuopc->executar();
-
-		switch(i)
-		{
-			case 1:
-			{
-				graf->fecharJanela();
-			}
-			break;
-
-			case 2:
-			{
-				menuopc->getFase1()->executar();
-			}
-			break;
-
-			case 3:
-			{
-		
-			}
-			break;
-
-			default:
-			{
-				
-			}
-			break;
-		}
-	}*/
+	
 	if (menuopc->getFase1()) {
 		jogador1 = menuopc->getFase1()->getJogador1();
 		//menuopc->getFase1()->getEvent()->setMenu(menuopc);
