@@ -1,6 +1,7 @@
 #include "Fase1.h"
 #include "Fase2.h"
 #include "Pedra.h"
+#include "Espinho.h"
 #include <iostream>
 
 using namespace Fases;
@@ -21,7 +22,7 @@ Fase1::Fase1(): Fase() {
     sf::Image i;
     i.loadFromFile("Midia/Imagens/Fase1.png");
     Plataforma::setImagem(i);
-    Mapa* mapa = new Mapa(sf::Vector2f(0.0f, 160.0f), sf::Vector2f(4480.0f, 2240.0f));
+    Mapa* mapa = new Mapa(sf::Vector2f(0.0f, 160.0f), sf::Vector2f(4992.0f, 2240.0f));
     mapa2 = mapa;
 
     j1 = new Jogador();
@@ -192,6 +193,39 @@ void Fase1::geraObstaculos() {
     Pedra* p3 = new Pedra(2632, 300);
     lista->add(p3);
     inimigos->add(p3);
+    Espinho* e1 = new Espinho(3424, 1856, 8);
+    lista->add(e1);
+    inimigos->add(e1);
+    Espinho* e2 = new Espinho(2752, 1952, 3);
+    lista->add(e2);
+    inimigos->add(e2);
+    Espinho* e3 = new Espinho(3424, 2144, 3);
+    lista->add(e3);
+    inimigos->add(e3);
+    Espinho* e4 = new Espinho(3616, 2144, 3);
+    lista->add(e4);
+    inimigos->add(e4);
+    verif = rand() % 4;
+    if (verif == 1) {
+        Espinho* k = new Espinho(3168, 1472, 3);
+        lista->add(k);
+        inimigos->add(k);
+    }
+    if (verif == 1) {
+        Espinho* k = new Espinho(3136, 736, 4);
+        lista->add(k);
+        inimigos->add(k);
+    }
+    if (verif == 1) {
+        Espinho* k = new Espinho(2592, 544, 4);
+        lista->add(k);
+        inimigos->add(k);
+    }
+    if (verif == 1) {
+        Espinho* k = new Espinho(576, 160, 3);
+        lista->add(k);
+        inimigos->add(k);
+    }
 }
 
 sf::Music* Fase1::getMusica() { return f1; }

@@ -6,7 +6,8 @@ using namespace Entidades;
 Pedra::Pedra(float x, float y) : Obstaculo(x, y) {
 	srand(time(NULL));
 	massa = 10;
-	atacar = false;
+	danoso = false;
+	atacar = danoso;
 	int opc = rand() % 2;
 	//if (opc == 0) setTextura("Midia/Imagens/Pedra1.png");
 	//else setTextura("Midia/Imagens/Pedra2.png");

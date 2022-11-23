@@ -6,8 +6,8 @@ namespace Entidades
 {
 
 	class Obstaculo : public Entidade {
-	private:
-		bool SimonSays;
+	protected:
+		bool danoso;
 
 	public:
 		Obstaculo(float x, float y);
