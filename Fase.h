@@ -6,6 +6,7 @@
 #include "Hitbox.h"
 #include "Mapa.h"
 #include "Onca.h"
+#include "Trepadeira.h"
 #include "Curupira.h"
 #include "Obstaculo.h"
 using namespace Entidades;
@@ -47,7 +48,6 @@ namespace Fases
             ListaEntes* getInimigos();
             Jogador* getJogador1();
             void geraOnca(float x, float y);
-            Curupira* geraCurupira(float x, float y);
             GerenciadorEvento* getEvent();
     };
 

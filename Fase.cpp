@@ -27,12 +27,14 @@ Fase::Fase(GerenciadorColisao *c, GerenciadorGrafico *g, GerenciadorEvento *e)
 
 Fase::~Fase()
 {
-    pColi = NULL;
-    pGraf = NULL;
-    lista = NULL;
-    pEvent = NULL;
-    j1 = NULL;
+    mapa2->~Mapa();
+    delete pColi;
+    delete lista;
+    delete j1;
+    delete inimigos;
     j2 = NULL;
+    pEvent = NULL;
+    pGraf = NULL;
 }
 
 void Fase::setJogador1(Jogador *j)
@@ -80,15 +82,5 @@ void Fase::geraOnca(float x, float y)
 
 }
 
-Curupira* Fase::geraCurupira(float x, float y)
-{
-    Curupira *inimigo;
-    inimigo = new Curupira(j1, x, y);
-
-    inimigos->add(static_cast<Entidade*>(inimigo));
-    lista->add(static_cast<Entidade*>(inimigo));
-
-    return inimigo;
-}
 
 GerenciadorEvento* Fase::getEvent() { return pEvent; }

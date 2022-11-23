@@ -11,7 +11,6 @@ namespace Entidades
 	public:
 		Pedra(float x, float y);
 		~Pedra();
-		void move();
 	};
 
 }

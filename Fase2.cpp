@@ -50,9 +50,8 @@ Fase2::Fase2() : Fase() {
 }
 
 Fase2::~Fase2() {
-    mapa2->~Mapa();
     delete f1;
-    delete pColi;
+    delete f2;
 }
 
 void Fase2::executar()
@@ -162,6 +161,17 @@ void Fase2::geraObstaculos() {
         inimigos->add(static_cast<Entidade*>(k));
     }*/
     
+}
+
+Curupira* Fase2::geraCurupira(float x, float y)
+{
+    Curupira *inimigo;
+    inimigo = new Curupira(j1, x, y);
+
+    inimigos->add(static_cast<Entidade*>(inimigo));
+    lista->add(static_cast<Entidade*>(inimigo));
+
+    return inimigo;
 }
 
 sf::Music* Fase2::getMusica() { return f1; }

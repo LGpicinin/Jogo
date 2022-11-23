@@ -6,7 +6,7 @@ using namespace Entidades;
 Pedra::Pedra(float x, float y) : Obstaculo(x, y) {
 	srand(time(NULL));
 	massa = 10;
-	setAtacar(true);
+	atacar = false;
 	int opc = rand() % 2;
 	//if (opc == 0) setTextura("Midia/Imagens/Pedra1.png");
 	//else setTextura("Midia/Imagens/Pedra2.png");
@@ -26,18 +26,3 @@ Pedra::Pedra(float x, float y) : Obstaculo(x, y) {
 }
 
 Pedra::~Pedra() {}
-
-void Pedra::move() { 
-	//cair();
-	GerenciadorGrafico* graf = GerenciadorGrafico::getGerenciadorGrafico();
-	if (pos.x > graf->getCoorView().x + 320 || pos.x < graf->getCoorView().x - 320 || pos.y > graf->getCoorView().y + 240 || pos.y < graf->getCoorView().y - 240) {
-        setVelX(0.0f);
-		setVelY(-0.3f);
-		cair();
-    }
-	else
-	{
-		pos.y += 4*vel.y;
-		corpo.setPosition(pos.x, pos.y);
-	}
-}

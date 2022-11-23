@@ -12,6 +12,7 @@ namespace Entidades
 	public:
 		Obstaculo(float x, float y);
 		~Obstaculo();
+		void move();
 	};
 
 }

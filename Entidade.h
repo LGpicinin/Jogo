@@ -10,6 +10,7 @@ namespace Entidades
 		sf::Vector2f vel;
 		bool vivo;
 		bool atacar;
+		bool obstaculo;
 		int numVidas;
 
 	public:
@@ -29,6 +30,7 @@ namespace Entidades
 		void operator--();
 		void repos(float x, float y) { pos.x = pos.x + x; pos.y = pos.y + y; corpo.setPosition(pos.x, pos.y); }
 		void setVidas(int n);
+		bool getObstaculo();
 	};
 
 }

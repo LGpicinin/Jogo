@@ -47,9 +47,7 @@ Fase1::Fase1(): Fase() {
 }
 
 Fase1::~Fase1(){
-    mapa2->~Mapa();
     delete f1;
-    delete pColi;
 }
 
 void Fase1::executar()
@@ -185,7 +183,7 @@ void Fase1::geraObstaculos() {
         lista->add(k);
         inimigos->add(k);
     }
-    Pedra* p1 = new Pedra(1072, 100);
+    Trepadeira* p1 = new Trepadeira(1072, 100);
     lista->add(p1);
     inimigos->add(p1);
     Pedra* p2 = new Pedra(2056, 300);

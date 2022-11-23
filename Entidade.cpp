@@ -13,6 +13,7 @@ Ente(xy)
 	vel.y = 0.0;
 	vivo = true;
 	atacar = false;
+	obstaculo = false;
 	numVidas = v;
 }
 
@@ -72,3 +73,8 @@ void Entidade::operator--()
 }
 
 void Entidade::setVidas(int n) { numVidas = n; }
+
+bool Entidade::getObstaculo()
+{
+	return obstaculo;
+}

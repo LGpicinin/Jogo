@@ -29,6 +29,7 @@ namespace Entidades
 			void ataqueDir();
 			void ataqueEsq();
 			void colisaoInimigo(Entidade *i);
+			int colisaoMapaObs(Entidade *hbx);
 		};
 
 	}
