@@ -12,6 +12,7 @@ Jogador::Jogador() : Personagem(3, 101, 50, 50){
 	corpo.setTextureRect(sf::IntRect(0, 0, 288, 370));
 	if(!textura.loadFromFile("Midia/Imagens/Parado.png")) std::cout << "Erro na abertura da textura do jogador." << std::endl;
 	corpo.setScale(sf::Vector2f(0.2f, 0.2f));
+	pontos = 0;
 	/*else {
 		std::cout << "O jogador eh azul." << std::endl;
 		corpo.setTexture(textura);
@@ -98,7 +99,8 @@ void Jogador::colisaoInimigo(Entidade *i)
 	{
 		if(atacar==true)
 		{
-			i->setVivo(false);
+			i->setVidas(i->getVidas()-1);
+			if (i->getVivo() == false) pontos += 100;
 		}
 		else if(i->getAtacar()==true)
 		{
@@ -167,3 +169,5 @@ int Jogador::colisaoMapaObs(Entidade *hbx)
 
 	return flag;
 }
+
+int Jogador::getPontos() { return pontos; }

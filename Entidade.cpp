@@ -72,7 +72,11 @@ void Entidade::operator--()
 
 }
 
-void Entidade::setVidas(int n) { numVidas = n; }
+void Entidade::setVidas(int n) { 
+	numVidas = n;
+	if (numVidas <= 0) setVivo(false);
+	else setVivo(true);
+}
 
 bool Entidade::getObstaculo()
 {

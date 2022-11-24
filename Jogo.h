@@ -15,6 +15,7 @@
 #include "Resumir.h"
 #include "BFase1.h"
 #include "BFase2.h"
+#include "Salvar.h"
 #include "Sair.h"
 #include <time.h>
 #include <iostream>
@@ -35,6 +36,7 @@ private:
 	Resumir *resumir;
 	BFase1 *bfase1;
 	BFase2* bfase2;
+	Salvar* salvar;
 	Sair *sair;
 
 public:

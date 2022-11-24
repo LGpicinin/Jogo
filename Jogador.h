@@ -14,6 +14,7 @@ namespace Entidades
 			Mapa* pMapa2;
 			sf::Clock tempoDano;
 			bool verifTempo;
+			int pontos;
 
 		public:
 			Jogador();
@@ -30,6 +31,7 @@ namespace Entidades
 			void ataqueEsq();
 			void colisaoInimigo(Entidade *i);
 			int colisaoMapaObs(Entidade *hbx);
+			int getPontos();
 		};
 
 	}

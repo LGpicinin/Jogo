@@ -26,6 +26,7 @@ Jogo::Jogo() {
 	resumir = new Resumir(menuopc);
 	bfase1 = new BFase1(menuopc);
 	bfase2 = new BFase2(menuopc);
+	salvar = new Salvar(menuopc);
 	sair = new Sair(menuopc);
 	//menuopc->setBFase1(bfase1);
 	//menuopc->setResumir(resumir);
@@ -42,7 +43,39 @@ Jogo::~Jogo() {
 }
 
 void Jogo::executar() {
-	
+	/*int i;
+	while(graf->verifJanelaAberta())
+	{
+
+		i = menuopc->executar();
+
+		switch(i)
+		{
+			case 1:
+			{
+				graf->fecharJanela();
+			}
+			break;
+
+			case 2:
+			{
+				menuopc->getFase1()->executar();
+			}
+			break;
+
+			case 3:
+			{
+		
+			}
+			break;
+
+			default:
+			{
+				
+			}
+			break;
+		}
+	}*/
 	if (menuopc->getFase1()) {
 		jogador1 = menuopc->getFase1()->getJogador1();
 		//menuopc->getFase1()->getEvent()->setMenu(menuopc);
@@ -76,7 +109,6 @@ void Jogo::executar() {
 		}*/
 		
 	}
-	
 	
 }
 
