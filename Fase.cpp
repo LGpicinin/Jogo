@@ -82,29 +82,5 @@ void Fase::geraOnca(float x, float y)
 
 }
 
-void Fase::geraArara(float x, float y)
-{
-
-    Arara *inimigo;
-    inimigo = new Arara(j1, x, y);
-    inimigos->add(static_cast<Entidade*>(inimigo));
-    lista->add(static_cast<Entidade*>(inimigo));
-
-}
-
-void Fase::geraPedra(float x, float y)
-{
-    Pedra* p2 = new Pedra(x, y);
-    lista->add(p2);
-    inimigos->add(p2);
-}
-
-void Fase::geraEspinhos(float x, float y, int tam)
-{
-    Espinho* e1 = new Espinho(x, y, tam);
-    lista->add(e1);
-    inimigos->add(e1);
-}
-
 
 GerenciadorEvento* Fase::getEvent() { return pEvent; }
