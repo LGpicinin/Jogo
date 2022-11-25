@@ -1,6 +1,5 @@
 #pragma once
 #include "Fase.h"
-#include "Arara.h"
 #include "SFML/Audio.hpp"
 
 namespace Fases

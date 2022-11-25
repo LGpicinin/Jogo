@@ -1,7 +1,6 @@
 #include "Fase2.h"
 #include "Pedra.h"
 #include "Espinho.h"
-#include "Arara.h"
 
 using namespace Fases;
 
