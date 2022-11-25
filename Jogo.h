@@ -43,6 +43,5 @@ public:
 	Jogo();
 	~Jogo();
 	void executar();
-	void criaFase1();
 
 };

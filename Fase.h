@@ -6,6 +6,9 @@
 #include "Hitbox.h"
 #include "Mapa.h"
 #include "Onca.h"
+#include "Arara.h"
+#include "Espinho.h"
+#include "Pedra.h"
 #include "Trepadeira.h"
 #include "Curupira.h"
 #include "Obstaculo.h"
@@ -48,6 +51,9 @@ namespace Fases
             ListaEntes* getInimigos();
             Jogador* getJogador1();
             void geraOnca(float x, float y);
+            void geraArara(float x, float y);
+            void geraPedra(float x, float y);
+            void geraEspinho(float x, float y, int tam);
             GerenciadorEvento* getEvent();
     };
 

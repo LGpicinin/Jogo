@@ -118,17 +118,3 @@ void Jogo::executar() {
 	}
 	
 }
-
-void Jogo::criaFase1()
-{
-
-	Fase1* f;
-	f = new Fase1();
-	
-	pColi->setInimigos(f->getInimigos());
-	pColi->setJogador(f->getJogador1());
-	pColi->setMapa(f->getMapa2());
-	pEvent->setJogador(f->getJogador1());
-	menuopc->setFase1(f);
-
-}

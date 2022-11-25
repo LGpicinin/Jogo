@@ -96,15 +96,6 @@ void Fase2::executar()
     else if (f2->getStatus() == sf::Music::Playing) f2->pause();
 }
 
-void Fase2::geraArara(float x, float y)
-{
-
-    Arara* inimigo;
-    inimigo = new Arara(j1, x, y);
-    inimigos->add(static_cast<Entidade*>(inimigo));
-    lista->add(static_cast<Entidade*>(inimigo));
-
-}
 
 void Fase2::geraInimigos()
 {

@@ -146,15 +146,6 @@ void Fase1::geraInimigos()
 
 }
 
-void Fase1::geraArara(float x, float y)
-{
-
-    Arara *inimigo;
-    inimigo = new Arara(j1, x, y);
-    inimigos->add(static_cast<Entidade*>(inimigo));
-    lista->add(static_cast<Entidade*>(inimigo));
-
-}
 
 void Fase1::geraObstaculos() {
     srand(time(NULL));
@@ -226,6 +217,13 @@ void Fase1::geraObstaculos() {
         lista->add(k);
         inimigos->add(k);
     }
+}
+
+void Fase1::geraTrepadeira(float x, float y)
+{
+    Trepadeira* p1 = new Trepadeira(x, y);
+    lista->add(p1);
+    inimigos->add(p1);
 }
 
 sf::Music* Fase1::getMusica() { return f1; }
