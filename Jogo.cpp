@@ -79,7 +79,7 @@ void Jogo::executar() {
 	if (menuopc->getFase2()) {
 		jogador1 = menuopc->getFase2()->getJogador1();
 		//menuopc->getFase1()->getEvent()->setMenu(menuopc);
-		menuopc->getFase2()->executar();
+		if (GerenciadorGrafico::getGerenciadorGrafico()->verifJanelaAberta()) menuopc->getFase2()->executar();
 	}
 	else if (menuopc->getFase1()) {
 		jogador1 = menuopc->getFase1()->getJogador1();
@@ -93,10 +93,10 @@ void Jogo::executar() {
 		}
 	}
 	
-	cout << "Vidas de jogador: " << jogador1->getVidas() << endl;
+	//cout << "Vidas de jogador: " << jogador1->getVidas() << endl;
 	graf->setView(sf::Vector2f(320.0f, 240.0f));
 	resumir->setPos(graf->getCoorView().x - 160, graf->getCoorView().y - 160);
-	if (jogador1->getVidas() <= 0) {
+	if (jogador1->getVidas() <= 0 && GerenciadorGrafico::getGerenciadorGrafico()->verifJanelaAberta()) {
 		graf->setView(sf::Vector2f(320.0f, 240.0f));
 		cout << "Coordenadas de view: " << graf->getCoorView().x << ", " << graf->getCoorView().y << endl;
 		resumir->setPos(graf->getCoorView().x - 160, graf->getCoorView().y - 160);

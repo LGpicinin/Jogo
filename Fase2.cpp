@@ -62,10 +62,11 @@ void Fase2::executar()
     //Elemento<Hitbox>* itobs = obs->getPrimeiro();
 
 
-    while (j1->getVidas() > 0 && GerenciadorGrafico::getGerenciadorGrafico()->verifJanelaAberta())
+    if (j1) while (j1->getVidas() > 0 && GerenciadorGrafico::getGerenciadorGrafico()->verifJanelaAberta())
     {
         pColi->executar();
         pEvent->executar();
+        if (!GerenciadorGrafico::getGerenciadorGrafico()->verifJanelaAberta()) break;
         //legacy = j1->getMapa()->getincx();
         for (contador = 1; contador < lista->getLista()->getTam() + 1; contador++)
         {

@@ -167,7 +167,7 @@ void Salvar::executar() {
 		info->draw(graf->getWindow());
 		ranking->draw(graf->getWindow());
 		for (int a = 0; a < colocados->getTam(); a++) {
-			Textbox* p = colocados->getElX(a)->getInfo();
+			Textbox* p = colocados->getElX(a+1)->getInfo();
 			p->draw(graf->getWindow());
 		}
 		graf->getWindow()->display();
@@ -203,4 +203,5 @@ void Salvar::executar() {
 	delete t;
 	delete intro;
 	delete ranking;
+	if (sf::Keyboard::isKeyPressed(sf::Keyboard::Tab)) pMenu->executar();
 }

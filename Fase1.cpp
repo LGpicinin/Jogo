@@ -58,7 +58,7 @@ void Fase1::executar()
     //Elemento<Hitbox>* itobs = obs->getPrimeiro();
     
 
-    while(j1->getVidas() > 0 && GerenciadorGrafico::getGerenciadorGrafico()->verifJanelaAberta())
+    if (j1) while(j1->getVidas() > 0 && GerenciadorGrafico::getGerenciadorGrafico()->verifJanelaAberta())
     {
         pColi->executar();
         pEvent->executar();
