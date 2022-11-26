@@ -31,7 +31,8 @@ Menu::Menu(): titulo(sf::Vector2f(30.0f, 0.0f)), carrega(sf::Vector2f(1000.0f, 1
 
 Menu::~Menu() {
 	opcoes.~Lista();
-	delete f1;
+	if (f1) delete f1;
+	if (f2) delete f2;
 }
 
 void Menu::setMusica(sf::Music* m) { musica = m; }
@@ -43,7 +44,7 @@ void Menu::executar() {
 	FILE* fp = fopen("Ranking.txt", "r+");
 	while (graf->verifJanelaAberta()) {
 
-		if (sf::Keyboard::isKeyPressed(sf::Keyboard::Tab) && fp) {
+		/*if (sf::Keyboard::isKeyPressed(sf::Keyboard::LBracket) && fp) {
 			int cont=0;
 			
 			char** nomes;
@@ -85,7 +86,8 @@ void Menu::executar() {
 				Sleep(2000);
 			}
 			free(nomes);
-		}
+		}*/
+		fclose(fp);
 		resumir->atualiza();
 		bfase1->atualiza();
 		bfase2->atualiza();
@@ -125,6 +127,11 @@ void Menu::executar() {
 			sair->executar();
 		}
 		GerenciadorGrafico* graf = GerenciadorGrafico::getGerenciadorGrafico();
+		graf->setView(sf::Vector2f(salvar->getPos().x + 160, bfase2->getPos().y));
+		printf("COOREDENADAS DA VIEW: %f, %f.\n", graf->getCoorView().x, graf->getCoorView().y);
+		printf("COOREDENADAS DE BFASE2: %f, %f.\n\n\n\n\n\n\n\n\n\n\n\n\n\n", bfase2->getCorpo().getPosition().x, bfase2->getCorpo().getPosition().y);
+		//Sleep(5000);
+		graf->getWindow()->setView(*(graf->getView()));
 		graf->limpaJanela();
 		graf->desenhaElemento(titulo.getCorpo());
 		graf->desenhaElemento(resumir->getCorpo());
@@ -164,3 +171,7 @@ Fase* Menu::getFase()
 Fase2* Menu::getFase2() { return f2; }
 
 void Menu::setFase2(Fase2* f) { f2 = f; }
+
+void Menu::setTextbox(Textbox* t) { textbox = t; }
+
+Textbox* Menu::getTextbox() { return textbox; }

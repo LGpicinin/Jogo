@@ -4,6 +4,7 @@
 #include "Opcao.h"
 #include "Fase1.h"
 #include "Fase2.h"
+#include "Textbox.h"
 #include "SFML/Graphics.hpp"
 #include "SFML/Audio.hpp"
 using namespace Fases;
@@ -31,6 +32,7 @@ private:
 	BFase2* bfase2;
 	Salvar* salvar;
 	Sair* sair;
+	Textbox* textbox;
 
 public:
 	Menu();
@@ -47,4 +49,6 @@ public:
 	Fase2* getFase2();
 	void setFase2(Fase2* f);
 	Fase* getFase();
+	void setTextbox(Textbox* t);
+	Textbox* getTextbox();
 };

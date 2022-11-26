@@ -35,6 +35,7 @@ void Sair::atualiza() {
 
 void Sair::executar() {
 	GerenciadorGrafico* graf = GerenciadorGrafico::getGerenciadorGrafico();
-	pMenu->~Menu();
 	graf->fecharJanela();
+	pMenu->~Menu();
+	
 }
