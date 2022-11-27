@@ -21,15 +21,15 @@ namespace Entidades
 				sf::Clock relogio;
 
 			public:
-				Curupira(Jogador* j, float x, float y);
+				Curupira(Jogador* j1, Jogador* j2, float x, float y);
 				~Curupira();
 				void move();
 				void viradoEsq();
 				void viradoDir();
 				void ataqueDir();
 				void ataqueEsq();
-				void ataque();
-				void afastar();
+				void ataque(sf::Vector2f posiJogador);
+				void afastar(sf::Vector2f posiJogador);
 				void ressucitarAnimais();
 				void calculaRessucitar();
 				void setLista(ListaEntes *l);

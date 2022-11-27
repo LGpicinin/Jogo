@@ -4,17 +4,19 @@
 using namespace Entidades;
 using namespace Personagens;
 
-Inimigo::Inimigo(Jogador *j, float x, float y) :
+Inimigo::Inimigo(Jogador *j1, Jogador *j2, float x, float y) :
 Personagem(1, 103, x, y)
 {
-    jogador = j;
+    jogador1 = j1;
+    jogador2 = j2;
     movAl = rand()%2;
     horaAtaque = true;
 }
 
 Inimigo::~Inimigo()
 {
-    jogador = NULL;
+    jogador1 = NULL;
+    jogador2 = NULL;
 }
 
 void Inimigo::move()
@@ -24,20 +26,27 @@ void Inimigo::move()
         congela();
     }
     else {
-        sf::Vector2f posiJogador;
+        sf::Vector2f posiJogador, posiJogador1, posiJogador2;
 
             if(voa==true)
                 setVelY(0);
 
-            posiJogador = jogador->getPos();
+            posiJogador1 = jogador1->getPos();
+            posiJogador2 = jogador2->getPos();
 
+            if ((abs(posiJogador1.x - pos.x) <= abs(posiJogador2.x - pos.x)))
+                posiJogador = posiJogador1;
+            
+            else
+                posiJogador = posiJogador2;
+            
             if (abs(posiJogador.x - pos.x)<200 && abs(posiJogador.y - pos.y)<200)
             {
-                ataque();
+                ataque(posiJogador);
             }
             else if(abs(posiJogador.x - pos.x)<400 && abs(posiJogador.y - pos.y)<400)
             {
-                persegueJogador();
+                persegueJogador(posiJogador);
                 atacar = false;
             }
             else
@@ -62,12 +71,10 @@ void Inimigo::move()
     
 }
 
-void Inimigo::persegueJogador()
+void Inimigo::persegueJogador(sf::Vector2f posiJogador)
 {
-
-    sf::Vector2f posiJogador;
+    
     vel.x = 0.0;
-    posiJogador = jogador->getPos();
 
     if((posiJogador.x - pos.x)<0) {  vel.x = vel.x - 0.8; }
 
@@ -96,11 +103,9 @@ void Inimigo::movimentoAleatorio()
 
 }
 
-void Inimigo::ataque()
+void Inimigo::ataque(sf::Vector2f posiJogador)
 {
-    sf::Vector2f posiJogador;
     vel.x = 0.0;
-    posiJogador = jogador->getPos();
 
     if((posiJogador.x - pos.x)<0) {  vel.x = vel.x - 1.5; }
 

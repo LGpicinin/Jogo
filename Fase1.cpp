@@ -25,24 +25,25 @@ Fase1::Fase1(): Fase() {
     Mapa* mapa = new Mapa(sf::Vector2f(0.0f, 160.0f), sf::Vector2f(4992.0f, 2240.0f));
     mapa2 = mapa;
 
-    j1 = new Jogador();
+    j1 = new Jogador(1);
     j1->setMapa2(mapa2);
+
+    j2 = new Jogador(2);
+    j2->setMapa2(mapa2);
 
     pGraf = GerenciadorGrafico::getGerenciadorGrafico();
     pEvent = GerenciadorEvento::getGerenciadorEvento();
 
     lista->add(static_cast<Entidade*>(j1));
+    lista->add(static_cast<Entidade*>(j2));
+
     geraInimigos();
     geraObstaculos();
-    /*Pedra* p1 = new Pedra(150, 150);
-    lista->add(p1);
-    inimigos->add(p1);
-    Pedra* p2 = new Pedra(500, 100);
-    lista->add(p2);
-    inimigos->add(p2);*/
 
-    pEvent->setJogador(j1);
-    pColi = new GerenciadorColisao(inimigos, mapa2, j1);
+    pEvent->setJogador1(j1);
+    pEvent->setJogador2(j2);
+
+    pColi = new GerenciadorColisao(inimigos, mapa2, j1, j2);
 
     f1->play();
 }
@@ -53,21 +54,13 @@ Fase1::~Fase1(){
 
 void Fase1::executar()
 {
-    float legacy = 0.0, atual = 0.0;
-    int contador;
+    //float legacy = 0.0, atual = 0.0;
     //Elemento<Hitbox>* itobs = obs->getPrimeiro();
     
 
-    if (j1) while(j1->getVidas() > 0 && GerenciadorGrafico::getGerenciadorGrafico()->verifJanelaAberta())
+    if (j1 && j2) while((j1->getVidas()>0 || j2->getVidas()>0) && GerenciadorGrafico::getGerenciadorGrafico()->verifJanelaAberta())
     {
-        pColi->executar();
-        pEvent->executar();
-        //legacy = j1->getMapa()->getincx();
-        for(contador=1; contador<lista->getLista()->getTam() + 1; contador++)
-		{
-            if (lista->getLista()->getElX(contador)->getInfo()->getVivo() == false) continue;
-			lista->getLista()->getElX(contador)->getInfo()->move();//movimento do jogador eh atualizado na na funcao move(), que chama a funcao atualizaPos()
-		}
+        moveLista();
         //atual = j1->getMapa()->getincx();
 
         /*if (atual != legacy) {
@@ -77,7 +70,7 @@ void Fase1::executar()
 				itobs = itobs->getProximo();
 			}
 		}*/
-        if (j1->getPos().x > 4300 && j1->getPos().y > 800) {
+        if ((j1->getPos().x > 4300 && j1->getPos().y > 800) || (j2->getPos().x > 4300 && j2->getPos().y > 800)) {
             f1->stop();
             //Fase2* f2 = new Fase2();
             //f2->executar();
@@ -109,23 +102,6 @@ void Fase1::geraInimigos()
     geraArara(2936, 568);
 
 
-    /*while (lim < 5 || contador < 3)
-    {
-        verif = rand() % 4;
-
-        if (verif == 1)
-        {
-            geraOnca(x, y);
-            contador++;
-        }
-        else if (verif == 3)
-        {
-            geraArara(x, y);
-            contador++;
-        }
-        lim++;
-        x = x + 225;
-    }*/
     verif = rand() % 4;
     if (verif == 1) geraOnca(1072, 248);
     verif = rand() % 4;
@@ -149,73 +125,43 @@ void Fase1::geraInimigos()
 
 void Fase1::geraObstaculos() {
     srand(time(NULL));
-    /*for (int i = 1; i <= 10; i++) {
-        int p = (rand() % 50) + 30;
-        Pedra* k = new Pedra((p+i)*32, 150);
-        //obs->incluirEl((k));
-        lista->add(static_cast<Entidade*>(k));
-        inimigos->add(static_cast<Entidade*>(k));
-    }*/
+    
     int verif;
     verif = rand() % 4;
     if (verif == 1) {
-        Pedra* k = new Pedra(1736, 280);
-        lista->add(k);
-        inimigos->add(k);
+        geraPedra(1736, 280);
+    }
+    verif = rand() % 4;
+    if (verif == 2) {
+        geraPedra(2368, 200);
+    }
+    verif = rand() % 4;
+    if (verif == 3) {
+        geraPedra(3302, 300);
+    }
+    geraTrepadeira(1072, 100);
+    geraPedra(2056, 300);
+    geraPedra(2632, 300);
+    geraEspinho(3424, 1856, 8);
+    geraEspinho(2752, 1952, 3);
+    geraEspinho(3424, 2144, 3);
+    geraEspinho(3616, 2144, 3);
+
+    verif = rand() % 4;
+    if (verif == 1) {
+        geraEspinho(3168, 1472, 3);
+    }
+    verif = rand() % 4;
+    if (verif == 2) {
+        geraEspinho(3136, 736, 4);
+    }
+    verif = rand() % 4;
+    if (verif == 3) {
+        geraEspinho(2592, 544, 4);
     }
     verif = rand() % 4;
     if (verif == 1) {
-        Pedra* k = new Pedra(2368, 200);
-        lista->add(k);
-        inimigos->add(k);
-    }
-    verif = rand() % 4;
-    if (verif == 1) {
-        Pedra* k = new Pedra(3302, 300);
-        lista->add(k);
-        inimigos->add(k);
-    }
-    Trepadeira* p1 = new Trepadeira(1072, 100);
-    lista->add(p1);
-    inimigos->add(p1);
-    Pedra* p2 = new Pedra(2056, 300);
-    lista->add(p2);
-    inimigos->add(p2);
-    Pedra* p3 = new Pedra(2632, 300);
-    lista->add(p3);
-    inimigos->add(p3);
-    Espinho* e1 = new Espinho(3424, 1856, 8);
-    lista->add(e1);
-    inimigos->add(e1);
-    Espinho* e2 = new Espinho(2752, 1952, 3);
-    lista->add(e2);
-    inimigos->add(e2);
-    Espinho* e3 = new Espinho(3424, 2144, 3);
-    lista->add(e3);
-    inimigos->add(e3);
-    Espinho* e4 = new Espinho(3616, 2144, 3);
-    lista->add(e4);
-    inimigos->add(e4);
-    verif = rand() % 4;
-    if (verif == 1) {
-        Espinho* k = new Espinho(3168, 1472, 3);
-        lista->add(k);
-        inimigos->add(k);
-    }
-    if (verif == 1) {
-        Espinho* k = new Espinho(3136, 736, 4);
-        lista->add(k);
-        inimigos->add(k);
-    }
-    if (verif == 1) {
-        Espinho* k = new Espinho(2592, 544, 4);
-        lista->add(k);
-        inimigos->add(k);
-    }
-    if (verif == 1) {
-        Espinho* k = new Espinho(576, 160, 3);
-        lista->add(k);
-        inimigos->add(k);
+        geraEspinho(576, 160, 3);
     }
 }
 

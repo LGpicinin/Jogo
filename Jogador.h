@@ -15,9 +15,11 @@ namespace Entidades
 			sf::Clock tempoDano;
 			bool verifTempo;
 			int pontos;
+			const int jogador;
+			static int segueJogador;
 
 		public:
-			Jogador();
+			Jogador(const int j);
 			~Jogador();
 			void move();
 			void pular();
@@ -32,6 +34,8 @@ namespace Entidades
 			void colisaoInimigo(Entidade *i);
 			int colisaoMapaObs(Entidade *hbx);
 			int getPontos();
+			void setSegue(int i);
+			int getSegue();
 		};
 
 	}

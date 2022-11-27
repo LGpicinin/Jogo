@@ -5,60 +5,65 @@
 using namespace Entidades;
 using namespace Personagens;
 
-Jogador::Jogador() : Personagem(3, 101, 50, 50){
+int Jogador::segueJogador = 1;
+
+Jogador::Jogador(const int j): Personagem(3, 101, 50, 50), jogador(j){
 	pMapa2 = NULL;
 	verifTempo = true;
-	//sf::Texture* textura = new sf::Texture;
-	corpo.setTextureRect(sf::IntRect(0, 0, 288, 370));
-	if(!textura.loadFromFile("Midia/Imagens/Parado.png")) std::cout << "Erro na abertura da textura do jogador." << std::endl;
-	corpo.setScale(sf::Vector2f(0.2f, 0.2f));
 	pontos = 0;
-	/*else {
-		std::cout << "O jogador eh azul." << std::endl;
-		corpo.setTexture(textura);
-		//corpo.setColor(sf::Color::Blue);
-		//corpo.setTextureRect(sf::IntRect(0, 0, 50, 50));
-	}*/
+
+	if(j==1)
+	{
+		corpo.setTextureRect(sf::IntRect(0, 0, 288, 370));
+		if(!textura.loadFromFile("Midia/Imagens/J1Direita.png")) std::cout << "Erro na abertura da textura do jogador." << std::endl;
+	}
+	else
+	{
+		corpo.setTextureRect(sf::IntRect(0, 0, 289, 371));
+		if(!textura.loadFromFile("Midia/Imagens/J2Direita.png")) std::cout << "Erro na abertura da textura do jogador." << std::endl;
+		setVidas(0);
+	}
+	corpo.setScale(sf::Vector2f(0.2f, 0.2f));
+	
 }
 
 Jogador::~Jogador() {}
 
-void Jogador::move() {
-	atualizaPos();
+void Jogador::move() 
+{
+	std::cout << "Nova pos.x: " << pos.x << std::endl;
+	std::cout << "vel.y = " << vel.y << std::endl;
+	std::cout << "pos.y = " << pos.y << std::endl;
+	
+	if((jogador==1 && segueJogador==1)||(jogador==2 && segueJogador==2))
+		atualizaPos();
+
+	pos.x = pos.x + vel.x;
+	pos.y = pos.y + vel.y;
+	corpo.setPosition(pos.x, pos.y);
+
 	verifImg();
 }
 
 void Jogador::atualizaPos() {
 	//if (pos.x < 640 && pos.x > 0) {
 	//}
-	std::cout << "Nova pos.x: " << pos.x << std::endl;
-	std::cout << "vel.y = " << vel.y << std::endl;
-	std::cout << "pos.y = " << pos.y << std::endl;
 
 	//if (pos.y < 430 && pos.y > 0) pos.y = pos.y + vel.y;
-	
-	if (gerente->getCoorView().x >= 320 && (pos.x <= gerente->getCoorView().x - 40 && sf::Keyboard::isKeyPressed(sf::Keyboard::A)) ||
-(gerente->getCoorView().x + vel.x <= pMapa2->getLista()->getElX(pMapa2->getLista()->getTam())->getInfo()->getPos().x && pos.x >= gerente->getCoorView().x + 40 && sf::Keyboard::isKeyPressed(sf::Keyboard::D))) {
-		//pMapa->update(vel.x, 0);
-		//pMapa2->reposMapa(vel.x, 0);
-		//std::cout << "reposMapa foi chamada com vel.x = " << vel.x << std::endl;
-		//pos.x -= vel.x;
+	if (gerente->getCoorView().x >= 320 && (pos.x <= gerente->getCoorView().x - 40 && vel.x<0) ||
+	(gerente->getCoorView().x + vel.x <= pMapa2->getLista()->getElX(pMapa2->getLista()->getTam())->getInfo()->getPos().x && pos.x >= gerente->getCoorView().x + 40 && vel.x>0)) {
+			
 		if (numVidas > 0) gerente->setView(sf::Vector2f(gerente->getCoorView().x + vel.x, gerente->getCoorView().y));
 	}
-	//else
-	//{
-		pos.x = pos.x + vel.x;
-	//}
+		//else
+		//{
+		//}
 	if ((pos.y >= gerente->getCoorView().y + 240 - getTam().y - 90 && vel.y > 0) || (pos.y <= gerente->getCoorView().y - 150 && vel.y < 0)) {
-		//pMapa2->reposMapa(0, 2 * vel.y);
+
 		if (numVidas > 0) gerente->setView(sf::Vector2f(gerente->getCoorView().x, gerente->getCoorView().y + vel.y));
-		//pos.y -= vel.y;
+
 	}
-	pos.y = pos.y + vel.y;
 	gerente->getWindow()->setView(*(gerente->getView()));
-	
-	//else pos.y += vel.y;
-	corpo.setPosition(pos.x, pos.y);
 	
 }
 
@@ -71,25 +76,57 @@ void Jogador::pular() { vel.y = -10; }
 
 void Jogador::viradoDir()
 {
-	corpo.setTextureRect(sf::IntRect(0, 0, 288, 370));
-	textura.loadFromFile("Midia/Imagens/Parado.png");
+	if(jogador==1)
+	{
+		corpo.setTextureRect(sf::IntRect(0, 0, 288, 370));
+		textura.loadFromFile("Midia/Imagens/J1Direita.png");
+	}
+	else
+	{
+		corpo.setTextureRect(sf::IntRect(0, 0, 289, 371));
+		textura.loadFromFile("Midia/Imagens/J2Direita.png");
+	}
 }
 void Jogador::viradoEsq()
 {
-	corpo.setTextureRect(sf::IntRect(0, 0, 288, 370));
-	textura.loadFromFile("Midia/Imagens/Virado.png");
+	if(jogador==1)
+	{
+		corpo.setTextureRect(sf::IntRect(0, 0, 289, 368));
+		textura.loadFromFile("Midia/Imagens/J1Esquerda.png");
+	}
+	else
+	{
+		corpo.setTextureRect(sf::IntRect(0, 0, 291, 369));
+		textura.loadFromFile("Midia/Imagens/J2Esquerda.png");
+	}
 }
 
 void Jogador::ataqueDir()
 {
-	corpo.setTextureRect(sf::IntRect(0, 0, 477, 363));
-	textura.loadFromFile("Midia/Imagens/Ataque.png");
+	if(jogador==1)
+	{
+		corpo.setTextureRect(sf::IntRect(0, 0, 477, 363));
+		textura.loadFromFile("Midia/Imagens/J1AtaqueDireita.png");
+	}
+	else
+	{
+		corpo.setTextureRect(sf::IntRect(0, 0, 480, 369));
+		textura.loadFromFile("Midia/Imagens/J2AtaqueDireita.png");
+	}
 }
 
 void Jogador::ataqueEsq()
 {
-	corpo.setTextureRect(sf::IntRect(0, 0, 477, 363));
-	textura.loadFromFile("Midia/Imagens/Ataque2.png");
+	if(jogador==1)
+	{
+		corpo.setTextureRect(sf::IntRect(0, 0, 477, 363));
+		textura.loadFromFile("Midia/Imagens/J1AtaqueEsquerda.png");
+	}
+	else
+	{
+		corpo.setTextureRect(sf::IntRect(0, 0, 480, 369));
+		textura.loadFromFile("Midia/Imagens/J2AtaqueEsquerda.png");
+	}
 }
 
 void Jogador::colisaoInimigo(Entidade *i)
@@ -105,6 +142,13 @@ void Jogador::colisaoInimigo(Entidade *i)
 		else if(i->getAtacar()==true)
 		{
 			operator--();
+			if(getVidas()==0)
+			{
+				if(jogador==1 && segueJogador==1)
+					setSegue(2);
+				else if(jogador==2 && segueJogador==2)
+					setSegue(1);
+			}
 		}
 		verifTempo = false;
 	}
@@ -171,3 +215,13 @@ int Jogador::colisaoMapaObs(Entidade *hbx)
 }
 
 int Jogador::getPontos() { return pontos; }
+
+void Jogador::setSegue(int i)
+{
+	segueJogador = i;
+}
+
+int Jogador::getSegue()
+{
+	return segueJogador;
+}

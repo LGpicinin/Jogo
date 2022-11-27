@@ -4,8 +4,8 @@ using namespace Entidades;
 using namespace Personagens;
 
 
-Curupira::Curupira(Jogador* j, float x, float y):
-Inimigo(j, x, y)
+Curupira::Curupira(Jogador* j1, Jogador* j2, float x, float y):
+Inimigo(j1, j2, x, y)
 {
 	dano = 1;
 	numVidas = 4;
@@ -59,19 +59,26 @@ void Curupira::move()
     }
 	else
 	{
-		sf::Vector2f posiJogador;
+		sf::Vector2f posiJogador, posiJogador1, posiJogador2;
 
+        posiJogador1 = jogador1->getPos();
+        posiJogador2 = jogador2->getPos();
 
-		posiJogador = jogador->getPos();
+        if ((abs(posiJogador1.x - pos.x) <= abs(posiJogador2.x - pos.x)))
+            posiJogador = posiJogador1;
+            
+        else
+            posiJogador = posiJogador2;
+
 		if (abs(posiJogador.x - pos.x)<200 && abs(posiJogador.y - pos.y)<200)
 		{
-			afastar();
+			afastar(posiJogador);
 			atacar = false;
 			corre = true;
 		}
 		else if(((abs(posiJogador.x - pos.x)<600 && abs(posiJogador.y - pos.y)<600)) && corre == false)
 		{
-			ataque();
+			ataque(posiJogador);
 			atacar = true;
 		}
 		else if ((abs(posiJogador.x - pos.x)<1000 && abs(posiJogador.y - pos.y)<1000) && corre == true)
@@ -99,10 +106,8 @@ void Curupira::move()
 
 }
 
-void Curupira::ataque()
+void Curupira::ataque(sf::Vector2f posiJogador)
 {
-    sf::Vector2f posiJogador;
-    posiJogador = jogador->getPos();
 
 	if(atirar==true && fogo->getAtivado()==false)
 	{
@@ -118,7 +123,7 @@ void Curupira::ataque()
 	}
     else
     {
-        persegueJogador();
+        persegueJogador(posiJogador);
     }
 
 	atirar = false;
@@ -135,14 +140,12 @@ void Curupira::ataque()
     	}
 }
 
-void Curupira::afastar()
+void Curupira::afastar(sf::Vector2f posiJogador)
 {
 	int v;
 	v = 3;
 
-    sf::Vector2f posiJogador;
     vel.x = 0.0;
-    posiJogador = jogador->getPos();
 
 	if((posiJogador.x - pos.x)<0) {  vel.x = vel.x + v; }
 

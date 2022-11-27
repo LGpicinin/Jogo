@@ -69,7 +69,8 @@ void Entidade::operator++()
 void Entidade::operator--()
 {
 	numVidas--;
-
+	if(numVidas<=0)
+		setVivo(false);
 }
 
 void Entidade::setVidas(int n) { 

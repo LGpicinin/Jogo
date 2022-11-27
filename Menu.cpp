@@ -33,6 +33,8 @@ Menu::~Menu() {
 	opcoes.~Lista();
 	if (f1) delete f1;
 	if (f2) delete f2;
+	f1 = NULL;
+	f2 = NULL;
 }
 
 void Menu::setMusica(sf::Music* m) { musica = m; }
@@ -41,53 +43,8 @@ void Menu::executar() {
 	GerenciadorGrafico::getGerenciadorGrafico()->setView(sf::Vector2f(320.0f, 240.0f));
 	GerenciadorGrafico* graf = GerenciadorGrafico::getGerenciadorGrafico();
 	resumir->getCorpo().setPosition(800, 80);
-	FILE* fp = fopen("Ranking.txt", "r+");
+	//FILE* fp = fopen("Ranking.txt", "r+");
 	while (graf->verifJanelaAberta()) {
-
-		/*if (sf::Keyboard::isKeyPressed(sf::Keyboard::LBracket) && fp) {
-			int cont=0;
-			
-			char** nomes;
-			nomes = (char**)malloc(sizeof(char*) * 50);
-			vector<int> pontos;
-			char line[35], *token;
-			token = (char*)malloc(sizeof(char) * 30);
-			cont = 0;
-			while (fgets(line, sizeof(line), fp)) {
-				token = strtok(line, ",");
-				nomes[cont] = (char*)malloc(sizeof(char) * 30);
-				//nomes[cont] = *(token);
-				strcpy(nomes[cont], token);
-				cont++;
-				token = strtok(NULL, ",");
-				pontos.push_back(atoi(token));
-			}
-			int a=0, b=0, maior=-1, pos = 0;
-			char* auxs;
-			auxs = (char*) malloc(sizeof(char) * 30);
-			int auxi;
-			for (a = 0; a < pontos.size(); a++) {
-				maior=-1;
-				for (b = a; b < pontos.size(); b++) {
-					if (pontos[b] > maior) {
-						maior = pontos[b];
-						pos = b;
-					}
-				}
-				auxi = pontos[pos];
-				auxs = nomes[pos];
-				pontos[pos] = pontos[a];
-				nomes[pos] = nomes[a];
-				pontos[a] = auxi;
-				nomes[a] = auxs;
-			}
-			for (a = 0; a < pontos.size(); a++) {
-				printf("%d: %s, %d pontos.\n", a + 1, nomes[a], pontos[a]);
-				Sleep(2000);
-			}
-			free(nomes);
-		}*/
-		fclose(fp);
 		resumir->atualiza();
 		bfase1->atualiza();
 		bfase2->atualiza();
@@ -128,8 +85,8 @@ void Menu::executar() {
 		}
 		GerenciadorGrafico* graf = GerenciadorGrafico::getGerenciadorGrafico();
 		graf->setView(sf::Vector2f(salvar->getPos().x + 160, bfase2->getPos().y));
-		printf("COOREDENADAS DA VIEW: %f, %f.\n", graf->getCoorView().x, graf->getCoorView().y);
-		printf("COOREDENADAS DE BFASE2: %f, %f.\n\n\n\n\n\n\n\n\n\n\n\n\n\n", bfase2->getCorpo().getPosition().x, bfase2->getCorpo().getPosition().y);
+		//printf("COOREDENADAS DA VIEW: %f, %f.\n", graf->getCoorView().x, graf->getCoorView().y);
+		//printf("COOREDENADAS DE BFASE2: %f, %f.\n\n\n\n\n\n\n\n\n\n\n\n\n\n", bfase2->getCorpo().getPosition().x, bfase2->getCorpo().getPosition().y);
 		//Sleep(5000);
 		graf->getWindow()->setView(*(graf->getView()));
 		graf->limpaJanela();

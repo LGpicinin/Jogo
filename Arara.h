@@ -13,9 +13,9 @@ namespace Entidades
                 int aumentaVel;
 
             public:
-                Arara(Jogador *j, float x, float y);
+                Arara(Jogador* j1, Jogador* j2, float x, float y);
                 ~Arara();
-                void ataque();
+                void ataque(sf::Vector2f posiJogador);
                 void viradoEsq();
                 void viradoDir();
                 void ataqueDir();

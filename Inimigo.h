@@ -12,7 +12,8 @@ namespace Entidades
         class Inimigo : public Personagem
         {
         protected:
-            Jogador* jogador;
+            Jogador* jogador1;
+            Jogador* jogador2;
             int movAl;
             bool horaAtaque;
             bool ataqueDistancia;
@@ -20,12 +21,12 @@ namespace Entidades
             sf::Clock relogio;
 
         public:
-            Inimigo(Jogador* j, float x, float y);
+            Inimigo(Jogador* j1, Jogador* j2, float x, float y);
             ~Inimigo();
             void move();
-            void persegueJogador();
+            void persegueJogador(sf::Vector2f posiJogador);
             void movimentoAleatorio();
-            virtual void ataque();
+            virtual void ataque(sf::Vector2f posiJogador);
             void congela();
         };
 

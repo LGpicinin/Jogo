@@ -3,8 +3,8 @@
 using namespace Entidades;
 using namespace Personagens;
 
-Arara::Arara(Jogador* j, float x, float y) :
-Inimigo(j, x, y)
+Arara::Arara(Jogador* j1, Jogador* j2, float x, float y) :
+Inimigo(j1, j2, x, y)
 {
     dano = 1;
     numVidas = 2;
@@ -45,13 +45,11 @@ void Arara::ataqueEsq()
     corpo.setTextureRect(sf::IntRect(0, 0, 512, 322));
 }
 
-void Arara::ataque()
+void Arara::ataque(sf::Vector2f posiJogador)
 {
-    int verif, v=1.5;
+    int verif, v = 1.5;
 
-    sf::Vector2f posiJogador;
     vel.x = 0.0;
-    posiJogador = jogador->getPos();
 
     srand(time(NULL));
     verif = rand()%2;

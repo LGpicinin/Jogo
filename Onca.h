@@ -12,13 +12,13 @@ namespace Entidades
             private:
                 bool agressividade;
             public:
-                Onca(Jogador* j, float x, float y);
+                Onca(Jogador* j1, Jogador* j2, float x, float y);
                 ~Onca();
                 void viradoEsq();
                 void viradoDir();
                 void ataqueDir();
                 void ataqueEsq();
-                void ataque();
+                void ataque(sf::Vector2f posiJogador);
                 void calculaAgressividade();
 
         };

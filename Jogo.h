@@ -30,6 +30,7 @@ class Jogo {
 private:
 	Menu* menuopc;
 	Jogador* jogador1;
+	Jogador* jogador2;
 	GerenciadorGrafico *graf;
 	GerenciadorEvento *pEvent;
 	GerenciadorColisao *pColi;

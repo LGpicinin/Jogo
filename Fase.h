@@ -50,11 +50,13 @@ namespace Fases
             ListaEntes* getLista();
             ListaEntes* getInimigos();
             Jogador* getJogador1();
+            Jogador* getJogador2();
             void geraOnca(float x, float y);
             void geraArara(float x, float y);
             void geraPedra(float x, float y);
             void geraEspinho(float x, float y, int tam);
             GerenciadorEvento* getEvent();
+            void moveLista();
     };
 
 }

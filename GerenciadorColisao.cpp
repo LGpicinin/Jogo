@@ -3,20 +3,20 @@
 
 using namespace Gerenciadores;
 
-GerenciadorColisao::GerenciadorColisao(ListaEntes* ini, Mapa* m, Jogador* p) {
+GerenciadorColisao::GerenciadorColisao(ListaEntes* ini, Mapa* m, Jogador* p1, Jogador* p2) {
 	inimigos = ini;
 	map = m;
-	pJogador = p;
+	jogadores.push_back(p1);
+	jogadores.push_back(p2);
 }
 
 GerenciadorColisao::GerenciadorColisao()
 {
 	inimigos = NULL;
 	map = NULL;
-	pJogador = NULL;
 }
 
-GerenciadorColisao::~GerenciadorColisao() {}
+GerenciadorColisao::~GerenciadorColisao(){}
 
 const sf::Vector2f GerenciadorColisao::calculaColisaoIni(Ente* e1, Ente* e2) {
 	sf::Vector2f pos1 = e1->getPos();
@@ -45,98 +45,89 @@ const sf::Vector2f GerenciadorColisao::calculaColisaoPlat(Ente* e, Plataforma* p
 }
 
 void GerenciadorColisao::executar() {
-	Entidade* ent1 = pJogador;
-	bool flag1 = 0;
+	Entidade* ent1;
+	int i = 0;
+	int j = 0;
+	bool flag1 = false;
+	bool flag2 = false;
+	bool flag4 = false;
+	bool flag3 = false;
+
 	//for (int i = 0; i < inimigos->getLista()->getTam() - 1; i++) {
 		//Entidade* ent1 = inimigos->getLista()->getElX(i)->getInfo();
-		for (int j = 0; j <= inimigos->getLista()->getTam(); j++) {
+		for (j = 0; j <= inimigos->getLista()->getTam(); j++) {
 			Entidade* ent2 = inimigos->getLista()->getElX(j)->getInfo();
 			if(ent2->getVivo()==true)
 			{
-				sf::Vector2f ds = calculaColisaoIni(ent1, ent2);
-				if (ds.x < 0.0f && ds.y < 0.0f) {
-					std::cout << "Ocorre uma colisao 1.\n";
-					
-					if(ent2->getObstaculo()==false)
-						pJogador->colisaoInimigo(ent2);
+				for(i=0;i<2;i++)
+				{
+					if(jogadores[i]->getVivo()==false) continue;
+					ent1 = static_cast<Entidade*>(jogadores[i]);
 
-					else
-					{
-						flag1 = pJogador->colisaoMapaObs(ent2);
+					sf::Vector2f ds = calculaColisaoIni(ent1, ent2);
+					if (ds.x < 0.0f && ds.y < 0.0f) {
+						std::cout << "Ocorre uma colisao 1.\n";
+						
+						if(ent2->getObstaculo()==false)
+							jogadores[i]->colisaoInimigo(ent2);
+
+						else
+						{
+							if(i==0)
+								flag1 = jogadores[i]->colisaoMapaObs(ent2);
+							else
+								flag2 = jogadores[i]->colisaoMapaObs(ent2);
+						}
 					}
+					
 				}
 			}
 		}
 	
 
+		if(jogadores[0]->getSegue()==1)
+			ent1 = static_cast<Entidade*>(jogadores[0]);
+		
+		else
+			ent1 = static_cast<Entidade*>(jogadores[1]);
 
-	//for (int i = 0; i < inimigos->getLista()->getTam() - 1; i++) {
-		//Entidade* ent1 = inimigos->getLista()->getElX(i)->getInfo();
 		GerenciadorGrafico *graf = GerenciadorGrafico::getGerenciadorGrafico();
-		bool flag = 0;
-		if (pJogador->getPos().x < map->getIni() + map->getLen() * 0.2)map->setColidiveis(map->getC1());
-		else if (pJogador->getPos().x > map->getIni() + map->getLen() * 0.2 && pJogador->getPos().x < map->getIni() + map->getLen() * 0.4) map->setColidiveis(map->getC1b());
-		else if (pJogador->getPos().x > map->getIni() + map->getLen() * 0.4 && pJogador->getPos().x < map->getIni() + map->getLen() * 0.6) map->setColidiveis(map->getC2());
-		else if (pJogador->getPos().x > map->getIni() + map->getLen() * 0.6 && pJogador->getPos().x < map->getIni() + map->getLen() * 0.8) map->setColidiveis(map->getC2b());
-		else if (pJogador->getPos().x > map->getIni() + map->getLen() * 0.8 && pJogador->getPos().x < map->getIni() + map->getLen()) map->setColidiveis(map->getC3());
+		if (ent1->getPos().x < map->getIni() + map->getLen() * 0.2)map->setColidiveis(map->getC1());
+		else if (ent1->getPos().x > map->getIni() + map->getLen() * 0.2 && ent1->getPos().x < map->getIni() + map->getLen() * 0.4) map->setColidiveis(map->getC1b());
+		else if (ent1->getPos().x > map->getIni() + map->getLen() * 0.4 && ent1->getPos().x < map->getIni() + map->getLen() * 0.6) map->setColidiveis(map->getC2());
+		else if (ent1->getPos().x > map->getIni() + map->getLen() * 0.6 && ent1->getPos().x < map->getIni() + map->getLen() * 0.8) map->setColidiveis(map->getC2b());
+		else if (ent1->getPos().x > map->getIni() + map->getLen() * 0.8 && ent1->getPos().x < map->getIni() + map->getLen()) map->setColidiveis(map->getC3());
 
-		for (int j = 0; j < map->getColidiveis()->getTam(); j++) {
+		for (j = 0; j < map->getColidiveis()->getTam(); j++) {
 			Plataforma* hbx = map->getColidiveis()->getElX(j)->getInfo();
 			if (hbx->getPos().x > graf->getCoorView().x + 320 || hbx->getPos().x < graf->getCoorView().x - 320 || hbx->getPos().y > graf->getCoorView().y + 240 || hbx->getPos().y < graf->getCoorView().y - 240) continue;
-			sf::Vector2f ds = calculaColisaoPlat(ent1, hbx);
-			if (ds.x < 0.0f && ds.y < 0.0f) {
+			
+			for(i=0;i<2;i++)
+			{ 
+				if(jogadores[i]->getVivo()==false) continue;
+				ent1 = static_cast<Entidade*>(jogadores[i]);
 
-				/*std::cout << "Ocorre uma colisao 2 - Jogador.\n";
+				sf::Vector2f ds = calculaColisaoPlat(ent1, hbx);
+				if (ds.x < 0.0f && ds.y < 0.0f) {
 
-				if (trunc(pJogador->getPos().x + pJogador->getTam().x) <= hbx->getPos().x + 16 && pJogador->getPos().y >= hbx->getPos().y - pJogador->getTam().y + 8) {
-					pJogador->setPos(sf::Vector2f(hbx->getPos().x - pJogador->getTam().x, pJogador->getPos().y));
-					//pJogador->setVelY(-0.3f);
-					std::cout << "Colisao com a direita.\n";
-					pJogador->setVelY(pJogador->getVel().y / 1.1f);
-					flag = 1;
-				}
-				else if (pJogador->getPos().x - 8 >= hbx->getPos().x + hbx->getTam().x - 16 && pJogador->getPos().y >= hbx->getPos().y - pJogador->getTam().y + 8) {
-					pJogador->setPos(sf::Vector2f(hbx->getPos().x + hbx->getTam().x, pJogador->getPos().y));
-					std::cout << "Colisao com a esquerda.\n";
-					//if (pJogador->getVel().y <= 0.6 && pJogador->getVel().y >= 0.2) pJogador->setVelY(-0.3f);
-					//else pJogador->setVelY(pJogador->getVel().y / 2.0f);
-					pJogador->setVelY(pJogador->getVel().y / 1.1f);
-					flag = 1;
-				}
+					if(i==0)
+						flag3 = jogadores[i]->colisaoMapaObs(static_cast<Entidade*>(hbx));
+					else
+						flag4 = jogadores[i]->colisaoMapaObs(static_cast<Entidade*>(hbx));
 
-
-				else if (trunc(pJogador->getPos().y + pJogador->getTam().y) + 8 >= trunc(hbx->getPos().y) && pJogador->getVel().y >= 0) {
-					std::cout << "Colisao abaixo.\n";
-					//int py = pJogador->getPos().y / 32;
-					//py = py * 32;
-					if (pJogador->getVel().y > 0) {
-						pJogador->setPos(sf::Vector2f(pJogador->getPos().x, hbx->getPos().y - 73));
-					}
-					pJogador->setVelY(0.0f);
-					//pJogador->setPos(sf::Vector2f(pJogador->getPos().x, trunc(hbx->getPos().y - pJogador->getTam().y)));
-					flag = 1;
 				}
-				else if (pJogador->getPos().y >= hbx->getPos().y + hbx->getTam().y - 16) {
-					std::cout << "Colisao acima.\n";
-					pJogador->setVelY(-pJogador->getVel().y);
-					pJogador->setPos(pJogador->getPos().x, hbx->getPos().y + hbx->getTam().y);
-				}
-				*/
-				flag = pJogador->colisaoMapaObs(static_cast<Entidade*>(hbx));
-				
-				
 			}
 			//else pJogador->cair();
 		}
-		if (flag == 0 && flag1 == 0) pJogador->cair();
+		if (flag1 == 0 && flag3 == 0) jogadores[0]->cair();
+		if (flag2 == 0 && flag4 == 0) jogadores[1]->cair();
 		
-		bool flag2 = 0;
-		for (int i = 0; i <= inimigos->getLista()->getTam(); i++) {
+		for (i = 0; i <= inimigos->getLista()->getTam(); i++) {
 			flag2 = 0;
 			ent1 = inimigos->getLista()->getElX(i)->getInfo();
 			if (ent1->getVivo() == false) continue;
 			if (ent1->getPos().x > graf->getCoorView().x + 500 || ent1->getPos().x < graf->getCoorView().x - 500 || ent1->getPos().y > graf->getCoorView().y + 400 || ent1->getPos().y < graf->getCoorView().y - 400) continue;
-			for (int j = 0; j < map->getColidiveis()->getTam(); j++) {
+			for (j = 0; j < map->getColidiveis()->getTam(); j++) {
 				Plataforma* hbx = map->getColidiveis()->getElX(j)->getInfo();
 				if (hbx->getPos().x > graf->getCoorView().x + 500 || hbx->getPos().x < graf->getCoorView().x - 500 || hbx->getPos().y > graf->getCoorView().y + 400 || hbx->getPos().y < graf->getCoorView().y - 400) continue;
 				sf::Vector2f ds = calculaColisaoPlat(ent1, hbx);
@@ -156,9 +147,9 @@ void GerenciadorColisao::executar() {
 	}
 
 
-void GerenciadorColisao::setJogador(Jogador *p)
+void GerenciadorColisao::incluirJogador(Jogador *p)
 {
-	pJogador = p;
+	jogadores.push_back(p);
 }
 void GerenciadorColisao::setInimigos (ListaEntes *l)
 {

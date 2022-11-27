@@ -20,18 +20,40 @@ Resumir::Resumir(Menu* m) : Opcao() {
 
 Resumir::~Resumir() {}
 
-void Resumir::executar() {
-	//pMenu->~Menu();
+void Resumir::executar() 
+{
+
 	GerenciadorGrafico* graf = GerenciadorGrafico::getGerenciadorGrafico();
-	if (pMenu->getFase2()) {
-		pMenu->getFase2()->getJogador1()->setVidas(3);
-		graf->setView(sf::Vector2f(pMenu->getFase2()->getJogador1()->getPos().x, pMenu->getFase2()->getJogador1()->getPos().y));
+	Jogador* j1=NULL;
+	Jogador* j2=NULL;
+	if (pMenu->getFase2()) 
+	{
+		j2 = pMenu->getFase2()->getJogador2();
+		j1 = pMenu->getFase2()->getJogador1();
+
 		pMenu->getFase2()->getMusica()->play();
 	}
-	else if (pMenu->getFase1()) {
-		pMenu->getFase1()->getJogador1()->setVidas(3);
-		graf->setView(sf::Vector2f(pMenu->getFase1()->getJogador1()->getPos().x, pMenu->getFase1()->getJogador1()->getPos().y));
+	else if (pMenu->getFase1()) 
+	{
+		j2 = pMenu->getFase1()->getJogador2();
+		j1 = pMenu->getFase1()->getJogador1();
+
 		pMenu->getFase1()->getMusica()->play();
+	}
+
+	j1->setVidas(3);
+	j2->setVidas(3);
+
+	if(j1->getSegue()==1)
+	{
+		graf->setView(sf::Vector2f(j1->getPos().x, j1->getPos().y));
+		j2->setPos(j1->getPos().x, j1->getPos().y);
+	}
+	else
+	{
+		graf->setView(sf::Vector2f(j2->getPos().x, j2->getPos().y));
+		j1->setPos(j2->getPos().x, j2->getPos().y);
+		j1->setSegue(1);
 	}
 	
 }

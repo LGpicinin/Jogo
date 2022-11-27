@@ -6,7 +6,9 @@ using namespace Gerenciadores;
 GerenciadorEvento* GerenciadorEvento::pEvento = NULL;
 
 GerenciadorEvento::GerenciadorEvento() {
-	pJogador = NULL;
+	pJogador1 = NULL;
+	pJogador2 = NULL;
+	tecla2 = false;
 	//pMenu = NULL;
 }
 
@@ -23,38 +25,85 @@ GerenciadorEvento* GerenciadorEvento::getGerenciadorEvento() {
 
 void GerenciadorEvento::setPGraf(GerenciadorGrafico* p) { pGraf = p; }
 
-void GerenciadorEvento::setJogador(Jogador* p) { pJogador = p; }
+void GerenciadorEvento::setJogador1(Jogador* p) { pJogador1 = p; }
 
-void GerenciadorEvento::verifTeclaPressionada(sf::Keyboard::Key tecla) {
-	if (tecla == sf::Keyboard::A) {
-		pJogador->setVelX(-8.0);
-		//pJogador->atualizaPos();
+void GerenciadorEvento::setJogador2(Jogador* p) 
+{ 
+	pJogador2 = p;
+	tecla2 = false;
+}
+
+
+
+void GerenciadorEvento::verifTeclaPressionada(sf::Keyboard::Key tecla) 
+{
+	//------JOGADOR 1------
+	if(pJogador1->getVivo()==true)
+	{
+		if (tecla == sf::Keyboard::A) {
+			pJogador1->setVelX(-8.0);
+		}
+		else if (tecla == sf::Keyboard::D) {
+			pJogador1->setVelX(8.0);
+		}
+		if (tecla == sf::Keyboard::G) {
+			pJogador1->setAtacar(true);
+		}
+		if (tecla == sf::Keyboard::Space && pJogador1->getVel().y <= 0.1 && pJogador1->getVel().y >= -0.1) {
+			pJogador1->pular();
+		}
 	}
-	else if (tecla == sf::Keyboard::D) {
-		pJogador->setVelX(8.0);
-		//pJogador->atualizaPos();
+
+	//------JOGADOR 2------
+	if(pJogador2->getVivo()==true)
+	{
+		if (tecla == sf::Keyboard::Left) {
+			pJogador2->setVelX(-8.0);
+		}
+		else if (tecla == sf::Keyboard::Right) {
+			pJogador2->setVelX(8.0);
+		}
+		if (tecla == sf::Keyboard::L) {
+			pJogador2->setAtacar(true);
+		}
+		if (tecla == sf::Keyboard::Up && pJogador2->getVel().y <= 0.1 && pJogador2->getVel().y >= -0.1) {
+			pJogador2->pular();
+		}
 	}
-	if (tecla == sf::Keyboard::L) {
-		pJogador->setAtacar(true);
+
+	if(tecla == sf::Keyboard::Num2 && tecla2 == false)
+	{
+		pJogador2->setVidas(3);
+		tecla2 = true;
 	}
-	if (tecla == sf::Keyboard::Space && pJogador->getVel().y <= 0.1 && pJogador->getVel().y >= -0.1) {
-		pJogador->pular();
-		//pJogador->atualizaPos();
+
+	if (tecla == sf::Keyboard::Escape) {
+		pJogador1->setVidas(0);
+		pJogador2->setVidas(0);
 	}
-	else if (tecla == sf::Keyboard::Escape) {
-		//pGraf->fecharJanela();
-		//pMenu->executar();
-		pJogador->setVidas(0);
-	}
+	
 }
 
 void GerenciadorEvento::verifTeclaSolta(sf::Keyboard::Key tecla) {
-	if (tecla == sf::Keyboard::A || tecla == sf::Keyboard::D) {
-		pJogador->parar();
-	}
-	if (tecla == sf::Keyboard::L)
+	if(pJogador1->getVivo()==true)
 	{
-		pJogador->setAtacar(false);
+		if (tecla == sf::Keyboard::A || tecla == sf::Keyboard::D) {
+			pJogador1->parar();
+		}
+		if (tecla == sf::Keyboard::G)
+		{
+			pJogador1->setAtacar(false);
+		}
+	}
+	if(pJogador2->getVivo()==true)
+	{
+		if (tecla == sf::Keyboard::Left || tecla == sf::Keyboard::Right) {
+			pJogador2->parar();
+		}
+		if (tecla == sf::Keyboard::L)
+		{
+			pJogador2->setAtacar(false);
+		}
 	}
 }
 

@@ -3,8 +3,8 @@
 using namespace Entidades;
 using namespace Personagens;
 
-Onca::Onca(Jogador* j, float x, float y) :
-Inimigo(j, x, y)
+Onca::Onca(Jogador* j1, Jogador* j2, float x, float y) :
+Inimigo(j1, j2, x, y)
 {
     dano = 1;
     numVidas = 2;
@@ -41,13 +41,11 @@ void Onca::ataqueEsq()
 	textura.loadFromFile("Midia/Imagens/OncaAtaque2.png");
 }
 
- void Onca::ataque()
+ void Onca::ataque(sf::Vector2f posiJogador)
  {
     int v;
 
-    sf::Vector2f posiJogador;
     vel.x = 0.0;
-    posiJogador = jogador->getPos();
 
     calculaAgressividade();
 

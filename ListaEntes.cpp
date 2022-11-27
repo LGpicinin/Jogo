@@ -39,7 +39,7 @@ void ListaEntes::desenhaLista()
 	{
 		info = aux->getInfo();
 		
-		
+		if(info->getVivo()==true)
 			info->imprimir();
 
 		aux = aux->getProximo();
