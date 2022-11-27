@@ -50,7 +50,7 @@ void Projetil::move()
 		setPos(atirador->getPos());
 	}
 
-	if((distanciaPercorrida > alcance && vel.y == 0) && (pos != atirador->getPos()))
+	if(((distanciaPercorrida > alcance && vel.y == 0)||distanciaPercorrida > 2*alcance) && (pos != atirador->getPos()))
 	{
 		distanciaPercorrida = 0;
 		ativado = false;

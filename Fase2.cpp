@@ -30,7 +30,7 @@ Fase2::Fase2() : Fase() {
     j1->setPos(4320, 800);
 
     j2 = new Jogador(2);
-    //j2->setMapa2(mapa2);
+    j2->setMapa2(mapa2);
     j2->setPos(4320, 800);
     
 
@@ -67,15 +67,25 @@ void Fase2::executar()
     //Elemento<Hitbox>* itobs = obs->getPrimeiro();
 
 
-    if (j1) while ((j1->getVidas() > 0 || j2->getVidas() > 0) && GerenciadorGrafico::getGerenciadorGrafico()->verifJanelaAberta())
+    if (j1 && j2) while ((j1->getVidas() > 0 || j2->getVidas() > 0) && GerenciadorGrafico::getGerenciadorGrafico()->verifJanelaAberta())
     {
-        if (!GerenciadorGrafico::getGerenciadorGrafico()->verifJanelaAberta()) break;
+        //if (!GerenciadorGrafico::getGerenciadorGrafico()->verifJanelaAberta()) break;
 
         moveLista();
 
         if ((j1->getPos().x >= 12086 || j2->getPos().x >= 12086) && f1->getStatus() == sf::Music::Playing) {
             f1->stop();
             f2->play();
+        }
+
+        if(chefe->getVidas()<=0)
+        {
+            f2->stop();
+            float dt = aposChefe.getElapsedTime().asSeconds();
+            if(dt>=2)
+            {
+                break;
+            }
         }
         //atual = j1->getMapa()->getincx();
 
@@ -106,7 +116,7 @@ void Fase2::geraInimigos()
     int contador = 0;
     float x = 300;
     float y = 100;
-    Curupira* c;
+
     geraOnca(4830, 888);
     geraOnca(7912, 472);
     geraOnca(9110, 855);
@@ -143,12 +153,12 @@ void Fase2::geraInimigos()
     verif = rand() % 3;
     if (verif == 1) geraArara(12192, 640);
 
-    c = geraCurupira(12598, 800);
+    chefe = geraCurupira(12598, 800);
 
-    inimigos->add(static_cast<Entidade*>(c->getFogo()));
-    lista->add(static_cast<Entidade*>(c->getFogo()));
+    inimigos->add(static_cast<Entidade*>(chefe->getFogo()));
+    lista->add(static_cast<Entidade*>(chefe->getFogo()));
 
-    c->setLista(inimigos);
+    chefe->setLista(inimigos);
 
 }
 
@@ -200,6 +210,11 @@ Curupira* Fase2::geraCurupira(float x, float y)
     lista->add(static_cast<Entidade*>(inimigo));
 
     return inimigo;
+}
+
+Curupira* Fase2::getChefe()
+{
+    return chefe;
 }
 
 sf::Music* Fase2::getMusica() { return f1; }

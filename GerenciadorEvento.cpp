@@ -116,4 +116,9 @@ void GerenciadorEvento::executar() {
 	}
 }
 
+bool GerenciadorEvento::getTecla2()
+{
+	return tecla2;
+}
+
 //void GerenciadorEvento::setMenu(Menu* m) { pMenu = m; }

@@ -70,25 +70,35 @@ void Curupira::move()
         else
             posiJogador = posiJogador2;
 
-		if (abs(posiJogador.x - pos.x)<200 && abs(posiJogador.y - pos.y)<200)
+		if ((abs(posiJogador.x - pos.x)<150 && abs(posiJogador.y - pos.y)<150)&& corre==false)
 		{
 			afastar(posiJogador);
 			atacar = false;
 			corre = true;
 		}
-		else if(((abs(posiJogador.x - pos.x)<600 && abs(posiJogador.y - pos.y)<600)) && corre == false)
+		else if ((abs(posiJogador.x - pos.x)<200 && abs(posiJogador.y - pos.y)<200)&& corre==true)
 		{
+			if(vel.y==0) { vel.y = -2; }
+		}
+		else if(((abs(posiJogador.x - pos.x)<600 && abs(posiJogador.y - pos.y)<600)))
+		{
+			if(fogo->getVivo()==false) { fogo->setVivo(true); }
 			ataque(posiJogador);
 			atacar = true;
+			corre = false;
 		}
-		else if ((abs(posiJogador.x - pos.x)<1000 && abs(posiJogador.y - pos.y)<1000) && corre == true)
+		/*else if ((abs(posiJogador.x - pos.x)<600 && abs(posiJogador.y - pos.y)<600) && corre == true)
 		{
 			corre = false;
+		}*/
+		else if(((abs(posiJogador.x - pos.x)>600 && abs(posiJogador.y - pos.y)>600)) && corre == true)
+		{
+			corre = false;
+			vel.x = 0;
 		}
 		else
 		{
 			movimentoAleatorio();
-			atacar = false;
 		}
 
 
@@ -100,15 +110,13 @@ void Curupira::move()
 		corpo.setPosition(pos.x, pos.y);
 		verifImg();
 
-		vel.x = 0;
-
 	}
 
 }
 
 void Curupira::ataque(sf::Vector2f posiJogador)
 {
-
+	vel.x = 0;
 	if(atirar==true && fogo->getAtivado()==false)
 	{
 		fogo->setAtivado(true);
@@ -147,9 +155,9 @@ void Curupira::afastar(sf::Vector2f posiJogador)
 
     vel.x = 0.0;
 
-	if((posiJogador.x - pos.x)<0) {  vel.x = vel.x + v; }
+	if((posiJogador.x - pos.x)<0) {  vel.x = vel.x - v; }
 
-    else if((posiJogador.x - pos.x)>0) { vel.x = vel.x - v; }
+    else if((posiJogador.x - pos.x)>0) { vel.x = vel.x + v; }
 
 	if(vel.y==0) { vel.y = -2; }
 }

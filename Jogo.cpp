@@ -31,7 +31,7 @@ Jogo::Jogo() {
 	}
 	catch (Jogador j) {
 		cout << "Nao ha jogador construido.\n";
-		Jogo::~Jogo();
+		//Jogo::~Jogo();
 		chk = 0;
 	}
 	if (chk == 1) executar();
@@ -88,7 +88,7 @@ void Jogo::executar() {
 		jogador2 = menuopc->getFase1()->getJogador2();
 		//menuopc->getFase1()->getEvent()->setMenu(menuopc);
 		menuopc->getFase1()->executar();
-		if ((jogador1->getVidas() > 0)) {
+		if ((jogador1->getVidas() > 0) || (jogador2->getVidas() > 0)) {
 			Fase2* y = new Fase2();
 			menuopc->setFase2(y);
 			jogador1 = menuopc->getFase2()->getJogador1();
@@ -100,7 +100,8 @@ void Jogo::executar() {
 	//cout << "Vidas de jogador: " << jogador1->getVidas() << endl;
 	graf->setView(sf::Vector2f(320.0f, 240.0f));
 	resumir->setPos(graf->getCoorView().x - 160, graf->getCoorView().y - 160);
-	if (jogador1->getVidas() <= 0 && jogador2->getVidas() <= 0 && GerenciadorGrafico::getGerenciadorGrafico()->verifJanelaAberta()) {
+	if (/*jogador1->getVidas() <= 0 && jogador2->getVidas() <= 0 && */GerenciadorGrafico::getGerenciadorGrafico()->verifJanelaAberta()) 
+	{
 		graf->setView(sf::Vector2f(320.0f, 240.0f));
 		cout << "Coordenadas de view: " << graf->getCoorView().x << ", " << graf->getCoorView().y << endl;
 		resumir->setPos(graf->getCoorView().x - 160, graf->getCoorView().y - 160);

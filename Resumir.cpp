@@ -24,6 +24,7 @@ void Resumir::executar()
 {
 
 	GerenciadorGrafico* graf = GerenciadorGrafico::getGerenciadorGrafico();
+	GerenciadorEvento* event = GerenciadorEvento::getGerenciadorEvento();
 	Jogador* j1=NULL;
 	Jogador* j2=NULL;
 	if (pMenu->getFase2()) 
@@ -42,17 +43,20 @@ void Resumir::executar()
 	}
 
 	j1->setVidas(3);
-	j2->setVidas(3);
-
-	if(j1->getSegue()==1)
+	if(event->getTecla2()==true)
 	{
-		graf->setView(sf::Vector2f(j1->getPos().x, j1->getPos().y));
-		j2->setPos(j1->getPos().x, j1->getPos().y);
+		j2->setVidas(3);
 	}
-	else
+
+	if(j1->getSegue()==1)//se segueJogador = 1, entao o ultimo jagador a morrer foi o j2, pois o valor do segueJogador eh trocado na hora da morte
 	{
 		graf->setView(sf::Vector2f(j2->getPos().x, j2->getPos().y));
 		j1->setPos(j2->getPos().x, j2->getPos().y);
+	}
+	else
+	{
+		graf->setView(sf::Vector2f(j1->getPos().x, j1->getPos().y));
+		j2->setPos(j1->getPos().x, j1->getPos().y);
 		j1->setSegue(1);
 	}
 	

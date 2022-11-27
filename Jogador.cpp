@@ -142,7 +142,7 @@ void Jogador::colisaoInimigo(Entidade *i)
 		else if(i->getAtacar()==true)
 		{
 			operator--();
-			if(getVidas()==0)
+			if(getVidas()<=0)
 			{
 				if(jogador==1 && segueJogador==1)
 					setSegue(2);
@@ -201,6 +201,13 @@ int Jogador::colisaoMapaObs(Entidade *hbx)
 	if(verifTempo==true && hbx->getAtacar()==true)
 	{
 		operator--();
+		if(getVidas()<=0)
+		{
+			if(jogador==1 && segueJogador==1)
+				setSegue(2);
+			else if(jogador==2 && segueJogador==2)
+				setSegue(1);
+		}
 		verifTempo = false;
 	}
 

@@ -26,6 +26,7 @@ namespace Gerenciadores
 		void verifTeclaPressionada(sf::Keyboard::Key tecla);
 		void verifTeclaSolta(sf::Keyboard::Key tecla);
 		void executar();
+		bool getTecla2();
 		//void setMenu(Menu* m);
 	};
 

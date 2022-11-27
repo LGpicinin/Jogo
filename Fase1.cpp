@@ -135,13 +135,11 @@ void Fase1::geraObstaculos() {
     if (verif == 2) {
         geraPedra(2368, 200);
     }
-    verif = rand() % 4;
-    if (verif == 3) {
-        geraPedra(3302, 300);
-    }
+    
     geraTrepadeira(1072, 100);
     geraPedra(2056, 300);
     geraPedra(2632, 300);
+    geraPedra(3302, 300);
     geraEspinho(3424, 1856, 8);
     geraEspinho(2752, 1952, 3);
     geraEspinho(3424, 2144, 3);
